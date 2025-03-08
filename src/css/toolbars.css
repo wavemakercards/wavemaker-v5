@@ -1,0 +1,57 @@
+
+/**
+ * Toolbars CSS
+ * Bar element Css here
+ * 
+ */
+.toptoolbar{
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    background-color: var(--bg1);
+  }
+  
+  .toptoolbar button{
+    background-color: var(--bg1);
+    color: var(--fg);
+    border: none;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+  }
+  
+  .toptoolbar button:hover,
+  .toptoolbar button:active,
+  .toptoolbar button:focus{
+    outline: none;
+    background-color:  var(--bg3);
+  }
+  
+  .toptoolbar button svg{
+  fill: currentColor;
+  width: 20px;
+  stroke-width: 1px;
+  }
+  
+  .footerbar{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    left:0px;
+    height: 30px;
+    background-color: #212121;
+    color:#646464;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .subbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    position: sticky;
+    top:0px;
+    background-color: var(--bg2);
+  }

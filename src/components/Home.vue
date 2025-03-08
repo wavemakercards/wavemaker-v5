@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SubBar />
     <h1>Home</h1>
     <p>Welcome to the Home page!</p>
     <pre>{{ store }}</pre>
@@ -7,9 +8,12 @@
 </template>
 
 <script>
+import SubBar from '@/components/SubBar.vue';
 import { store } from "@/store/store.js";
 export default {
-  name: 'Home',
+  components: {
+    SubBar,
+  },
   data() {
     return {
       store,

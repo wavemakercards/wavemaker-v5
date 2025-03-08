@@ -4,13 +4,15 @@ import TopToolbar from './components/TopToolbar.vue';
 import FooterBar from './components/FooterBar.vue';
 import InstallPopup from './components/InstallPopup.vue';
 import Home from './components/Home.vue';
+import About from './components/About.vue';
 
 export default {
   components: {
     TopToolbar,
     InstallPopup,
     FooterBar,
-    Home
+    Home,
+    About
   },
   data() {
     return {
@@ -30,7 +32,8 @@ export default {
   <div id="app">
     <TopToolbar />
     <div class="container">
-      <Home />
+      <Home v-if="store.tools.current === 'home'"/>
+      <About v-if="store.tools.current === 'about'"/>
     </div>
     <FooterBar />
   </div>

@@ -1,0 +1,48 @@
+/**
+ * Root CSS
+ * 
+ * This file contains the root css for the application
+ * Keep the variables and the BASIC structural css here
+ * 
+ */
+:root{
+    --bg1 : #373737;
+    --bg2 : #3b3b3b;
+    --bg3 : #2d2d2d;
+    --fg : #b1b1b1;
+    --fg : #fff;
+    --fontsize : 12px;
+    --accent1 : #88008c;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  #app{
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    overflow: hidden;
+  }
+  
+  html{
+    background-color: var(--bg1);
+    color:var(--fg);
+    font-family: 'Roboto', sans-serif;
+    font-size: var(--fontsize);
+  }
+  
+  .container{
+    overflow: auto;
+    position: absolute;
+    top:40px;
+    left:0px;
+    right:0px;
+    bottom:30px;
+  }
+  

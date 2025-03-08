@@ -1,5 +1,5 @@
 <template>
     <div class="footerbar">
-                Wavemaker Cards © 2021
+                Wavemaker Cards v5 © 2021
     </div>
 </template>
