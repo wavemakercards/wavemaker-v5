@@ -13,9 +13,45 @@
 *::after {
   box-sizing: border-box;
 }
+
+#app{
+  position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  overflow: hidden;
+}
 html{
   background-color: var(--bg1);
   color:var(--fg);
   font-family: 'Roboto', sans-serif;
   font-size: var(--fontsize);
+}
+
+.file-tools{
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  background-color: var(--bg2);
+
+}
+.file-tools button{
+  background-color: var(--bg2);
+  color: var(--fg);
+  border: none;
+  height: 40px;
+  cursor: pointer;
+}
+.file-tools button:hover{
+  background-color: var(--bg1);
+}
+.file-tools button:active{
+  background-color: var(--bg3);
+}
+.file-tools button svg{
+fill: var(--fg);
+width: 20px;
 }

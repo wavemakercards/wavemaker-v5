@@ -23,7 +23,7 @@ export default defineConfig({
         icons: [
           {
             src: '192.png',
-            sizes: 'icons/192x192',
+            sizes: 'icons/192x192.png',
             type: 'image/png',
           },
           {

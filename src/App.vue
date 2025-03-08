@@ -25,8 +25,6 @@ export default {
 
 <template>
   <div id="app">
-    <h1>File Management</h1>
-    <p>This is a  setyp</p>
     <FileLoader />
     <InstallPopup />
     <router-view></router-view>
