@@ -1,8 +1,11 @@
+import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  base: "",
+  resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
   plugins: [
     vue(),
     VitePWA({
@@ -11,7 +14,7 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: 'Wavenet Cards version 5',
+        name: 'Wavemaker Cards version 5',
         short_name: 'WavemakerCards5',
         start_url: '/',
         display: 'standalone',
