@@ -7,6 +7,7 @@
   --fg : #b1b1b1;
   --fg : #fff;
   --fontsize : 12px;
+  --accent1 : #88008c;
 }
 *,
 *::before,
@@ -29,29 +30,56 @@ html{
   font-size: var(--fontsize);
 }
 
-.file-tools{
+.toptoolbar{
   position: sticky;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 40px;
-  background-color: var(--bg2);
-
-}
-.file-tools button{
-  background-color: var(--bg2);
-  color: var(--fg);
-  border: none;
-  height: 40px;
-  cursor: pointer;
-}
-.file-tools button:hover{
   background-color: var(--bg1);
 }
-.file-tools button:active{
-  background-color: var(--bg3);
+.toptoolbar button{
+  background-color: var(--bg1);
+  color: var(--fg);
+  border: none;
+  border-radius: 10px;
+  margin:5px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+
 }
-.file-tools button svg{
-fill: var(--fg);
+.toptoolbar button:hover,
+.toptoolbar button:active,
+.toptoolbar button:focus{
+  outline: none;
+  background-color:  var(--accent1);
+
+}
+.toptoolbar button svg{
+fill: currentColor;
 width: 20px;
+}
+
+
+.footerbar{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  left:0px;
+  height: 30px;
+  background-color: #000;
+  color:#646464;
+  padding: 10px;
+  text-align: center;
+}
+
+.container{
+  overflow: auto;
+  position: absolute;
+  top:40px;
+  left:0px;
+  right:0px;
+  bottom:30px;
+  padding: 10px;
 }

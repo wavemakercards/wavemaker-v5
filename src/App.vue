@@ -1,13 +1,16 @@
 <script>
 import { store } from "@/store/store.js";
-import FileLoader from './components/FileManagement/FileLoader.vue';
+import TopToolbar from './components/TopToolbar.vue';
+import FooterBar from './components/FooterBar.vue';
 import InstallPopup from './components/InstallPopup.vue';
-import router from './router';
+import Home from './components/Home.vue';
 
 export default {
   components: {
-    FileLoader,
+    TopToolbar,
     InstallPopup,
+    FooterBar,
+    Home
   },
   data() {
     return {
@@ -25,8 +28,11 @@ export default {
 
 <template>
   <div id="app">
-    <FileLoader />
-    <InstallPopup />
-    <router-view></router-view>
+    <TopToolbar />
+    <div class="container">
+      <Home />
+    </div>
+    <FooterBar />
   </div>
+  <InstallPopup />
 </template>
