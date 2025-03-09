@@ -41,6 +41,35 @@ export default defineConfig({
           },
         ],
       },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.destination === 'document',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'html-cache',
+            },
+          },
+          {
+            urlPattern: ({ request }) => request.destination === 'script' || request.destination === 'style',
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'assets-cache',
+            },
+          },
+          {
+            urlPattern: ({ request }) => request.destination === 'image',
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'image-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+              },
+            },
+          },
+        ],
+      },
     }),
   ],
 });
