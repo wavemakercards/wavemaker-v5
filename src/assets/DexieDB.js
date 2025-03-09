@@ -106,12 +106,6 @@ const dexieDB = {
 
           await this.$root.db.delete();
           location.reload();
-
-          this.$swal(
-            "Project Closed!",
-            "Your file has been closed.",
-            "success"
-          );
         }
       });
     },

@@ -20,9 +20,9 @@ export default {
     <div style="display: flex; justify-content: center;">
       <Logo style="width: 150px;height: 150px;"/>
     </div>
-    <p>Update settings </p>
+    <h1>Get Started writing</h1>
     <label>You can change the Project name here</label>
-    <ProjectName />
+    <h2><ProjectName /></h2>
    
   </div>
 </template>
