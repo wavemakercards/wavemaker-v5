@@ -5,7 +5,12 @@
     </button>
     <span>
       <button @click="store.tools.current = 'home'">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>home-outline</title><path d="M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <title>home-outline</title>
+          <path
+            d="M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22"
+          />
+        </svg>
       </button>
       <button @click="store.tools.current = 'about'">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -17,7 +22,7 @@
       </button>
     </span>
     <span>
-      <button @click="openFile" v-if="!store.jsonData">
+      <button @click="openFile" v-if="!$root.dbRef">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>upload-box-outline</title>
           <path
@@ -25,7 +30,7 @@
           />
         </svg>
       </button>
-      <span v-if="store.jsonData">
+      <span v-if="$root.dbRef">
         <button @click="saveFile()">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>content-save-outline</title>
@@ -76,11 +81,19 @@ export default {
         const file = await this.store.fileHandle.getFile();
         const contents = await file.text();
         this.store.jsonData = JSON.parse(contents);
+        this.$root.dbImport(this.store.jsonData);
       } catch (error) {
         console.error("Error opening file:", error);
       }
     },
     async saveFile() {
+     // let j = await this.$root.dbExport();
+
+     const mydata = await this.$root.db.export();
+      const myjson = JSON.parse(mydata);
+      console.log("exporting", myjson);
+
+      /*
       try {
         const writable = await this.store.fileHandle.createWritable();
         await writable.write(JSON.stringify(this.store.jsonData, null, 2));
@@ -89,28 +102,12 @@ export default {
       } catch (error) {
         console.error("Error saving file:", error);
       }
+        */
     },
-    clearFile() {
-      this.store.jsonData = null;
-      this.store.fileHandle = null;
+    async clearFile() {
+      this.$root.closeProject();
       console.log("File cleared");
-    },
-    async handleLaunch() {
-      if ("launchQueue" in window && "files" in window.LaunchParams.prototype) {
-        window.launchQueue.setConsumer(async (launchParams) => {
-          if (!launchParams.files.length) {
-            return;
-          }
-          this.store.fileHandle = launchParams.files[0];
-          const file = await this.store.fileHandle.getFile();
-          const contents = await file.text();
-          this.store.jsonData = JSON.parse(contents);
-        });
-      }
-    },
-  },
-  mounted() {
-    this.handleLaunch();
-  },
+    }
+  }
 };
 </script>
