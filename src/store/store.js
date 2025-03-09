@@ -5,6 +5,6 @@ export const store = reactive({
         jsonData : null
     },
     tools :{
-        current: "home",
+        current: null,
     }
 });

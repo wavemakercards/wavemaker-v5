@@ -1,23 +1,25 @@
 <template>
   <div>
-    <SubBar />
-    <h1>Home</h1>
-    <p>Welcome to the Home page!</p>
+    <h1>Applications Here</h1>
+    <p>This is the About page.</p>
+    <input type="text" v-model="this.$root.syncdb.Settings.ProjectName" @blur="update()" />
+    <pre>hi {{ this.$root.syncdb }}</pre>
   </div>
 </template>
 
 <script>
-import SubBar from '@/components/SubBar.vue';
-import { store } from "@/store/store.js";
 export default {
-  components: {
-    SubBar,
-  },
+  name: 'About',
   data() {
     return {
-      store,
     };
   },
-  
+  mounted(){
+  },
+  methods: {
+    update(){
+      this.$root.UpdateRecord("Settings", this.$root.syncdb.Settings.uuid, this.$root.syncdb.Settings) 
+    }
+  }
 };
 </script>

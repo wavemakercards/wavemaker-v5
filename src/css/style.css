@@ -1,3 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;200&display=swap');
 @import url('root.css');
 @import url('toolbars.css');
+
+
+input[type="text"] {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+    color: #333;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    display: block;
+    width: 100%;
+    border: 0;
+    outline: none;
+    font-size: inherit;
+    background: none;
+    color: currentColor;
+    border-bottom: 2px solid #424242;
+    text-align: inherit;
+}

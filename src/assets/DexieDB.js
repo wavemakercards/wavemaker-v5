@@ -30,8 +30,10 @@ const dexieDB = {
         if (settingsCheck.length) {
           settings = settingsCheck[0];
           this.$root.log(" settings found", settings);
+         
+          this.syncdb.Settings = await this.useObservable(this.liveQuery(async () => await this.db.Settings.get(settings.uuid)))
+
           this.dbRef = settings.uuid;
-          this.$root.syncdb.Settings = this.$root.useObservable(this.$root.liveQuery(async () => await this.$root.db.Settings.get(settings.uuid)))
         }else {
           this.$root.log("no settings found");
         }

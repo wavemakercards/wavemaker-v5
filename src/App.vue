@@ -5,10 +5,11 @@ import FooterBar from '@/components/FooterBar.vue';
 import InstallPopup from '@/components/InstallPopup.vue';
 import DexieDB from "@/assets/DexieDB.js";
 import templateObjects from "@/assets/templateObjects.js";
+import fileManager from "@/assets/fileManager.js";
 import Welcome from '@/components/Welcome.vue';
 import ApplicationSections from '@/components/ApplicationSections.vue';
 export default {
-  mixins: [DexieDB,templateObjects],
+  mixins: [DexieDB,templateObjects,fileManager],
   components: {
     TopToolbar,
     InstallPopup,
@@ -22,7 +23,7 @@ export default {
     };
   },
   methods: {
-
+ 
   },
  mounted() {
     if ("launchQueue" in window && "files" in window.LaunchParams.prototype) {

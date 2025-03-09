@@ -1,18 +1,19 @@
-<template>
-  <div>
-    <h1>Applications Here</h1>
-    <p>This is the About page.</p>
-    <pre>hi {{ this.$root.syncdb  }}</pre>
-  </div>
-</template>
-
 <script>
+import { store } from "@/store/store.js";
+import ProjectHome from '@/components/Apps/Home/Home.vue'
 export default {
-  name: 'About',
+  name: 'App Home',
+  components: {
+    ProjectHome
+  },
   data() {
     return {
-      Settings: this.$root.useObservable(this.$root.liveQuery(async () => await this.$root.db.Settings.get(obj.uuid))),
+      store,
     };
-  },
-};
+  }
+  };
 </script>
+
+<template>
+<ProjectHome v-if="!store.tools.current" />
+</template>

@@ -1,28 +1,31 @@
+<script>
+import { store } from "@/store/store.js";
+import Logo from "@/assets/Logo.vue";
+import ProjectName from "@/components/FormComponents/ProjectName.vue";
+export default {
+  components: {
+    Logo,
+    ProjectName,
+  },
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {},
+};
+</script>
+
 <template>
   <div class="toptoolbar">
-    <button @click="">
+    <button @click="" class="titlebtn">
       <Logo style="width: 30px; height: 30px" />
     </button>
-    <span>
-      <button @click="store.tools.current = 'home'">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <title>home-outline</title>
-          <path
-            d="M12 5.69L17 10.19V18H15V12H9V18H7V10.19L12 5.69M12 3L2 12H5V20H11V14H13V20H19V12H22"
-          />
-        </svg>
-      </button>
-      <button @click="store.tools.current = 'about'">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <title>information-outline</title>
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2M12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20M11 7H13V13H11V7M11 15H13V17H11V15"
-          />
-        </svg>
-      </button>
-    </span>
-    <span>
-      <button @click="openFile" v-if="!$root.dbRef">
+
+    <ProjectName class="projectname" />
+
+    <span class="floatRight">
+      <button @click="$root.openFile()" v-if="!$root.dbRef">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>upload-box-outline</title>
           <path
@@ -31,7 +34,7 @@
         </svg>
       </button>
       <span v-if="$root.dbRef">
-        <button @click="saveFile()">
+        <button @click="$root.saveFile()">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>content-save-outline</title>
             <path
@@ -39,7 +42,7 @@
             />
           </svg>
         </button>
-        <button @click="clearFile()">
+        <button @click="$root.clearFile()">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>close-box-outline</title>
             <path
@@ -52,62 +55,20 @@
   </div>
 </template>
 
-<script>
-import { store } from "@/store/store.js";
-import Logo from "@/assets/Logo.vue";
-export default {
-  components: {
-    Logo,
-  },
-  data() {
-    return {
-      store,
-    };
-  },
-  methods: {
-    async openFile() {
-      try {
-        [this.store.fileHandle] = await window.showOpenFilePicker({
-          types: [
-            {
-              description: "Wavemaker Cards File",
-              accept: {
-                "application/json": [".wmc"],
-              },
-              extensions: ["wmc"],
-            },
-          ],
-        });
-        const file = await this.store.fileHandle.getFile();
-        const contents = await file.text();
-        this.store.jsonData = JSON.parse(contents);
-        this.$root.dbImport(this.store.jsonData);
-      } catch (error) {
-        console.error("Error opening file:", error);
-      }
-    },
-    async saveFile() {
-     // let j = await this.$root.dbExport();
+<style scoped>
+.titlebtn {
+  position: absolute;
+  top:0px;
+  left:0px;
+}
 
-     const mydata = await this.$root.db.export();
-      const myjson = JSON.parse(mydata);
-      console.log("exporting", myjson);
-
-      /*
-      try {
-        const writable = await this.store.fileHandle.createWritable();
-        await writable.write(JSON.stringify(this.store.jsonData, null, 2));
-        await writable.close();
-        console.log("File saved successfully");
-      } catch (error) {
-        console.error("Error saving file:", error);
-      }
-        */
-    },
-    async clearFile() {
-      this.$root.closeProject();
-      console.log("File cleared");
-    }
-  }
-};
-</script>
+.floatRight{
+  position: absolute;
+  top:0px;
+  right:0px;
+}
+.projectname{
+  width: 100%;
+  text-align: center;
+}
+</style>
