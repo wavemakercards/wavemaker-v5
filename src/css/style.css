@@ -19,4 +19,18 @@ input[type="text"] {
     text-align: inherit;
 }
 
+.btn{
+    position: relative;
+    display: block;
+    text-align: left;
+    padding-left: 50px;
+    font-size: 1.3rem;
+}
+.btn svg{
+    fill: currentColor;
+    position: absolute;
+    left:5px;
+    top:5px;
+    height:35px
 
+}
