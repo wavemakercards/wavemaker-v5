@@ -20,7 +20,10 @@ export default {
     <h1>Get Started writing</h1>
     <label>You can change the Project name here</label>
     <h2><ProjectName /></h2>
-    <button @click="$root.openNewWindow()">New Window</button>
+    {{ this.$root.databaseName }}
+    <button
+    v-if="$root.mainwindow"
+    @click="$root.openNewWindow()">New Window</button>
   </div>
 </template>
 
@@ -30,7 +33,8 @@ export default {
   margin: 0 auto;
   margin-top: 20px;
   padding: 50px;
-  background-color: var(--bg3);
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
   height: calc(100% - 40px);
   border:2px solid #212121;
 }

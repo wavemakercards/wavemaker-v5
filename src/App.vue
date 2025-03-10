@@ -37,12 +37,12 @@ export default {
 
 <template>
   <div id="app">
-    <TopToolbar v-if="!$root.ParentWindow"/>
-     <div class="container">
+    <TopToolbar     v-if="$root.mainwindow"/>
+     <div class="container" :class="{ 'mainwindow': $root.mainwindow }">
       <Welcome v-if="!$root.dbRef" />
       <ApplicationSections v-else />
     </div>
-    <FooterBar v-if="!$root.ParentWindow" />
+    <FooterBar     v-if="$root.mainwindow" />
   </div>
   <InstallPopup />
 </template>

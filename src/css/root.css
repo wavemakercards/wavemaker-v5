@@ -109,12 +109,16 @@ html {
 .container {
   overflow: auto;
   position: absolute;
-  top: 40px;
+  top: 0px;
   left: 0px;
   right: 0px;
+  bottom: 0px;
+  background-color: var(--bg2);
+}
+.mainwindow{
+  top: 40px;
   bottom: 30px;
 }
-
 
 .center-box {
   display: flex;
@@ -135,5 +139,5 @@ html {
 }
 
 .logobtm {
-  fill: #e0e0e0;
+  fill: #efefef;
 }

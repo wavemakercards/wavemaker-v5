@@ -1,45 +1,86 @@
-import { db, databaseImport, databaseExport } from "@/assets/db.js";
+//import { db, databaseImport, databaseExport, createDB } from "@/assets/db.js";
+import Dexie from "dexie";
+import {importDB, exportDB} from "dexie-export-import";
 import { useObservable } from "@vueuse/rxjs";
 import { liveQuery } from "dexie";
 import { v4 as uuid } from "uuid";
+import { onMounted } from "vue";
+
+
+export const databaseExport = async (db)=> {
+  const blob = await db.export()
+  return blob
+}
+
 const dexieDB = {
   data() {
     return {
       dbRef: null, // the database this window will be using to tell me it is loaded
-      db,
+      db : null,
+      databaseName: null,
       useObservable,
       liveQuery,
-      databaseImport,
-      databaseExport,
       uuid,
       syncdb: {},
+      DBstores : {
+        Settings: `uuid, settings, lastupdated`,
+        Writer: `uuid, title, description, files, lastupdated`,
+        Cards: `uuid, title,description,content,style,labels,options,lastupdated`,
+        Files: `uuid, writerid, title, content, lastupdated`,
+        Snowflake: `uuid, title, description,content,lastupdated`,
+        Timeline: `uuid, title, description,content,lastupdated`,
+        Gridplanner: `uuid, title, description,content,lastupdated`,
+        Mindmap: `uuid, title, description,content,lastupdated`,
+        ImageLibrary: `uuid, title, base64`
+      }
     };
   },
   methods: {
-    async initDatabase() {
+    async initDatabase(){
+      console.log(this.databaseName)
+      if(!this.databaseName){
+        console.log("New Db Created")
+        this.databaseName = this.uuid();
+      }
+      if(!this.db){
+        console.log("Creating new database")
+        this.db = await new Dexie(this.databaseName);
+        console.log("Creating new stores")
+        this.db.version(1).stores(this.DBstores);
+      }
+ 
        // see if we are alreay running a project
-      let settingsCheck = await this.$root.db.Settings.toArray();
+      let settingsCheck = await this.db.Settings.toArray();
       let settings = {};
       if (settingsCheck) {
         if (settingsCheck.length) {
           settings = settingsCheck[0];        
-          this.syncdb.Settings = await this.useObservable(this.liveQuery(async () => await this.db.Settings.get(settings.uuid)))
-
         this.dbRef = settings.uuid;
-        }
-      } 
+        } else {
+        let obj = JSON.parse(JSON.stringify(this.$root.SettingsTemplate))
+        obj.uuid = this.$root.uuid();
+        obj.ProjectName = "New Project";
+        await this.$root.AddRecord("Settings", obj);
+        this.dbRef = obj.uuid;
+      }
+      this.syncdb.Settings = await this.useObservable(this.liveQuery(async () => await this.db.Settings.get(this.dbRef)))
+    }
     },
     async dbImport(jsonData) {
-      let dbname = jsonData.data.databaseName;
+      this.databaseName = jsonData.data.databaseName;
       const mydata = new Blob([JSON.stringify(jsonData)], {
         type: "text/json;charset=utf-8",
       });
-      if (dbname != "wavemakerv5") {
-        jsonData.data.databaseName = "wavemakerv5";
-      }
-      await databaseImport(mydata);
-      this.initDatabase();
+      this.db = await importDB(mydata, { clearTablesBeforeImport: true })
+      await this.initDatabase()
     },
+
+   async dbExport()  {
+    const db= await new Dexie(this.databaseName).open();
+    const blob = await databaseExport(db)
+    return blob
+    db.close()
+},
     async getImage(uuid) {
       return await this.$root.db.ImageLibrary.get(uuid);
     },
@@ -96,5 +137,10 @@ const dexieDB = {
       });
     },
   },
+  mounted(){
+    if(this.databaseName){
+      this.initDatabase()
+    }
+  }
 };
 export default dexieDB;

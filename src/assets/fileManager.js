@@ -25,13 +25,36 @@ const fileManager = {
               console.error("Error opening file:", error);
             }
           },
+        async snapShot() {
+            let filename = this.sanitizeFilename(this.$root.syncdb.Settings.ProjectName) ;
+            const mydata = await this.$root.dbExport();
+            const contents = await mydata.text();
+            this.store.jsonData = JSON.parse(contents);
+
+            const blob = new Blob([JSON.stringify(this.store.jsonData, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          },
+          sanitizeFilename(str) {
+            const date = new Date();
+            const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+            return str
+              .toLowerCase()
+              .replace(/[^a-z0-9\s-]/g, '') // Remove illegal characters
+              .replace(/\s+/g, '-') // Replace spaces with hyphens
+              .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
+              + `-${formattedDate}.wmc`; // Append the formatted date and time
+          },
           async saveFile() {
-    
-             const mydata = await this.$root.databaseExport();
+             const mydata = await this.$root.dbExport();
              const contents = await mydata.text();
              this.store.jsonData = JSON.parse(contents);
-            
-
              try {
              if (!this.store.fileHandle) {
                this.store.fileHandle = await window.showSaveFilePicker({
@@ -46,7 +69,6 @@ const fileManager = {
                ],
                });
              }
-
              const writable = await this.store.fileHandle.createWritable();
              await writable.write(JSON.stringify(this.store.jsonData, null, 2));
              await writable.close();
@@ -67,8 +89,6 @@ const fileManager = {
               confirmButtonColor: "#3085d6",
               confirmButtonText: "OK",
             })
-    
-     
              }
           },
           async clearFile() {
@@ -88,7 +108,7 @@ const fileManager = {
             await this.$root.dbImport(this.store.jsonData);
           });
         }
-        this.$root.initDatabase()
+
     },
 }
 export default fileManager
