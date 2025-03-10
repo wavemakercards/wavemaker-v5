@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       store,
+      currentTool: null
     };
   },
   methods: {

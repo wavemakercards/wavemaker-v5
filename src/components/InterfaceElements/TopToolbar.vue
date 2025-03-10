@@ -18,7 +18,7 @@ export default {
 
 <template>
   <div class="toptoolbar">
-    <button @click="" class="titlebtn">
+    <button @click="$root.currentTool = null" class="titlebtn">
       <Logo style="width: 30px; height: 30px" />
     </button>
 

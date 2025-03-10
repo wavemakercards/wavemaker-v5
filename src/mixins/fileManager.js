@@ -4,6 +4,14 @@ const fileManager = {
         }
     },
     methods: {
+      handleKeyPress(e) {
+        if(this.$root.databaseName){
+        if (e.keyCode == 83 && (navigator.userAgent.includes("Mac") ? e.metaKey : e.ctrlKey))      {
+          e.preventDefault();
+          this.saveFile();
+        }
+        }
+      },
         async openFile() {
             try {
               [this.store.fileHandle] = await window.showOpenFilePicker({
@@ -95,7 +103,7 @@ const fileManager = {
             this.$root.closeProject();
           }
     },
-    mounted() {
+    created() {
       if ("launchQueue" in window && "files" in window.LaunchParams.prototype) {
           window.launchQueue.setConsumer(async (launchParams) => {
             if (!launchParams.files.length) {
@@ -110,5 +118,11 @@ const fileManager = {
         }
 
     },
+  mounted() {
+    window.addEventListener('keydown', this.handleKeyPress);
+  },
+  beforeDestroy() {
+    window.removeEventListener('keydown', this.handleKeyPress);
+  }
 }
 export default fileManager
