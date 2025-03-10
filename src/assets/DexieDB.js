@@ -18,6 +18,7 @@ const dexieDB = {
       dbRef: null, // the database this window will be using to tell me it is loaded
       db : null,
       databaseName: null,
+      dblist: [],
       useObservable,
       liveQuery,
       uuid,
@@ -36,6 +37,21 @@ const dexieDB = {
     };
   },
   methods: {
+    async getDatabases(){
+      this.dblist = await Dexie.getDatabaseNames();
+      console.log(this.dblist);
+      const projectNames = [];
+      for (const dbName of this.dblist) {
+        const db = new Dexie(dbName);
+        db.version(1).stores(this.DBstores);
+        const settings = await db.Settings.toArray();
+        if (settings.length > 0) {
+          projectNames.push({ dbName, projectName: settings[0].ProjectName });
+        }
+        db.close();
+      }
+      console.log(projectNames);
+  },
     async initDatabase(){
       console.log(this.databaseName)
       if(!this.databaseName){
@@ -78,9 +94,9 @@ const dexieDB = {
    async dbExport()  {
     const db= await new Dexie(this.databaseName).open();
     const blob = await databaseExport(db)
-    return blob
     db.close()
-},
+    return blob
+  },
     async getImage(uuid) {
       return await this.$root.db.ImageLibrary.get(uuid);
     },
@@ -137,10 +153,14 @@ const dexieDB = {
       });
     },
   },
-  mounted(){
+  async mounted(){
     if(this.databaseName){
       this.initDatabase()
+    }else{
+    this.getDatabases()
+   
     }
+
   }
 };
 export default dexieDB;

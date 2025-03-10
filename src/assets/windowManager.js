@@ -33,6 +33,7 @@ const windowManager = {
                     win.close();
                 }
             });
+            this.$root.closeProject()
             this.childWindows = []; // Clear the array
         }
     },
