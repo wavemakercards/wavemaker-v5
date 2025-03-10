@@ -152,6 +152,13 @@ const dexieDB = {
         }
       });
     },
+    async closeAndDeleteDatabase() {
+      if (this.db) {
+        await this.db.close();
+        await Dexie.delete(this.databaseName);
+        console.log(`Database ${this.databaseName} closed and deleted.`);
+      }
+    },
   },
   async mounted(){
     if(this.databaseName){
@@ -160,7 +167,10 @@ const dexieDB = {
     this.getDatabases()
    
     }
-
+    window.addEventListener('beforeunload', this.closeAndDeleteDatabase);
+  },
+  beforeDestroy() {
+    window.removeEventListener('beforeunload', this.closeAndDeleteDatabase);
   }
 };
 export default dexieDB;

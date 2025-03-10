@@ -17,7 +17,9 @@
     "sweetalert2": "^11.17.2",
     "uuid": "^9.0.1",
     "vue": "^3.5.13",
-    "vue-sweetalert2": "^5.0.11"
+    "vue-sweetalert2": "^5.0.11",
+    "vue-tree-dnd": "^0.2.2",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
