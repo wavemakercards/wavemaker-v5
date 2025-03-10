@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --port 3000 --open",
     "build": "vite build",
+    "docs": "vite build --outDir docs",
     "preview": "vite preview --port 8080 --open"
   },
   "dependencies": {
