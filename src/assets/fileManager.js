@@ -26,12 +26,11 @@ const fileManager = {
             }
           },
           async saveFile() {
-           // let j = await this.$root.dbExport();
-           console.log("going", this.store.jsonData);
+    
              const mydata = await this.$root.databaseExport();
              const contents = await mydata.text();
              this.store.jsonData = JSON.parse(contents);
-             console.log("exporting", this.store.jsonData);
+            
 
              try {
              if (!this.store.fileHandle) {
@@ -51,8 +50,7 @@ const fileManager = {
              const writable = await this.store.fileHandle.createWritable();
              await writable.write(JSON.stringify(this.store.jsonData, null, 2));
              await writable.close();
-             console.log("File saved successfully");
-
+   
              this.$swal({
               title: "Your File Was saved",
               text: "The file was saved successfully",
@@ -62,9 +60,8 @@ const fileManager = {
             })
 
              } catch (error) {
-             console.error("Error saving file:", error);
              this.$swal({
-              title: "There was a problem saving your file",
+              title: "Your file was not saved",
               text: "Please try again, or use other export tools to make a backup.",
               icon: "error",
               confirmButtonColor: "#3085d6",
@@ -76,8 +73,22 @@ const fileManager = {
           },
           async clearFile() {
             this.$root.closeProject();
-            console.log("File cleared");
           }
-    }
+    },
+    mounted() {
+      if ("launchQueue" in window && "files" in window.LaunchParams.prototype) {
+          window.launchQueue.setConsumer(async (launchParams) => {
+            if (!launchParams.files.length) {
+              return;
+            }
+            this.store.fileHandle = launchParams.files[0];
+            const file = await this.store.fileHandle.getFile();
+            const contents = await file.text();
+            this.store.jsonData = JSON.parse(contents);
+            await this.$root.dbImport(this.store.jsonData);
+          });
+        }
+        this.$root.initDatabase()
+    },
 }
 export default fileManager

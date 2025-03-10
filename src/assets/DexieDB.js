@@ -11,31 +11,21 @@ const dexieDB = {
       liveQuery,
       databaseImport,
       databaseExport,
-      windowID: null,
       uuid,
       syncdb: {},
     };
   },
   methods: {
-    log(...msg){
-      // custom log function
-      console.log(...msg);
-    },
     async initDatabase() {
-      this.windowID = this.uuid(); // each window generates a unique ID so it knows who is doing the emitting of changes
-      // see if we are alreay running a project
+       // see if we are alreay running a project
       let settingsCheck = await this.$root.db.Settings.toArray();
       let settings = {};
       if (settingsCheck) {
         if (settingsCheck.length) {
-          settings = settingsCheck[0];
-          this.$root.log(" settings found", settings);
-         
+          settings = settingsCheck[0];        
           this.syncdb.Settings = await this.useObservable(this.liveQuery(async () => await this.db.Settings.get(settings.uuid)))
 
-          this.dbRef = settings.uuid;
-        }else {
-          this.$root.log("no settings found");
+        this.dbRef = settings.uuid;
         }
       } 
     },
@@ -47,9 +37,7 @@ const dexieDB = {
       if (dbname != "wavemakerv5") {
         jsonData.data.databaseName = "wavemakerv5";
       }
-      this.$root.log("importing", mydata, dbname);
       await databaseImport(mydata);
-      this.$root.log("imported", dbname);
       this.initDatabase();
     },
     async getImage(uuid) {
@@ -61,7 +49,6 @@ const dexieDB = {
 
     },
     async UpdateRecord(myTable, myKey, myData) {
-      //this.$root.log("updating", myTable, myKey, myData)
       myData.uuid = myKey;
       myData.lastupdated = Date.now();
       return await this.db[myTable].put(JSON.parse(JSON.stringify(myData)));
@@ -103,7 +90,6 @@ const dexieDB = {
           window.removeEventListener("beforeunload", this.$root.unloadEvent);
           this.dbRef = null;
           this.$root.clearDatabase();
-
           await this.$root.db.delete();
           location.reload();
         }

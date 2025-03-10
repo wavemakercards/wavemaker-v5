@@ -1,12 +1,6 @@
 <script>
-import Logo from "@/assets/Logo.vue";
-import ProjectName from "@/components/FormComponents/ProjectName.vue";
 export default {
-  name: 'ProjectHome',
-  components: {
-    Logo,
-    ProjectName
-  },
+  name: 'DataBaseHome',
   methods: {
   }
 };
@@ -30,7 +24,7 @@ export default {
   margin: 0 auto;
   margin-top: 20px;
   padding: 50px;
-  background-color: var(--bg3);
+  background-color:#fff;
   height: calc(100% - 40px);
   border:2px solid #212121;
 }

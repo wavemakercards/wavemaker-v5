@@ -27,7 +27,7 @@
   .toptoolbar button:active,
   .toptoolbar button:focus{
     outline: none;
-    background-color:  var(--bg3);
+    background-color:  var(--accent2);
   }
   
   .toptoolbar button svg{
@@ -42,8 +42,8 @@
     right: 0px;
     left:0px;
     height: 30px;
-    background-color: #212121;
-    color:#646464;
+    background-color: var(--accent2-dark);
+    color:var(--text-dark);
     padding: 10px;
     text-align: center;
   }

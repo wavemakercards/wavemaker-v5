@@ -1,15 +1,22 @@
 <script>
 import { store } from "@/store/store.js";
-import TopToolbar from '@/components/TopToolbar.vue';
-import FooterBar from '@/components/FooterBar.vue';
-import InstallPopup from '@/components/InstallPopup.vue';
+
+/** Mixins */
 import DexieDB from "@/assets/DexieDB.js";
 import templateObjects from "@/assets/templateObjects.js";
 import fileManager from "@/assets/fileManager.js";
+import windowManager from "@/assets/windowManager.js";
+
+/** Components */
+import TopToolbar from '@/components/TopToolbar.vue';
+import FooterBar from '@/components/FooterBar.vue';
+import InstallPopup from '@/components/InstallPopup.vue';
 import Welcome from '@/components/Welcome.vue';
 import ApplicationSections from '@/components/ApplicationSections.vue';
+
+
 export default {
-  mixins: [DexieDB,templateObjects,fileManager],
+  mixins: [DexieDB,templateObjects,fileManager,windowManager],
   components: {
     TopToolbar,
     InstallPopup,
@@ -24,33 +31,18 @@ export default {
   },
   methods: {
  
-  },
- mounted() {
-    if ("launchQueue" in window && "files" in window.LaunchParams.prototype) {
-        window.launchQueue.setConsumer(async (launchParams) => {
-          if (!launchParams.files.length) {
-            return;
-          }
-          this.store.fileHandle = launchParams.files[0];
-          const file = await this.store.fileHandle.getFile();
-          const contents = await file.text();
-          this.store.jsonData = JSON.parse(contents);
-          await this.$root.dbImport(this.store.jsonData);
-        });
-      }
-      this.$root.initDatabase()
-  },
+  }
 };
 </script>
 
 <template>
   <div id="app">
-    <TopToolbar />
+    <TopToolbar v-if="!$root.ParentWindow"/>
      <div class="container">
       <Welcome v-if="!$root.dbRef" />
       <ApplicationSections v-else />
     </div>
-    <FooterBar />
+    <FooterBar v-if="!$root.ParentWindow" />
   </div>
   <InstallPopup />
 </template>
