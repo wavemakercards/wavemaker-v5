@@ -8,9 +8,9 @@ import fileManager from "@/mixins/fileManager.js";
 import windowManager from "@/mixins/windowManager.js";
 
 /** Components */
-import TopToolbar from '@/components/TopToolbar.vue';
-import FooterBar from '@/components/FooterBar.vue';
-import InstallPopup from '@/components/InstallPopup.vue';
+import TopToolbar from '@/components/InterfaceElements/TopToolbar.vue';
+import FooterBar from '@/components/InterfaceElements/FooterBar.vue';
+import InstallPopup from '@/components/InterfaceElements/InstallPopup.vue';
 import Welcome from '@/components/Welcome.vue';
 import ApplicationSections from '@/components/ApplicationSections.vue';
 

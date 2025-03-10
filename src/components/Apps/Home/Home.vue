@@ -1,5 +1,5 @@
 <script>
-import Logo from "@/assets/Logo.vue";
+import Logo from "@/components/InterfaceElements/Logo.vue";
 import ProjectName from "@/components/FormComponents/ProjectName.vue";
 export default {
   name: 'ProjectHome',

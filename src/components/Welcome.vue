@@ -1,6 +1,6 @@
 
 <script>
-import Logo from "@/assets/Logo.vue";
+import Logo from "@/components/InterfaceElements/Logo.vue";
 export default {
   name: "About",
   components:{
