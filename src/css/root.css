@@ -5,71 +5,139 @@
  * Keep the variables and the BASIC structural css here
  * 
  */
-:root{
-    --bg1 : #373737;
-    --bg2 : #3b3b3b;
-    --bg3 : #2d2d2d;
-    --fg : #b1b1b1;
-    --fg : #fff;
-    --fontsize : 14px;
-    --accent1 : #88008c;
-  }
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-  
-  #app{
-    position: absolute;
-    top:0px;
-    left:0px;
-    right:0px;
-    bottom:0px;
-    overflow: hidden;
-  }
-  
-  html{
-    background-color: var(--bg1);
-    color:var(--fg);
-    font-family: 'Poppins', sans-serif;
-    font-size: var(--fontsize);
-    letter-spacing: 1px;
-    font-weight: 200;
-  }
-  
-  #app h1,#app h2,#app h3,#app h4,#app h5,#app h6{
-    margin: 0;
-    padding: 0;
-    font-weight: 200;
-    border-bottom : 2px solid #424242;
-    margin-bottom: 10px;
-    margin-top: 10px;
+:root {
+  --bg1: #373737;
+  --bg2: #3b3b3b;
+  --bg3: #2d2d2d;
+  --fg: #b1b1b1;
+  --fg: #fff;
+  --fontsize: 14px;
+
+
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --neutral: #474045;
+  --information: #003E8C;
+  --success: #006539;
+  --warning: #9B3900;
+  --danger: #9B0509;
+  --neutral-light:
+    color-mix(in srgb, var(--neutral) 20%, var(--mix-color, white));
+  --neutral-dark: var(--neutral);
+  --information-light:
+    color-mix(in srgb, var(--information) 20%, var(--mix-color, white));
+  --information-dark: var(--information);
+  --success-light:
+    color-mix(in srgb, var(--success) 20%, var(--mix-color, white));
+  --success-dark:
+    color-mix(in srgb, var(--success) 75%, #000000);
+  --warning-light:
+    color-mix(in srgb, var(--warning) 20%, var(--mix-color, white));
+  --warning-dark: var(--warning);
+  --danger-light:
+    color-mix(in srgb, var(--danger) 20%, var(--mix-color, white));
+  --danger-dark: var(--danger);
+  --accent1: #AF216B;
+  --accent2: #21A0B0;
+  --accent3: #B09F21;
+  --accent4: #679700;
+  --accent5: #67138C;
+  --accent6: #BE5400;
+  --accent1-light:
+    color-mix(in srgb, var(--accent1) 20%, var(--mix-color, white));
+  --accent1-dark:
+    color-mix(in srgb, var(--accent1) 70%, #000000);
+  --accent2-light:
+    color-mix(in srgb, var(--accent2) 20%, var(--mix-color, white));
+  --accent2-dark:
+    color-mix(in srgb, var(--accent2) 70%, #000000);
+  --accent3-light:
+    color-mix(in srgb, var(--accent3) 20%, var(--mix-color, white));
+  --accent3-dark:
+    color-mix(in srgb, var(--accent3) 65%, #000000);
+  --accent4-light:
+    color-mix(in srgb, var(--accent4) 20%, var(--mix-color, white));
+  --accent4-dark:
+    color-mix(in srgb, var(--accent4) 75%, #000000);
+  --accent5-light:
+    color-mix(in srgb, var(--accent5) 20%, var(--mix-color, white));
+  --accent5-dark:
+    color-mix(in srgb, var(--accent5) 70%, #000000);
+  --accent6-light:
+    color-mix(in srgb, var(--accent6) 20%, var(--mix-color, white));
+  --accent6-dark:
+    color-mix(in srgb, var(--accent6) 75%, #000000);
 }
 
-  .container{
-    overflow: auto;
-    position: absolute;
-    top:40px;
-    left:0px;
-    right:0px;
-    bottom:30px;
-  }
-  
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-  .center-box{
-    display: flex; justify-content: center; align-items: center; height: 100%; text-align: center;
-  }
+#app {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
 
-  .logo{
-    background-color: #ccc;
-     border-radius: 50%;
-     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
- }
- .logotop{
-     fill: #424242;
- }
- .logobtm{ 
-     fill: #ad7b0f;
- }
+html {
+  background-color: var(--bg1);
+  color: var(--fg);
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fontsize);
+  letter-spacing: 1px;
+  font-weight: 200;
+}
+
+#app h1,
+#app h2,
+#app h3,
+#app h4,
+#app h5,
+#app h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 200;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.container {
+  overflow: auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: var(--bg2);
+}
+.mainwindow{
+  top: 40px;
+  bottom: 30px;
+}
+
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.logo {
+}
+
+.logotop {
+  fill: #212121;
+}
+
+.logobtm {
+  fill: #efefef;
+}

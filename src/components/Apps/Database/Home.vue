@@ -1,12 +1,6 @@
 <script>
-import Logo from "@/components/InterfaceElements/Logo.vue";
-import ProjectName from "@/components/FormComponents/ProjectName.vue";
 export default {
-  name: 'ProjectHome',
-  components: {
-    Logo,
-    ProjectName
-  },
+  name: 'DataBaseHome',
   methods: {
   }
 };
@@ -20,10 +14,7 @@ export default {
     <h1>Get Started writing</h1>
     <label>You can change the Project name here</label>
     <h2><ProjectName /></h2>
-    {{ this.$root.databaseName }}
-    <button
-    v-if="$root.mainwindow"
-    @click="$root.openNewWindow()">New Window</button>
+    <button @click="$root.openNewWindow()">New Window</button>
   </div>
 </template>
 
@@ -33,8 +24,7 @@ export default {
   margin: 0 auto;
   margin-top: 20px;
   padding: 50px;
-  background-color: var(--neutral-light);
-  color: var(--neutral-dark);
+  background-color:#fff;
   height: calc(100% - 40px);
   border:2px solid #212121;
 }

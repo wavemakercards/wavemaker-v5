@@ -25,14 +25,36 @@ const fileManager = {
               console.error("Error opening file:", error);
             }
           },
+        async snapShot() {
+            let filename = this.sanitizeFilename(this.$root.syncdb.Settings.ProjectName) ;
+            const mydata = await this.$root.dbExport();
+            const contents = await mydata.text();
+            this.store.jsonData = JSON.parse(contents);
+
+            const blob = new Blob([JSON.stringify(this.store.jsonData, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          },
+          sanitizeFilename(str) {
+            const date = new Date();
+            const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+            return str
+              .toLowerCase()
+              .replace(/[^a-z0-9\s-]/g, '') // Remove illegal characters
+              .replace(/\s+/g, '-') // Replace spaces with hyphens
+              .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
+              + `-${formattedDate}.wmc`; // Append the formatted date and time
+          },
           async saveFile() {
-           // let j = await this.$root.dbExport();
-           console.log("going", this.store.jsonData);
-             const mydata = await this.$root.databaseExport();
+             const mydata = await this.$root.dbExport();
              const contents = await mydata.text();
              this.store.jsonData = JSON.parse(contents);
-             console.log("exporting", this.store.jsonData);
-
              try {
              if (!this.store.fileHandle) {
                this.store.fileHandle = await window.showSaveFilePicker({
@@ -47,12 +69,10 @@ const fileManager = {
                ],
                });
              }
-
              const writable = await this.store.fileHandle.createWritable();
              await writable.write(JSON.stringify(this.store.jsonData, null, 2));
              await writable.close();
-             console.log("File saved successfully");
-
+   
              this.$swal({
               title: "Your File Was saved",
               text: "The file was saved successfully",
@@ -62,22 +82,33 @@ const fileManager = {
             })
 
              } catch (error) {
-             console.error("Error saving file:", error);
              this.$swal({
-              title: "There was a problem saving your file",
+              title: "Your file was not saved",
               text: "Please try again, or use other export tools to make a backup.",
               icon: "error",
               confirmButtonColor: "#3085d6",
               confirmButtonText: "OK",
             })
-    
-     
              }
           },
           async clearFile() {
             this.$root.closeProject();
-            console.log("File cleared");
           }
-    }
+    },
+    mounted() {
+      if ("launchQueue" in window && "files" in window.LaunchParams.prototype) {
+          window.launchQueue.setConsumer(async (launchParams) => {
+            if (!launchParams.files.length) {
+              return;
+            }
+            this.store.fileHandle = launchParams.files[0];
+            const file = await this.store.fileHandle.getFile();
+            const contents = await file.text();
+            this.store.jsonData = JSON.parse(contents);
+            await this.$root.dbImport(this.store.jsonData);
+          });
+        }
+
+    },
 }
 export default fileManager

@@ -1,6 +1,6 @@
 
 <script>
-import Logo from "@/assets/Logo.vue";
+import Logo from "@/components/InterfaceElements/Logo.vue";
 export default {
   name: "About",
   components:{
@@ -12,11 +12,6 @@ export default {
   },
   methods: {
    async newProject() {
-      this.$root.log(`Creating new project "${this.projectname}"`);
-      let obj = JSON.parse(JSON.stringify(this.$root.SettingsTemplate))
-      obj.uuid = this.$root.uuid();
-      obj.ProjectName = this.projectname
-      this.$root.dbRef = await this.$root.AddRecord("Settings", obj);
       this.$root.initDatabase();
    }
   },

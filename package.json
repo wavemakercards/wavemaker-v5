@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "vite --port 3000 --open",
     "build": "vite build",
+    "docs": "vite build --outDir docs",
     "preview": "vite preview --port 8080 --open"
   },
   "dependencies": {
-    "@sweetalert2/theme-dark": "^5.0.27",
     "@vueuse/rxjs": "^10.9.0",
     "dexie": "^3.2.6",
     "dexie-export-import": "^4.1.1",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "vite-plugin-pwa": "^0.21.1"
   }
 }
