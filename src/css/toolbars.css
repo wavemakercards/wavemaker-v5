@@ -42,8 +42,8 @@
     right: 0px;
     left:0px;
     height: 30px;
-    background-color: var(--accent2-dark);
-    color:var(--text-dark);
+    background-color: #212121;
+    color:#ffffff;
     padding: 10px;
     text-align: center;
   }

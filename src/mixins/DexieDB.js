@@ -38,7 +38,7 @@ const dexieDB = {
   },
   methods: {
     async getDatabases(){
-      this.dblist = await Dexie.getDatabaseNames();
+     /* this.dblist = await Dexie.getDatabaseNames();
       const projectNames = [];
       for (const dbName of this.dblist) {
         const db = new Dexie(dbName);
@@ -49,7 +49,8 @@ const dexieDB = {
         }
         db.close();
       }
-   //   console.log(projectNames);
+     console.log(projectNames);
+   */
   },
     async initDatabase(){
       console.log(this.databaseName)

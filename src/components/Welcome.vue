@@ -1,4 +1,3 @@
-
 <script>
 import Logo from "@/components/InterfaceElements/Logo.vue";
 export default {
@@ -21,39 +20,82 @@ export default {
 <template>
   <div class="center-box">
     <div class="hero">
+      <div style="display: flex; justify-content: center; align-items: center; ">   
       <Logo style="width:50px" />
-      <h1 style="font-size: 1.5rem;"><strong>Wavemaker</strong><em>Cards</em> 5</h1>
-      <p style="padding: 10px; font-size: 1rem;">Lets Start Writing</p>
+      <h1>Wavemaker Cards</h1>
+    </div>
+      <p ><strong>Version 5</strong></p>
+      <p style="padding: 10px; font-size: 1rem;">Start Writing</p>
   
-
-
     <div style="display: block;">
       <button class="btn" @click="newProject()">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>book-open-page-variant-outline</title><path d="M19 1L14 6V17L19 12.5V1M21 5V18.5C19.9 18.15 18.7 18 17.5 18C15.8 18 13.35 18.65 12 19.5V6C10.55 4.9 8.45 4.5 6.5 4.5C4.55 4.5 2.45 4.9 1 6V20.65C1 20.9 1.25 21.15 1.5 21.15C1.6 21.15 1.65 21.1 1.75 21.1C3.1 20.45 5.05 20 6.5 20C8.45 20 10.55 20.4 12 21.5C13.35 20.65 15.8 20 17.5 20C19.15 20 20.85 20.3 22.25 21.05C22.35 21.1 22.4 21.1 22.5 21.1C22.75 21.1 23 20.85 23 20.6V6C22.4 5.55 21.75 5.25 21 5M10 18.41C8.75 18.09 7.5 18 6.5 18C5.44 18 4.18 18.19 3 18.5V7.13C3.91 6.73 5.14 6.5 6.5 6.5C7.86 6.5 9.09 6.73 10 7.13V18.41Z" /></svg>
-        Create</button>
+        <svg  viewBox="0 0 24 24"><path  d="M10,16.5V7.5L16,12M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg>
+        Create a new project</button>
        <button class="btn"  @click="$root.openFile()" >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <title>upload-box-outline</title>
-          <path
-            d="M8 17V15H16V17H8M16 11L12 7L8 11H10.5V14H13.5V11H16M5 3H19C20.11 3 21 3.9 21 5V19C21 20.11 20.11 21 19 21H5C3.9 21 3 20.11 3 19V5C3 3.9 3.9 3 5 3M5 5V19H19V5H5Z"
-          />
-        </svg>
-        Load a project
+        <svg  viewBox="0 0 24 24"><path  d="M19,20H4C2.89,20 2,19.1 2,18V6C2,4.89 2.89,4 4,4H10L12,6H19A2,2 0 0,1 21,8H21L4,8V18L6.14,10H23.21L20.93,18.5C20.7,19.37 19.92,20 19,20Z"></path></svg>
+        <span>
+          Load a project (.wmc file)
+        </span>
       </button>
     </div>
   </div>
   </div>
 </template>
 <style scoped>
+
+p{
+  padding: 0px;
+  margin: 0px;
+}
+
+.center-box {
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  margin-top: 20px;
+text-align: center;
+}
+
 .hero{
-  border: 2px solid var(--bg2);
-  padding: 20px;
-  background-color: var(--bg3);
+  padding: 50px;
+  border-radius: 10px;
+  min-width: 300px;
+  max-width: 400px;
+  width: 100%;
+}
+
+h1{
+  font-size: 1.4em;
+  font-weight: normal;
+}
+
+.btn{
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content:flex-start;
+    gap: 8px; /* Add space between icon and text */
+    padding: 5px;
+    cursor: pointer;
+    border:1px solid #fff;
+    margin-top: 20px;
+    padding:5px 10px;
+    width: 100%;
+    border-radius: 15px;
+    font-weight: normal;
+    font-size: 1.2rem;
+
+}
+.btn:hover,
+.btn:active,
+.btn:focus{
+  background-color: var(--accent2-dark);
+  color: #fff;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.hero button{
-  display: block;
-  width: 100%;
-  height: 50px;
+
+.btn svg{
+    fill: currentColor;
+     height:30px;
+     width:30px
 }
 </style>
