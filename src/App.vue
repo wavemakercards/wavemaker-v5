@@ -2,10 +2,10 @@
 import { store } from "@/store/store.js";
 
 /** Mixins */
-import DexieDB from "@/assets/DexieDB.js";
-import templateObjects from "@/assets/templateObjects.js";
-import fileManager from "@/assets/fileManager.js";
-import windowManager from "@/assets/windowManager.js";
+import DexieDB from "@/mixins/DexieDB.js";
+import templateObjects from "@/mixins/templateObjects.js";
+import fileManager from "@/mixins/fileManager.js";
+import windowManager from "@/mixins/windowManager.js";
 
 /** Components */
 import TopToolbar from '@/components/TopToolbar.vue';
