@@ -1,9 +1,9 @@
 <script>
-import MyTree from "@/components/Apps/Writer/MyTree.vue"
+import DocStructure from "@/components/Apps/Writer/DocStructure.vue"
 export default {
   name: 'WriterHome',
   components: {
-    MyTree
+    DocStructure
   },
   methods: {
   }
@@ -13,7 +13,7 @@ export default {
 <template>
   
 <div class="lhs">
-  <MyTree />
+  <DocStructure />
 </div>
   
 </template>

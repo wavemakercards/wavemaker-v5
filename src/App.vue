@@ -28,7 +28,7 @@ export default {
     return {
       store,
       currentTool: null,
-      node : 0
+      currentNode : 0
     };
   },
   methods: {
