@@ -136,7 +136,7 @@ const dexieDB = {
     async closeProject() {
       this.$swal({
         title: "Are you sure?",
-        text: "This will close the project and clear the database!",
+        text: "This will close the project any unsaved changes will be lost!",
         icon: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
