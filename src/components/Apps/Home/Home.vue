@@ -33,9 +33,17 @@ export default {
     -->
    
     <div class="toolcard-grid">
-      <div class="toolcard" @click="$root.currentTool = 'writer'">
-      <h2><svg data-v-92328502="" version="1.1" viewBox="0 0 24 24"><path data-v-92328502="" d="M19 2L14 6.5V17.5L19 13V2M6.5 5C4.55 5 2.45 5.4 1 6.5V21.16C1 21.41 1.25 21.66 1.5 21.66C1.6 21.66 1.65 21.59 1.75 21.59C3.1 20.94 5.05 20.5 6.5 20.5C8.45 20.5 10.55 20.9 12 22C13.35 21.15 15.8 20.5 17.5 20.5C19.15 20.5 20.85 20.81 22.25 21.56C22.35 21.61 22.4 21.59 22.5 21.59C22.75 21.59 23 21.34 23 21.09V6.5C22.4 6.05 21.75 5.75 21 5.5V19C19.9 18.65 18.7 18.5 17.5 18.5C15.8 18.5 13.35 19.15 12 20V6.5C10.55 5.4 8.45 5 6.5 5Z"></path></svg> Word Processor</h2>
-     
+
+
+      <div class="toolcard" v-for="(book, bi) in this.$root.syncdb.Writer" :key="bi" @click="$root.tools.writer.selectedbook = bi; $root.currentTool = 'writer'">
+      <h2><svg data-v-92328502="" version="1.1" viewBox="0 0 24 24"><path data-v-92328502="" d="M19 2L14 6.5V17.5L19 13V2M6.5 5C4.55 5 2.45 5.4 1 6.5V21.16C1 21.41 1.25 21.66 1.5 21.66C1.6 21.66 1.65 21.59 1.75 21.59C3.1 20.94 5.05 20.5 6.5 20.5C8.45 20.5 10.55 20.9 12 22C13.35 21.15 15.8 20.5 17.5 20.5C19.15 20.5 20.85 20.81 22.25 21.56C22.35 21.61 22.4 21.59 22.5 21.59C22.75 21.59 23 21.34 23 21.09V6.5C22.4 6.05 21.75 5.75 21 5.5V19C19.9 18.65 18.7 18.5 17.5 18.5C15.8 18.5 13.35 19.15 12 20V6.5C10.55 5.4 8.45 5 6.5 5Z"></path></svg> </h2>
+      <h3>{{book.title}}</h3>
+      <p>{{ book.description }}</p>
+      <div>
+    
+
+    </div>
+
       </div>
       <div class="toolcard"  @click="$root.currentTool = 'mindmap'">
       <h2><svg data-v-92328502="" version="1.1" viewBox="0 0 24 24"><path data-v-92328502="" d="M21 16V13C21 11.89 20.11 11 19 11H13V8H15V2H9V8H11V11H5C3.89 11 3 11.89 3 13V16H1V22H7V16H5V13H11V16H9V22H15V16H13V13H19V16H17V22H23V16H21M11 4H13V6H11V4M5 20H3V18H5V20M13 20H11V18H13V20M21 20H19V18H21V20Z"></path></svg> Mindmap Builder</h2>
@@ -68,7 +76,11 @@ export default {
 
     </div>
   
-  
+ 
+
+  <pre>
+    {{ this.$root.syncdb }}
+  </pre>
   
   
   </div>

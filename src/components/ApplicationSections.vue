@@ -1,5 +1,5 @@
 <script>
-import { store } from "@/store/store.js";
+
 import ProjectHome from '@/components/Apps/Home/Home.vue'
 import WriterHome from '@/components/Apps/Writer/Home.vue'
 import MindmapHome from '@/components/Apps/Mindmap/Home.vue'
@@ -21,7 +21,6 @@ export default {
   },
   data() {
     return {
-      store,
     };
   }
   };

@@ -3,13 +3,19 @@
     <div class="lhstools">
       <button @click="addNode">Add</button>
     </div>
-    <DocStructureNode :files="list" />
+
+
+    <DocStructureNode :files="$root.syncdb.Writer[$root.tools.writer.selectedbook].files" />
   </div>  
 </template>
 
 <script>
+/**
+ * ToDO - the document structure here is going to be more like WM3 - nested chunks with children
+ * 
+ */
+
 import DocStructureNode from "@/components/Apps/Writer/DocStructureNode.vue";
-import { store } from "@/store/store.js";
 export default {
   name: "DocStructure",
   components: {
@@ -17,36 +23,7 @@ export default {
   },
   data() {
     return {
-      store,
-      list: [
-        {
-          name: "task 1",
-          type:"folder",
-          files: [
-            {
-              name: "task 2",
-              type:"folder",
-              files: []
-            }
-          ]
-        },
-        {
-          name: "task 3",
-          type:"folder",
-          files: [
-            {
-              name: "task 4",
-              type:"folder",
-              files: []
-            }
-          ]
-        },
-        {
-          name: "task 5",
-          type:"folder",
-          files: []
-        }
-      ]
+
     };
   },
   methods:{
@@ -55,11 +32,11 @@ export default {
       node.name = "New"
       node.type= "folder"
       node.files = []
-      if(!this.store.tools.writer.selectednode){
+      if(!this.$root.tools.writer.selectednode){
         this.list.push(node)
       }else{
-        this.store.tools.writer.selectednode.open = true
-        this.store.tools.writer.selectednode.files.push(node)
+        this.$root.tools.writer.selectednode.open = true
+        this.$root.tools.writer.selectednode.files.push(node)
       }
     }
 

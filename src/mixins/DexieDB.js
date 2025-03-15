@@ -80,6 +80,16 @@ const dexieDB = {
         this.dbRef = obj.uuid;
       }
       this.syncdb.Settings = await this.useObservable(this.liveQuery(async () => await this.db.Settings.get(this.dbRef)))
+
+      this.syncdb.Cards = await this.useObservable(this.liveQuery(async () => await this.db.Cards.toArray()))
+  //    this.syncdb.Files = await this.useObservable(this.liveQuery(async () => await this.db.Files.toArray()))
+      this.syncdb.Gridplanner = await this.useObservable(this.liveQuery(async () => await this.db.Gridplanner.toArray()))
+      this.syncdb.ImageLibrary = await this.useObservable(this.liveQuery(async () => await this.db.ImageLibrary.toArray()))
+      this.syncdb.Mindmap = await this.useObservable(this.liveQuery(async () => await this.db.Mindmap.toArray()))
+      this.syncdb.Snowflake = await this.useObservable(this.liveQuery(async () => await this.db.Snowflake.toArray()))
+      this.syncdb.Timeline = await this.useObservable(this.liveQuery(async () => await this.db.Timeline.toArray()))
+      this.syncdb.Writer = await this.useObservable(this.liveQuery(async () => await this.db.Writer.toArray()))
+
     }
     },
     async dbImport(jsonData) {
@@ -124,6 +134,7 @@ const dexieDB = {
       this.$root.db.Snowflake.clear();
       this.$root.db.Timeline.clear();
     },
+    /*
     async getSettings(uuid) {
       if (!uuid) {
         let arr = await this.$root.db.Settings.toArray();
@@ -133,6 +144,7 @@ const dexieDB = {
         this.$root.liveQuery(async () => await this.$root.db.Settings.get(uuid))
       );
     },
+    */
     async closeProject() {
       this.$swal({
         title: "Are you sure?",

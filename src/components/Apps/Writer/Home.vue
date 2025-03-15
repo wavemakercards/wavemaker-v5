@@ -14,6 +14,10 @@ export default {
   
 <div class="lhs">
   <DocStructure />
+  <div>
+    
+  </div>
+  {{ $root.syncdb.Writer[$root.tools.writer.selectedbook] }}
 </div>
   
 </template>

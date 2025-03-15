@@ -14,7 +14,7 @@ const fileManager = {
       },
         async openFile() {
             try {
-              [this.store.fileHandle] = await window.showOpenFilePicker({
+              [this.$root.fileHandle] = await window.showOpenFilePicker({
                 types: [
                   {
                     description: "Wavemaker Cards File",
@@ -25,10 +25,10 @@ const fileManager = {
                   },
                 ],
               });
-              const file = await this.store.fileHandle.getFile();
+              const file = await this.$root.fileHandle.getFile();
               const contents = await file.text();
-              this.store.jsonData = JSON.parse(contents);
-              this.$root.dbImport(this.store.jsonData);
+              this.$root.jsonData = JSON.parse(contents);
+              this.$root.dbImport(this.$root.jsonData);
             } catch (error) {
               console.error("Error opening file:", error);
             }
@@ -37,9 +37,9 @@ const fileManager = {
             let filename = this.sanitizeFilename(this.$root.syncdb.Settings.ProjectName) ;
             const mydata = await this.$root.dbExport();
             const contents = await mydata.text();
-            this.store.jsonData = JSON.parse(contents);
+            this.$root.jsonData = JSON.parse(contents);
 
-            const blob = new Blob([JSON.stringify(this.store.jsonData, null, 2)], { type: "application/json" });
+            const blob = new Blob([JSON.stringify(this.$root.jsonData, null, 2)], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
@@ -62,10 +62,10 @@ const fileManager = {
           async saveFile() {
              const mydata = await this.$root.dbExport();
              const contents = await mydata.text();
-             this.store.jsonData = JSON.parse(contents);
+             this.$root.jsonData = JSON.parse(contents);
              try {
-             if (!this.store.fileHandle) {
-               this.store.fileHandle = await window.showSaveFilePicker({
+             if (!this.$root.fileHandle) {
+               this.$root.fileHandle = await window.showSaveFilePicker({
                suggestedName: "untitled.wmc",
                types: [
                  {
@@ -77,8 +77,8 @@ const fileManager = {
                ],
                });
              }
-             const writable = await this.store.fileHandle.createWritable();
-             await writable.write(JSON.stringify(this.store.jsonData, null, 2));
+             const writable = await this.$root.fileHandle.createWritable();
+             await writable.write(JSON.stringify(this.$root.jsonData, null, 2));
              await writable.close();
    
              this.$swal({
@@ -109,11 +109,11 @@ const fileManager = {
             if (!launchParams.files.length) {
               return;
             }
-            this.store.fileHandle = launchParams.files[0];
-            const file = await this.store.fileHandle.getFile();
+            this.$root.fileHandle = launchParams.files[0];
+            const file = await this.$root.fileHandle.getFile();
             const contents = await file.text();
-            this.store.jsonData = JSON.parse(contents);
-            await this.$root.dbImport(this.store.jsonData);
+            this.$root.jsonData = JSON.parse(contents);
+            await this.$root.dbImport(this.$root.jsonData);
           });
         }
 

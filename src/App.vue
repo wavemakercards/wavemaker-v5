@@ -1,6 +1,4 @@
 <script>
-import { store } from "@/store/store.js";
-
 /** Mixins */
 import DexieDB from "@/mixins/DexieDB.js";
 import templateObjects from "@/mixins/templateObjects.js";
@@ -26,9 +24,18 @@ export default {
   },
   data() {
     return {
-      store,
-      currentTool: null,
-      currentNode : 0
+      currentTool : null,
+    FileManager: {
+        fileHandle : null,
+        jsonData : null
+    },
+    tools :{
+        current: null,
+        writer : {
+            selectedbook : null,
+            selectednode : null,
+        }
+    }
     };
   },
   methods: {
