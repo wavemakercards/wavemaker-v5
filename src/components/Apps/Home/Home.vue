@@ -17,8 +17,14 @@ export default {
     <div style="text-align: center;">
       <Logo style="width: 150px;height: 150px;"/>
     </div>
+
+    <details>
+  <summary>{{ this.$root.syncdb.Settings.ProjectName}}</summary>
   <p style="text-align: center;">What is this project called?</p>
-    <h2 class="inputstyle"><ProjectName /></h2>
+  <h2 class="inputstyle"><ProjectName /></h2>
+</details>
+
+
     <!--
     
      <button
