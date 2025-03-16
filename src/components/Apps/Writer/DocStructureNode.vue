@@ -1,44 +1,58 @@
-
-  <script>
-  import draggable from "vuedraggable";
+<script>
+  import { VueDraggable } from "vue-draggable-plus";
   import FileName from "@/components/FormComponents/FileName.vue";
   export default {
     props: {
-      files: {
+      modelValue: {
         required: true,
         type: Array
       }
     },
     components: {
-      draggable,
+      VueDraggable,
       FileName
+    },
+    computed: {
+      list: {
+        get() {
+          return this.modelValue;
+        },
+        set(value) {
+          this.$emit('update:modelValue', value);
+        }
+      }
+    },
+    methods: {
+      handleChange(event) {
+        this.$root.UpdateRecord("Writer", this.$root.tools.writer.selected, this.$root.tools.writer.mybook);
+      }
     },
     name: "DocStructureNode"
   };
   </script>
 
 <template>
-    <draggable
+    <VueDraggable
       class="dragArea"
       tag="ul"
-      :list="files"
-      :group="{ name: 'g1' }"
+      v-model="list"
+      group="files"
       item-key="name"
+      @end="handleChange"
     >
-      <template #item="{ element }">
-        <li class="node">
+   
+        <li class="node" v-for="(element, k) in modelValue" :key="k">
             <button @click="element.open = !element.open" class="toggle">
                 <svg v-if="!element.open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Closed</title><path d="M19,3H5A2,2 0 0,0 3,5V19C3,20.11 3.9,21 5,21H19C20.11,21 21,20.11 21,19V5A2,2 0 0,0 19,3M9.71,18L8.29,16.59L12.88,12L8.29,7.41L9.71,6L15.71,12L9.71,18Z" /></svg>
                 <svg v-if="element.open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chevron-down-box</title><path d="M19,3H5A2,2 0 0,0 3,5V19C3,20.11 3.9,21 5,21H19C20.11,21 21,20.11 21,19V5A2,2 0 0,0 19,3M12,15.71L6,9.71L7.41,8.29L12,12.88L16.59,8.29L18,9.71L12,15.71Z" /></svg>
             </button>
-            <button class="labelbtn" :class="{ 'selected': $root.tools.writer.selectednode === element }" @click="$root.tools.writer.selectednode =  element">
-               <FileName :myuuid="element.uuid" />
+            <button class="labelbtn" :class="{ 'selected': $root.tools.writer.selectednode === element.uuid }" @click="$root.tools.writer.selectednode =  element.uuid">
+              <FileName :myuuid="element.uuid" :key="element.uuid"/>
             </button>
-
-          <DocStructureNode v-if="element.open" :files="element.children" />
+          <DocStructureNode v-if="element.open" v-model="element.files" />
         </li>
-      </template>
-    </draggable>
+ 
+      </VueDraggable>
   </template>
 
   <style scoped>

@@ -34,6 +34,7 @@ export default {
         writer : {
             selected : null,
             selectednode : null,
+            mybook : null
         }
     }
     };

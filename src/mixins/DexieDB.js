@@ -82,7 +82,7 @@ const dexieDB = {
       this.syncdb.Settings = await this.useObservable(this.liveQuery(async () => await this.db.Settings.get(this.dbRef)))
 
       this.syncdb.Cards = await this.useObservable(this.liveQuery(async () => await this.db.Cards.toArray()))
-  //    this.syncdb.Files = await this.useObservable(this.liveQuery(async () => await this.db.Files.toArray()))
+     this.syncdb.Files = await this.useObservable(this.liveQuery(async () => await this.db.Files.toArray()))
       this.syncdb.Gridplanner = await this.useObservable(this.liveQuery(async () => await this.db.Gridplanner.toArray()))
       this.syncdb.ImageLibrary = await this.useObservable(this.liveQuery(async () => await this.db.ImageLibrary.toArray()))
       this.syncdb.Mindmap = await this.useObservable(this.liveQuery(async () => await this.db.Mindmap.toArray()))
@@ -179,10 +179,19 @@ const dexieDB = {
     this.getDatabases()
    
     }
+
+    console.log("closing db", this.$root.mainwindow)
+    if(this.$root.mainwindow){
+      console.log("closing db")
     window.addEventListener('beforeunload', this.closeAndDeleteDatabase);
+    }
   },
   beforeDestroy() {
-    window.removeEventListener('beforeunload', this.closeAndDeleteDatabase);
+    console.log("closing db", this.$root.mainwindow)
+    if(this.$root.mainwindow){
+      console.log("closing db")
+      window.addEventListener('beforeunload', this.closeAndDeleteDatabase);
+      }
   }
 };
 export default dexieDB;
