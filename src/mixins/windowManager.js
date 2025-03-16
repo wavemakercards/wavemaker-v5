@@ -25,7 +25,7 @@ const windowManager = {
             this.childWindows.push(newWindow); // Add the new window to the array
             newWindow.onload = function() {
                 const newUrl = new URL(newWindow.location);
-               // newUrl.search = ''; // Clear all query parameters
+                newUrl.search = ''; // Clear all query parameters
                 newWindow.history.replaceState(null, '', newUrl);
             };
         },
