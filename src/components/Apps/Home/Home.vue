@@ -7,6 +7,14 @@ export default {
     Logo,
     ProjectName,
   },
+  mounted(){
+    this.$root.tools.writer.selected = null
+    this.$root.tools.gridplanner.selected = null
+    this.$root.tools.timeline.selected = null
+    this.$root.tools.mindmap.selected = null
+    this.$root.tools.snowflake.selected = null
+    this.$root.tools.planningboard.selected = null
+  },
   methods: {},
 };
 </script>

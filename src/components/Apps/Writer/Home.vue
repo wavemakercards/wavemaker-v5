@@ -8,7 +8,7 @@ export default {
   components: {
     DocStructure,
     FileEditor,
-    BookEditor
+    BookEditor,
   },
   computed: {
     displaylist() {
@@ -22,7 +22,7 @@ export default {
       let template = JSON.parse(JSON.stringify(this.$root.writerTemplate));
       template.uuid = this.$root.uuid();
       this.$root.AddRecord("Writer", template);
-    }
+    },
   },
 };
 </script>
@@ -36,6 +36,13 @@ export default {
           <div class="book-3d">
             <div class="book-3d__inner">
               <img
+                v-if="book.cover"
+                :src="book.cover"
+                class="book-3d__cover"
+                :alt="book.title"
+              />
+              <img
+                v-else
                 class="book-3d__cover"
                 src="/resources/bookcover.png"
                 :alt="book.title"
@@ -58,11 +65,8 @@ export default {
       <DocStructure />
     </div>
     <div class="main">
-
-
-   <FileEditor  v-if="$root.tools.writer.selectednode"/>
-   <BookEditor v-if="!$root.tools.writer.selectednode"/>
-
+      <FileEditor v-if="$root.tools.writer.selectednode" />
+      <BookEditor v-if="!$root.tools.writer.selectednode" />
     </div>
     <div class="rhs">RHS</div>
   </div>
@@ -76,7 +80,6 @@ export default {
   bottom: 0px;
   left: 0px;
   overflow: auto;
-
 }
 .rhs {
   min-width: 320px;
@@ -85,7 +88,6 @@ export default {
   bottom: 0px;
   right: 0px;
   overflow: auto;
-
 }
 .main {
   position: absolute;
@@ -94,7 +96,6 @@ export default {
   right: 320px;
   left: 320px;
   overflow: auto;
-
 }
 
 .gridcard-grid {

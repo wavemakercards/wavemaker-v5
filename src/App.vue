@@ -35,6 +35,21 @@ export default {
             selected : null,
             selectednode : null,
             mybook : null
+        },
+        gridplanner : {
+          selected : null
+        },
+        timeline : {
+          selected : null
+        },    
+        snowflake : {
+          selected : null
+        },
+        mindmap : {
+          selected : null
+        },
+        planningboard : {
+          selected : null
         }
     }
     };

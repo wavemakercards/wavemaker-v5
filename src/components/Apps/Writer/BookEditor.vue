@@ -1,10 +1,13 @@
 <script>
 import autosize from "@/directives/autosize.js";
+import ImageUpload from "@/components/FormComponents/ImageUpload.vue";
 export default {
   directives: {
     autosize
   },
-  components: {},
+  components: {
+    ImageUpload
+  },
   methods: {
     handleChange() {
       this.$root.UpdateRecord(
@@ -13,6 +16,10 @@ export default {
         this.mybook
       );
     },
+    imageChanged(newImage) {
+      this.mybook.cover = newImage;
+      this.handleChange();
+    }
   },
   name: "BookEditor",
   data() {
@@ -36,6 +43,8 @@ export default {
 Anv options here?
   </div>
     <div v-if="mybook" class="infocontainer">
+
+      <ImageUpload :myimage="mybook.cover" @image-changed="imageChanged"/>
 
   <label>Book Title</label>
 
@@ -62,7 +71,7 @@ v-model="mybook.title"
   <div class="formholder">
     <textarea v-autosize v-model="mybook.description" />
   </div>
-  {{ mybook }}
+
 </div>
 </template>
 
