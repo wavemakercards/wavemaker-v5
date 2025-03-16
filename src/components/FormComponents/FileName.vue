@@ -1,6 +1,6 @@
 <script>
 export default {
- props: ['myuuid'],
+ props: ['myuuid','formmode'],
  data(){
     return{
     myfile : null,
@@ -8,6 +8,9 @@ export default {
     }
  },
  async mounted(){
+  if(this.formmode){
+    this.editme = true
+  }
     this.myfile = await this.$root.useObservable(this.$root.liveQuery(async () => await this.$root.db.Files.get(this.myuuid)))
  },
   methods: {
@@ -17,7 +20,9 @@ export default {
       }
       console.log(this.myfile)
       this.$root.UpdateRecord("Files", this.myuuid, this.myfile) 
+      if(!this.formmode){
       this.editme = false
+      }
     }
   }
 };
@@ -26,6 +31,6 @@ export default {
 <template>
   <span v-if="myfile" >
   <div @dblclick="editme=true"  v-if="!editme"> {{ myfile.title }}</div> 
-     <input v-if="editme" type="text" v-model="myfile.title" placeholder="......" @blur="update()" />
+  <input v-if="editme" type="text" v-model="myfile.title" placeholder="......" @blur="update()" />
   </span>
 </template>

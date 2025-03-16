@@ -1,9 +1,14 @@
 <script>
 import DocStructure from "@/components/Apps/Writer/DocStructure.vue";
+import FileEditor from "@/components/Apps/Writer/FileEditor.vue";
+import BookEditor from "@/components/Apps/Writer/BookEditor.vue";
+
 export default {
   name: "WriterHome",
   components: {
     DocStructure,
+    FileEditor,
+    BookEditor
   },
   computed: {
     displaylist() {
@@ -53,10 +58,11 @@ export default {
       <DocStructure />
     </div>
     <div class="main">
-      main
-      {{ $root.tools.writer.selected }}
 
-      <pre> {{ $root.syncdb.Writer }}</pre>
+
+   <FileEditor  v-if="$root.tools.writer.selectednode"/>
+   <BookEditor v-if="!$root.tools.writer.selectednode"/>
+
     </div>
     <div class="rhs">RHS</div>
   </div>
