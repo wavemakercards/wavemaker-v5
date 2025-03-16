@@ -5,7 +5,7 @@
     </div>
 
 
-    <DocStructureNode :files="$root.syncdb.Writer[$root.tools.writer.selectedbook].files" />
+    <DocStructureNode :files="$root.syncdb.Writer[$root.tools.writer.selected].files" />
   </div>  
 </template>
 

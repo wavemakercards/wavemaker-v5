@@ -11,15 +11,24 @@ export default {
 </script>
 
 <template>
-  
+<h1>hello?</h1>
+
+  <div v-if="!$root.tools.writer.selected">
+Pick a book
+<pre>{{ $root.syncdb.Writer  }}</pre>
+
+
+  </div>
+
+  <div v-if="$root.tools.writer.selected">
 <div class="lhs">
   <DocStructure />
   <div>
     
   </div>
-  {{ $root.syncdb.Writer[$root.tools.writer.selectedbook] }}
+  {{ $root.syncdb.Writer[$root.tools.writer.selected] }}
 </div>
-  
+</div>
 </template>
 
 <style scoped>

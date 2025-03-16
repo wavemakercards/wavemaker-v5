@@ -32,7 +32,7 @@ export default {
     tools :{
         current: null,
         writer : {
-            selectedbook : null,
+            selected : null,
             selectednode : null,
         }
     }

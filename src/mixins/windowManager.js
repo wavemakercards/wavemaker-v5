@@ -15,15 +15,17 @@ const windowManager = {
         }
     },
     methods: {
-        openNewWindow(url = window.location.href) {
+        openNewWindow(tool, selected) {
+            let url = window.location.href
             url = url + "?parentid=" + this.windowID;
             url = url + "&dbname=" + this.$root.databaseName;
+            url = url + "&tool=" + tool;
+            url = url + "&selected=" + selected;
             const newWindow = window.open(url, '_blank', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600');
             this.childWindows.push(newWindow); // Add the new window to the array
             newWindow.onload = function() {
                 const newUrl = new URL(newWindow.location);
-                newUrl.searchParams.delete('parentid');
-                newUrl.searchParams.delete('dbname');
+               // newUrl.search = ''; // Clear all query parameters
                 newWindow.history.replaceState(null, '', newUrl);
             };
         },
@@ -41,6 +43,8 @@ const windowManager = {
         const urlParams = new URLSearchParams(window.location.search);
         this.parentID = urlParams.get('parentid');
         this.$root.databaseName = urlParams.get('dbname');
+        this.$root.currentTool = urlParams.get('tool');
+        this.$root.selected = urlParams.get('selected');
         if(this.parentID){
             this.mainwindow = false;
         }
