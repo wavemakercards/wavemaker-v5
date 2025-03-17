@@ -32,7 +32,7 @@ export default {
     <div class="writer-home">
       <button @click="addNewBook">Add a New Book</button>
       <div class="gridcard-grid">
-        <div class="gridcard" v-for="(book, bi) in displaylist" :key="bi">
+        <div class="gridcard" v-for="(book, bi) in displaylist" :key="bi" @click="$root.tools.writer.selected = book.uuid">
           <div class="book-3d">
             <div class="book-3d__inner">
               <img
@@ -53,9 +53,6 @@ export default {
           <p>by {{ book.author }}</p>
           <p>{{ book.description }}</p>
           <p>{{ book.lastupdated }}</p>
-          <button @click="$root.tools.writer.selected = book.uuid">
-            Open This Book
-          </button>
         </div>
       </div>
     </div>
@@ -65,7 +62,7 @@ export default {
       <DocStructure />
     </div>
     <div class="main">
-      <FileEditor v-if="$root.tools.writer.selectednode" />
+      <FileEditor v-if="$root.tools.writer.selectednode"  :key="$root.tools.writer.selectednode" />
       <BookEditor v-if="!$root.tools.writer.selectednode" />
     </div>
     <div class="rhs">RHS</div>

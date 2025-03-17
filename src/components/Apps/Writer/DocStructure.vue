@@ -8,12 +8,14 @@
         class="docsettings"
         @click="$root.tools.writer.selectednode = null"
       >
-        {{ this.$root.tools.writer.mybook.title }}
+        Document Settings
       </button>
+      <div style="padding: 10px;">
       <DocStructureNode
         v-if="this.$root.tools.writer.mybook.files.length"
         v-model="this.$root.tools.writer.mybook.files"
       />
+    </div>
     </div>
   </div>
 </template>
@@ -39,8 +41,6 @@ export default {
       )
     );
     this.$watch("bookwatch", (newVal, oldVal) => {
-      // Do something when bookwatch changes
-      console.log("bookwatch changed:", newVal, oldVal);
       this.$root.tools.writer.mybook = JSON.parse(JSON.stringify(newVal));
       // You can add more logic here
     });
@@ -94,17 +94,31 @@ export default {
 
 <style lang="css" scoped>
 .lhstools {
-  background-color: #212121;
-  padding: 5px;
+  padding: 3px;
   position: sticky;
   top: 0px;
+  height: 30px;
+  background-color: var(--bg2);
+  text-align: right;
+}
+.lhstools button{
+  background: none;
+  border: 1px solid #323232;
+  border-radius: 5px;
+  color: currentColor;
+  cursor: pointer;
+  height: 24px;
+  text-align: right;
+}
+.lhstools button:hover{
+  background-color: #00000044;
 }
 
 .docsettings {
   position: sticky;
   top: 30px;
   padding: 5px;
-  background-color: var(--accent5);
+  background:none; 
   color: currentColor;
   border: 0px;
   width: 320px;
@@ -112,5 +126,7 @@ export default {
   word-wrap: break-word;
   white-space: normal;
   text-align: left;
+  border-bottom: 1px solid  #666;
+  background-color: var(--bg2);
 }
 </style>

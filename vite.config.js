@@ -10,9 +10,11 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      devOptions: {
+  
+  /*    devOptions: {
         enabled: true,
       },
+    */
       manifest: {
         name: 'Wavemaker Cards version 5',
         short_name: 'WavemakerCards5',

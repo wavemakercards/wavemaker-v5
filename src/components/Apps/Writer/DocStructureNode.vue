@@ -57,12 +57,12 @@
 
   <style scoped>
   .node{
-    color: #fff;
+    color: #aaa;
   }
 
   .labelbtn{
     text-align: left;
-    color: #fff;
+    color: currentColor;
     border: 0px;
     padding: 5px;
     cursor: pointer;
@@ -74,10 +74,14 @@
   button:hover, 
   button:active, 
   button:focus{
-    background-color: var(--accent4);
+    color: #fff;
   } 
   .dragArea {
     min-height: 30px;
+  }
+  li{
+    padding-top: 3px;
+    padding-bottom: 3px;
   }
 
 ul, li ul{
@@ -95,12 +99,12 @@ ul, li ul{
 
 
 .selected{
-    background-color: var(--accent2);
+   font-weight: bold;
     color: #fff;
 }
 
 ul:empty{
-    background-color: #ffffff11;
+
     margin:4px;
     padding: 5px;
     font-size: 0.8rem;

@@ -1,12 +1,19 @@
 <script>
 import FileName from "@/components/FormComponents/FileName.vue";
+import TipTap from "@/components/FormComponents/TipTap.vue";
 export default {
   components: {
     FileName,
+    TipTap
   },
   methods: {
-    handleChange(event) {
-      //  this.$root.UpdateRecord("Writer", this.$root.tools.writer.selected, this.$root.tools.writer.mybook);
+    handleChange() {
+       this.$root.UpdateRecord("Files", this.myfile.uuid, this.myfile);
+    },
+    updateContent(newContent) {
+      this.myfile.content = newContent;
+      console.log(newContent)
+      this.handleChange() 
     },
   },
   name: "FileEditor",
@@ -27,15 +34,16 @@ export default {
 </script>
 
 <template>
-  <div class="subbar">
+
+  <div style="text-align: center;">
     <FileName
       :myuuid="$root.tools.writer.selectednode"
       :key="$root.tools.writer.selectednode"
       :formmode="true"
     />
+ 
   </div>
-
-  {{ myfile }}
+  <TipTap v-if="myfile" :content="myfile.content" @update:content="updateContent" :key="myfile.uuid"/>
 </template>
 
 <style scoped></style>
