@@ -68,6 +68,24 @@
   --accent6-dark:
     color-mix(in srgb, var(--accent6) 75%, #000000);
 }
+.accent1 {
+  background-color: var(--accent1);
+}
+.accent2 {
+  background-color: var(--accent2);
+}
+.accent3 {
+  background-color: var(--accent3);
+}
+.accent4 {
+  background-color: var(--accent4);
+}
+.accent5 {
+  background-color: var(--accent5);
+}
+.accent6 {
+  background-color: var(--accent6);
+}
 
 *,
 *::before,
@@ -104,7 +122,7 @@ html {
 }
 .mainwindow{
   top: 40px;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 

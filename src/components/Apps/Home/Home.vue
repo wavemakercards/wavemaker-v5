@@ -30,9 +30,9 @@ export default {
       <p style="text-align: center">What is this project called?</p>
       <h2 class="inputstyle"><ProjectName /></h2>
     </details>
-
-    <div class="gridcard-grid">
-      <div class="gridcard">
+<div>
+    <div class="mainmenu">
+      <div class="mainmenucard accent1">
         <h2>
           <svg data-v-92328502="" version="1.1" viewBox="0 0 24 24">
             <path
@@ -50,7 +50,7 @@ export default {
         </button>
       </div>
 
-      <div class="gridcard" >
+      <div class="mainmenucard accent2" >
         <h2>
           <svg data-v-92328502="" version="1.1" viewBox="0 0 24 24">
             <path
@@ -67,7 +67,7 @@ export default {
         </button>
       </div>
  
-    <div class="gridcard" >
+    <div class="mainmenucard accent6" >
       <h2>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>timeline-outline</title>
@@ -83,7 +83,7 @@ export default {
         New Window
       </button>
     </div>
-    <div class="gridcard" >
+    <div class="mainmenucard accent3"  >
       <h2>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>snowflake</title>
@@ -100,7 +100,7 @@ export default {
         New Window
       </button>
     </div>
-    <div class="gridcard" >
+    <div class="mainmenucard accent4" >
       <h2>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>view-grid</title>
@@ -114,7 +114,7 @@ export default {
         New Window
       </button>
     </div>
-    <div class="gridcard" >
+    <div class="mainmenucard accent5" >
       <h2>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>cards-outline</title>
@@ -130,6 +130,7 @@ export default {
         New Window
       </button>
     </div>
+  </div>
   </div>
 </div>
 </template>
@@ -147,5 +148,36 @@ export default {
   max-width: 1000px;
   margin: 0 auto;
   padding: 50px;
+}
+.mainmenu{ 
+  margin: 0 auto;
+  max-width:660px;
+}
+
+.mainmenucard{
+  display: inline-block;
+color: #ccc;
+
+text-align: center;
+width: 200px;
+height: 200px;
+border:2px solid #fff;
+border-radius: 50%;
+margin: 10px;
+}
+
+.mainmenucard svg{
+  fill: currentColor;
+  max-width: 50px;
+  margin: 0 auto;
+  display: block;
+
+}
+.mainmenucard:hover{
+
+  z-index: 99999;
+  transition: scale 100ms ease-out;
+  scale: 1.1;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 </style>
