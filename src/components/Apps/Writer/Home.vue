@@ -10,6 +10,12 @@ export default {
     FileEditor,
     BookEditor,
   },
+  data() {
+    return {
+      lhshidden: false,
+      rhshidden: false,
+    };
+  },
   computed: {
     displaylist() {
       return this.$root.syncdb.Writer.sort(
@@ -32,7 +38,12 @@ export default {
     <div class="writer-home">
       <button @click="addNewBook">Add a New Book</button>
       <div class="gridcard-grid">
-        <div class="gridcard" v-for="(book, bi) in displaylist" :key="bi" @click="$root.tools.writer.selected = book.uuid">
+        <div
+          class="gridcard"
+          v-for="(book, bi) in displaylist"
+          :key="bi"
+          @click="$root.tools.writer.selected = book.uuid"
+        >
           <div class="book-3d">
             <div class="book-3d__inner">
               <img
@@ -58,14 +69,30 @@ export default {
     </div>
   </div>
   <div v-if="$root.tools.writer.selected">
-    <div class="lhs">
+    <button @click="lhshidden = !lhshidden" class="btn lhsbtn">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <title>menu</title>
+        <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+      </svg>
+    </button>
+    <div class="lhs" :class="{ lhshidden: lhshidden }">
       <DocStructure />
     </div>
-    <div class="main">
-      <FileEditor v-if="$root.tools.writer.selectednode"  :key="$root.tools.writer.selectednode" />
+    <div class="main" :class="{ lhsmain: lhshidden, rhsmain: rhshidden }">
+      <FileEditor
+        v-if="$root.tools.writer.selectednode"
+        :key="$root.tools.writer.selectednode"
+      />
       <BookEditor v-if="!$root.tools.writer.selectednode" />
     </div>
-    <div class="rhs">RHS</div>
+    <button @click="rhshidden = !rhshidden" class="btn rhsbtn">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <title>menu</title>
+        <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+      </svg>
+    </button>
+
+    <div class="rhs" :class="{ rhshidden: rhshidden }">RHS</div>
   </div>
 </template>
 
@@ -76,8 +103,26 @@ export default {
   top: 0px;
   bottom: 0px;
   left: 0px;
-  overflow: auto;
+  overflow: hidden;
 }
+.lhshidden {
+  left: -320px;
+}
+
+.lhsbtn {
+  position: absolute;
+  z-index: 10000;
+  top: 2px;
+  left: 2px;
+}
+
+.rhsbtn {
+  position: absolute;
+  z-index: 10000;
+  top: 2px;
+  right: 2px;
+}
+
 .rhs {
   min-width: 320px;
   position: absolute;
@@ -86,6 +131,10 @@ export default {
   right: 0px;
   overflow: auto;
 }
+.rhshidden {
+  right: -320px;
+}
+
 .main {
   position: absolute;
   top: 0px;
@@ -93,6 +142,13 @@ export default {
   right: 320px;
   left: 320px;
   overflow: auto;
+}
+.lhsmain {
+  left: 0px;
+}
+
+.rhsmain {
+  right: 0px;
 }
 
 .gridcard-grid {
