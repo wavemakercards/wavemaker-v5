@@ -144,11 +144,11 @@ export default {
   overflow: auto;
 }
 .lhsmain {
-  left: 0px;
+  left: 50px;
 }
 
 .rhsmain {
-  right: 0px;
+  right: 50px;
 }
 
 .gridcard-grid {
