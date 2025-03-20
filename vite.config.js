@@ -19,6 +19,7 @@ export default defineConfig({
         name: 'Wavemaker Cards version 5',
         short_name: 'WavemakerCards5',
         start_url: '/wavemaker-cards-v/',
+        scope: '/wavemaker-cards-v/',
         display: 'standalone',
         background_color: '#212121',
         theme_color: '#212121',
