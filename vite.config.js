@@ -18,25 +18,25 @@ export default defineConfig({
       manifest: {
         name: 'Wavemaker Cards version 5',
         short_name: 'WavemakerCards5',
-        start_url: '/',
+        start_url: '/wavemaker-cards-v/',
         display: 'standalone',
         background_color: '#212121',
         theme_color: '#212121',
         icons: [
           {
-            src: 'icons/192.png',
+            src: '/wavemaker-cards-v/icons/192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: 'icons/512.png',
+            src: '/wavemaker-cards-v/icons/512.png',
             sizes: '512x512',
             type: 'image/png',
           },
         ],
         file_handlers: [
           {
-            action: '/index.html',
+            action: '/wavemaker-cards-v/index.html',
             accept: {
               'application/json': ['.wmc'],
             },
