@@ -6,68 +6,89 @@ import fileManager from "@/mixins/fileManager.js";
 import windowManager from "@/mixins/windowManager.js";
 
 /** Components */
-import TopToolbar from '@/components/InterfaceElements/TopToolbar.vue';
-import FooterBar from '@/components/InterfaceElements/FooterBar.vue';
-import InstallPopup from '@/components/InterfaceElements/InstallPopup.vue';
-import Welcome from '@/components/Welcome.vue';
-import ApplicationSections from '@/components/ApplicationSections.vue';
-
+import TopToolbar from "@/components/InterfaceElements/TopToolbar.vue";
+import FooterBar from "@/components/InterfaceElements/FooterBar.vue";
+import InstallPopup from "@/components/InterfaceElements/InstallPopup.vue";
+import Welcome from "@/components/Welcome.vue";
+import ApplicationSections from "@/components/ApplicationSections.vue";
 
 export default {
-  mixins: [DexieDB,templateObjects,fileManager,windowManager],
+  mixins: [DexieDB, templateObjects, fileManager, windowManager],
   components: {
     TopToolbar,
     InstallPopup,
     FooterBar,
     ApplicationSections,
-    Welcome
+    Welcome,
   },
   data() {
     return {
-      currentTool : null,
-    FileManager: {
-        fileHandle : null,
-        jsonData : null
-    },
-    tools :{
+      currentTool: null,
+      FileManager: {
+        fileHandle: null,
+        jsonData: null,
+      },
+      tools: {
         current: null,
-        writer : {
-            selected : null,
-            selectednode : null,
-            mybook : null
+        writer: {
+          selected: null,
+          selectednode: null,
+          mybook: null,
         },
-        gridplanner : {
-          selected : null
+        gridplanner: {
+          selected: null,
         },
-        timeline : {
-          selected : null
-        },    
-        snowflake : {
-          selected : null
+        timeline: {
+          selected: null,
         },
-        mindmap : {
-          selected : null
+        snowflake: {
+          selected: null,
         },
-        planningboard : {
-          selected : null
-        }
-    }
+        mindmap: {
+          selected: null,
+        },
+        planningboard: {
+          selected: null,
+        },
+      },
     };
   },
-  methods: {
- 
-  }
+  created() {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").then((registration) => {
+        registration.onupdatefound = () => {
+          const installingWorker = registration.installing;
+          if (installingWorker) {
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === "installed") {
+                if (navigator.serviceWorker.controller) {
+                  // Notify the user about the update
+                  const updateNotification = confirm(
+                    "A new version of the app is available. Would you like to update?"
+                  );
+                  if (updateNotification) {
+                    window.location.reload();
+                  }
+                }
+              }
+            };
+          }
+        };
+      });
+    }
+  },
+  methods: {},
 };
 </script>
 
 <template>
   <div id="app">
-    <TopToolbar     v-if="$root.mainwindow"/>
-     <div class="container" :class="{ 'mainwindow': $root.mainwindow }">
+    <TopToolbar v-if="$root.mainwindow" />
+    <div class="container" :class="{ mainwindow: $root.mainwindow }">
       <Welcome v-if="!$root.dbRef" />
       <ApplicationSections v-else />
     </div>
-    <FooterBar     v-if="$root.mainwindow" />
+    <FooterBar v-if="$root.mainwindow" />
   </div>
   <InstallPopup />
 </template>
