@@ -16,8 +16,9 @@
       </button>
     </div>
     <div>
+      <div class="docsettings">
       <button
-        class="docsettings btn"
+        class="btn"
         @click="$root.tools.writer.selectednode = null"
       >
         <svg
@@ -32,6 +33,7 @@
         </svg>
         Document Settings
       </button>
+    </div>
       <div style="padding: 10px">
         <div class="lhsscrollcontainer">
           <DocStructureNode
@@ -122,7 +124,7 @@ export default {
   position: sticky;
   top: 0px;
   height: 34px;
-  background-color: var(--bg2);
+  background-color: inherit;
   text-align: right;
 }
 
@@ -131,16 +133,17 @@ export default {
   position: absolute;
   top: 70px;
   left: 0px;
-  right: 0px;
+  right: 30px;
   bottom: 0px;
   padding: 10px 10px 50px 10px;
-}
 
+}
+.lhshidden .lhsscrollcontainer{
+  overflow: hidden;
+}
 .docsettings {
   position: sticky;
   top: 30px;
-  padding: 5px;
-  background: none;
   color: currentColor;
   border: 0px;
   width: 320px;
@@ -148,7 +151,8 @@ export default {
   word-wrap: break-word;
   white-space: normal;
   text-align: left;
-  background-color: var(--bg2);
+  background-color: inherit;
+  margin:5px
 }
 
 

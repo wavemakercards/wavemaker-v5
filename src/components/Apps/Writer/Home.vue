@@ -109,15 +109,20 @@ export default {
   overflow: hidden;
   transition: left 100ms ease-in;
 }
+
+.lhs:hover,
+.lhs:focus-within{
+    background-color: var(--bg3);
+}
 .lhshidden {
-  left: -280px;
+  left: -290px;
 }
 
 .lhsbtn {
   position: absolute;
   z-index: 10000;
   top:2px;
-  left: 280px;
+  left: 290px;
 }
 
 .rhsbtn {
@@ -136,6 +141,12 @@ export default {
   overflow: auto;
   transition: right 100ms ease-in;
 }
+
+.rhs:hover,
+.rhs:focus-within{
+    background-color: var(--bg3);
+}
+
 .rhshidden {
   right: -280px;
 }
