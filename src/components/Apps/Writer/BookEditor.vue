@@ -39,16 +39,16 @@ export default {
 </script>
 
 <template>
-      <div class="subbar">
-Anv options here?
-  </div>
-    <div v-if="mybook" class="infocontainer">
 
-      <ImageUpload :myimage="mybook.cover" @image-changed="imageChanged"/>
+    <div v-if="mybook" class="infocontainer">
+<div class="bookcover">
+  <ImageUpload :myimage="mybook.cover" @image-changed="imageChanged"/>
+</div>
+
 
   <label>Book Title</label>
 
-  <div class="formholder">
+
     <input
     
 type="text"
@@ -56,21 +56,20 @@ v-model="mybook.title"
 @blur="handleChange"
 />
 
-  </div>
-
+  
 
   <label>Author</label>
-  <div class="formholder">
+
     <input
       type="text"
       v-model="mybook.author"
       @blur="handleChange"
     />
-  </div>
-  <label>Description+</label>
-  <div class="formholder">
+
+  <label>Description</label>
+ 
     <textarea v-autosize v-model="mybook.description" />
-  </div>
+
 
 </div>
 </template>
@@ -81,4 +80,9 @@ v-model="mybook.title"
     max-width: 700px;
     padding: 10px;
 }
+.bookcover{
+  text-align: center;
+
+}
+
 </style>

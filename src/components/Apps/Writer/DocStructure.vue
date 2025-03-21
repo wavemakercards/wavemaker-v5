@@ -1,7 +1,7 @@
 <template>
   <div class="documentStructure" v-if="this.$root.tools.writer.mybook">
     <div class="lhstools">
-      <button @click="addNode" class="btn" style="float: right">
+      <button @click="addNode" class="btn" >
         <svg
           class="icon"
           xmlns="http://www.w3.org/2000/svg"

@@ -69,13 +69,14 @@ export default {
     </div>
   </div>
   <div v-if="$root.tools.writer.selected">
-    <button @click="lhshidden = !lhshidden" class="btn lhsbtn">
+
+    <div class="lhs" :class="{ lhshidden: lhshidden }">
+      <button @click="lhshidden = !lhshidden" class="btn lhsbtn">
       <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <title>menu</title>
         <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
       </svg>
     </button>
-    <div class="lhs" :class="{ lhshidden: lhshidden }">
       <DocStructure />
     </div>
     <div class="main" :class="{ lhsmain: lhshidden, rhsmain: rhshidden }">
@@ -85,14 +86,16 @@ export default {
       />
       <BookEditor v-if="!$root.tools.writer.selectednode" />
     </div>
-    <button @click="rhshidden = !rhshidden" class="btn rhsbtn">
+ 
+
+    <div class="rhs" :class="{ rhshidden: rhshidden }">
+      <button @click="rhshidden = !rhshidden" class="btn rhsbtn">
       <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <title>menu</title>
         <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
       </svg>
     </button>
-
-    <div class="rhs" :class="{ rhshidden: rhshidden }">RHS</div>
+    </div>
   </div>
 </template>
 
@@ -104,23 +107,24 @@ export default {
   bottom: 0px;
   left: 0px;
   overflow: hidden;
+  transition: left 100ms ease-in;
 }
 .lhshidden {
-  left: -320px;
+  left: -280px;
 }
 
 .lhsbtn {
   position: absolute;
   z-index: 10000;
-  top: 2px;
-  left: 2px;
+  top:2px;
+  left: 280px;
 }
 
 .rhsbtn {
   position: absolute;
   z-index: 10000;
   top: 2px;
-  right: 2px;
+  right: 280px;
 }
 
 .rhs {
@@ -130,9 +134,10 @@ export default {
   bottom: 0px;
   right: 0px;
   overflow: auto;
+  transition: right 100ms ease-in;
 }
 .rhshidden {
-  right: -320px;
+  right: -280px;
 }
 
 .main {
