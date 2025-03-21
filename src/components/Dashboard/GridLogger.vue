@@ -263,7 +263,7 @@ export default {
 .block {
   width: 100%;
   height: 100%;
-  background-color: var(--accent2);
+  background-color: #efefef
 }
 .day:hover {
   border: 1px solid #fff;
