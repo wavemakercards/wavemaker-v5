@@ -116,7 +116,7 @@ export default {
 
 .lhs:hover,
 .lhs:focus-within{
-    background-color: var(--bg3);
+ 
 }
 .lhshidden {
   left: -290px;
@@ -126,14 +126,18 @@ export default {
   position: absolute;
   z-index: 10000;
   top:2px;
-  left: 280px;
+  left: 290px;
+  padding: 2px;
+  width: 30px;
 }
 
 .rhsbtn {
   position: absolute;
   z-index: 10000;
   top: 2px;
-  right: 280px;
+  right: 290px;
+  padding: 2px;
+  width: 30px;
 }
 
 .rhs {
@@ -148,11 +152,11 @@ export default {
 
 .rhs:hover,
 .rhs:focus-within{
-    background-color: var(--bg3);
+
 }
 
 .rhshidden {
-  right: -280px;
+  right: -290px;
 }
 
 .main {
