@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       currentdate: new Date(),
-      wordcountprogress : 33,
+      wordcountprogress : 0,
       month: [
         "Jan",
         "Feb",

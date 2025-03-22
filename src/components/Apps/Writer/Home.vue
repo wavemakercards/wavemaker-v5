@@ -70,6 +70,16 @@ export default {
   </div>
   <div v-if="$root.tools.writer.selected">
 
+
+    <div class="main" :class="{ lhsmain: lhshidden, rhsmain: rhshidden }">
+      <FileEditor
+        v-if="$root.tools.writer.selectednode"
+        :key="$root.tools.writer.selectednode"
+      />
+      <BookEditor v-if="!$root.tools.writer.selectednode" />
+    </div>
+
+
     <div class="lhs" :class="{ lhshidden: lhshidden }">
       <button @click="lhshidden = !lhshidden" class="btn lhsbtn">
       <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -79,13 +89,7 @@ export default {
     </button>
       <DocStructure />
     </div>
-    <div class="main" :class="{ lhsmain: lhshidden, rhsmain: rhshidden }">
-      <FileEditor
-        v-if="$root.tools.writer.selectednode"
-        :key="$root.tools.writer.selectednode"
-      />
-      <BookEditor v-if="!$root.tools.writer.selectednode" />
-    </div>
+    
  
 
     <div class="rhs" :class="{ rhshidden: rhshidden }">
@@ -101,7 +105,7 @@ export default {
 
 <style scoped>
 .lhs {
-  min-width: 320px;
+  width: 320px;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -122,7 +126,7 @@ export default {
   position: absolute;
   z-index: 10000;
   top:2px;
-  left: 290px;
+  left: 280px;
 }
 
 .rhsbtn {
@@ -133,7 +137,7 @@ export default {
 }
 
 .rhs {
-  min-width: 320px;
+  width: 320px;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -158,13 +162,14 @@ export default {
   right: 320px;
   left: 320px;
   overflow: auto;
+  padding: 10px;
 }
 .lhsmain {
-  left: 50px;
+  left: 0px;
 }
 
 .rhsmain {
-  right: 50px;
+  right: 0px;
 }
 
 .gridcard-grid {
