@@ -7,6 +7,7 @@ import windowManager from "@/mixins/windowManager.js";
 
 /** Components */
 import TopToolbar from "@/components/InterfaceElements/TopToolbar.vue";
+import ModalManager from "@/components/InterfaceElements/ModalManager.vue";
 import FooterBar from "@/components/InterfaceElements/FooterBar.vue";
 import InstallPopup from "@/components/InterfaceElements/InstallPopup.vue";
 import Welcome from "@/components/Welcome.vue";
@@ -16,6 +17,7 @@ export default {
   mixins: [DexieDB, templateObjects, fileManager, windowManager],
   components: {
     TopToolbar,
+    ModalManager,
     InstallPopup,
     FooterBar,
     ApplicationSections,
@@ -23,6 +25,7 @@ export default {
   },
   data() {
     return {
+      modal : null,
       currentTool: null,
       FileManager: {
         fileHandle: null,
@@ -90,5 +93,6 @@ export default {
     </div>
     <FooterBar v-if="$root.mainwindow" />
   </div>
+  <ModalManager v-if="$root.modal" />
   <InstallPopup />
 </template>
