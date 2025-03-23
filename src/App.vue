@@ -38,6 +38,10 @@ export default {
           selectednode: null,
           mybook: null,
         },
+        cards :{
+          searchterms : null,
+          editcard : null
+        },
         gridplanner: {
           selected: null,
         },

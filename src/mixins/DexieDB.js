@@ -82,7 +82,7 @@ const dexieDB = {
       this.syncdb.Settings = await this.useObservable(this.liveQuery(async () => await this.db.Settings.get(this.dbRef)))
 
       this.syncdb.Cards = await this.useObservable(this.liveQuery(async () => await this.db.Cards.toArray()))
-     this.syncdb.Files = await this.useObservable(this.liveQuery(async () => await this.db.Files.toArray()))
+      this.syncdb.Files = await this.useObservable(this.liveQuery(async () => await this.db.Files.toArray()))
       this.syncdb.Gridplanner = await this.useObservable(this.liveQuery(async () => await this.db.Gridplanner.toArray()))
       this.syncdb.ImageLibrary = await this.useObservable(this.liveQuery(async () => await this.db.ImageLibrary.toArray()))
       this.syncdb.Mindmap = await this.useObservable(this.liveQuery(async () => await this.db.Mindmap.toArray()))

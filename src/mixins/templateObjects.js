@@ -116,7 +116,6 @@ const templateObjects = {
       }
       let obj = {};
       obj.uuid = newId;
-      obj.projectID = this.$root.$data.session.selectedProject;
       obj.title = "";
       obj.description = "";
       obj.showdesc = false;
@@ -126,8 +125,11 @@ const templateObjects = {
       obj.style = "";
       obj.options = {};
       obj.color = "--card1";
-      this.$root.AddRecord("Cards", obj);
-      this.$root.$data.session.EditCard = obj.uuid;
+
+      console.log(obj)
+    this.$root.AddRecord("Cards", obj);
+    this.$root.modal = true;
+    this.$root.tools.cards.editcard = obj.uuid;
     },
   },
 };
