@@ -109,7 +109,7 @@ const templateObjects = {
 
       return result;
     },
-    makeNewCard(existingid) {
+   async makeNewCard(existingid) {
       let newId = this.$root.uuid(); // use the same uuid to link them
       if (existingid) {
         newId = existingid;
@@ -126,10 +126,10 @@ const templateObjects = {
       obj.options = {};
       obj.color = "--card1";
 
-      console.log(obj)
-    this.$root.AddRecord("Cards", obj);
-    this.$root.modal = true;
-    this.$root.tools.cards.editcard = obj.uuid;
+      console.log(obj);
+      await this.$root.AddRecord("Cards", obj);
+      this.$root.modal = true;
+      this.$root.tools.cards.editcard = obj;
     },
   },
 };

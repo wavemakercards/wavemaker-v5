@@ -17,13 +17,12 @@ export default {
     };
   },
   methods: {
-    findCardByUUID(cardArray, cardRef) {
-      return cardArray.find(card => card.uuid === cardRef);
-    },
+    update(){
+      this.$root.UpdateRecord("Cards", this.$root.tools.cards.editcard.uuid, this.$root.tools.cards.editcard) 
+    }
 },
 };
 </script>
-
 <template>
     <div v-if="!$root.tools.cards.editcard"> 
             no card picked - so its gonna be link or new
@@ -31,15 +30,15 @@ export default {
     </div>
     <div v-if="$root.tools.cards.editcard"> 
   <div><span v-for="color in colorlist" :class="color"></span></div>
-  <h1><input type="text" placeholder="Card Title" v-model="$root.tools.cards.editcard.title"/></h1>
+  <h1><input type="text" placeholder="Card Title" v-model="$root.tools.cards.editcard.title" @blur="update()" /></h1>
   <h2>Description</h2>
-  <label><input type="checkbox"  v-model="$root.tools.cards.editcard.showdesc"/> Show on card</label>
+  <label><input type="checkbox"  v-model="$root.tools.cards.editcard.showdesc"  @blur="update()"/> Show on card</label>
   <p>
-    <textarea placeholder="card summary" v-model="$root.tools.cards.editcard.description"></textarea>
+    <textarea placeholder="card summary" v-model="$root.tools.cards.editcard.description"  @blur="update()"></textarea>
   </p>
   <h2>Content</h2>
   <p>
-    <textarea placeholder="card details" v-model="$root.tools.cards.editcard.content"></textarea>
+    <textarea placeholder="card details" v-model="$root.tools.cards.editcard.content"  @blur="update()"></textarea>
   </p>
   <p></p>
 </div>

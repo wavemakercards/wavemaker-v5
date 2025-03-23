@@ -26,7 +26,7 @@ export default {
 </script>
 
 <template>
-  <div class="card-container">
+  <div class="card">
     <div v-if="!currentcard" class="card-placeholder">
         No card ref provided so we need to have the "create" or "link" option
     </div>
@@ -39,17 +39,14 @@ export default {
 </template>
 
 <style scoped>
-.card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+.card {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 2px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 600px;
-  margin: 20px auto;
+  margin: 15px 5px;
+  padding: 10px;
 }
 
 .card-placeholder {
@@ -73,18 +70,22 @@ export default {
   margin-bottom: 10px;
   text-align: center;
 }
+
 .card-title:empty:before{
   content: "..."
 }
+
 .card-description {
   font-size: 16px;
   color: #555;
   margin-bottom: 20px;
   text-align: justify;
 }
+
 .card-description:empty:before{
   content: "..."
 }
+
 .card-edit-button {
   display: inline-block;
   padding: 10px 20px;
