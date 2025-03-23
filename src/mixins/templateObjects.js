@@ -109,7 +109,7 @@ const templateObjects = {
 
       return result;
     },
-   async makeNewCard(existingid) {
+    async makeNewCard(existingid) {
       let newId = this.$root.uuid(); // use the same uuid to link them
       if (existingid) {
         newId = existingid;
@@ -129,7 +129,52 @@ const templateObjects = {
       console.log(obj);
       await this.$root.AddRecord("Cards", obj);
       this.$root.modal = true;
-      this.$root.tools.cards.editcard = obj;
+      this.$root.tools.cards.selected = obj;
+    },
+    async makeMindmap() {
+      let newId = this.$root.uuid(); // use the same uuid to link them
+      let obj = {};
+      obj.uuid = newId;
+      obj.title = "New Mindmap";
+      obj.description = ""; 
+      obj.content = {
+        links : [],
+        nodes : {}
+      }
+      await this.$root.AddRecord("Mindmap", obj);
+      this.$root.tools.mindmap.selected = obj;
+    },
+    async makeTimeline() {
+      let newId = this.$root.uuid(); // use the same uuid to link them
+      let obj = {};
+      obj.uuid = newId;
+      obj.title = '';
+      obj.description = ''; 
+      obj.content = {
+        items : []
+      }
+      await this.$root.AddRecord("Timeline", obj);
+      this.$root.tools.timeline.selected = obj;
+    },
+    async makeGridplanner() {
+      let newId = this.$root.uuid(); // use the same uuid to link them
+      let obj = {};
+      obj.uuid = newId;
+      obj.title = '';
+      obj.description = ''; 
+      obj.content = { headers: [], rows: [] }
+      await this.$root.AddRecord("Gridplanner", obj);
+      this.$root.tools.gridplanner.selected = obj;
+    },
+    async makeSnowflake() {
+      let newId = this.$root.uuid(); // use the same uuid to link them
+      let obj = {};
+      obj.uuid = newId;
+      obj.title = '';
+      obj.description = ''; 
+      obj.content = []
+      await this.$root.AddRecord("Snowflake", obj);
+      this.$root.tools.snowflake.selected = obj;
     },
   },
 };

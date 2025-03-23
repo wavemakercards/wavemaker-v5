@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     editcard(id){
-      this.$root.tools.cards.editcard = this.currentcard
+      this.$root.tools.cards.selected = this.currentcard
       this.$root.modal = true
     }
   },

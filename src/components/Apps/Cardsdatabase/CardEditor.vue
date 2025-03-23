@@ -21,27 +21,27 @@ export default {
     update() {
       this.$root.UpdateRecord(
         "Cards",
-        this.$root.tools.cards.editcard.uuid,
-        this.$root.tools.cards.editcard
+        this.$root.tools.cards.selected.uuid,
+        this.$root.tools.cards.selected
       );
     },
     setColor(c) {
       console.log(c);
-      this.$root.tools.cards.editcard.color = c;
+      this.$root.tools.cards.selected.color = c;
       this.update();
     },
   },
 };
 </script>
 <template>
-  <div v-if="!$root.tools.cards.editcard">
+  <div v-if="!$root.tools.cards.selected">
     no card picked - so its gonna be link or new
     <button @click="$root.makeNewCard()">New Card</button>
   </div>
   <div
-    v-if="$root.tools.cards.editcard"
+    v-if="$root.tools.cards.selected"
     class="card"
-    :class="$root.tools.cards.editcard.color"
+    :class="$root.tools.cards.selected.color"
   >
     <div>
       <button
@@ -55,7 +55,7 @@ export default {
       <input
         type="text"
         placeholder="Card Title"
-        v-model="$root.tools.cards.editcard.title"
+        v-model="$root.tools.cards.selected.title"
         @blur="update()"
       />
     </h1>
@@ -63,7 +63,7 @@ export default {
     <label
       ><input
         type="checkbox"
-        v-model="$root.tools.cards.editcard.showdesc"
+        v-model="$root.tools.cards.selected.showdesc"
         @blur="update()"
       />
       Show on card</label
@@ -71,7 +71,7 @@ export default {
     <p>
       <textarea
         placeholder="card summary"
-        v-model="$root.tools.cards.editcard.description"
+        v-model="$root.tools.cards.selected.description"
         @blur="update()"
       ></textarea>
     </p>
@@ -79,7 +79,7 @@ export default {
     <p>
       <textarea
         placeholder="card details"
-        v-model="$root.tools.cards.editcard.content"
+        v-model="$root.tools.cards.selected.content"
         @blur="update()"
       ></textarea>
     </p>

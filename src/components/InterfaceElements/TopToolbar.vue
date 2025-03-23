@@ -32,16 +32,17 @@ export default {
 
 
       <button @click="$root.openFile()" v-if="!$root.dbRef">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <title>upload-box-outline</title>
-          <path
-            d="M8 17V15H16V17H8M16 11L12 7L8 11H10.5V14H13.5V11H16M5 3H19C20.11 3 21 3.9 21 5V19C21 20.11 20.11 21 19 21H5C3.9 21 3 20.11 3 19V5C3 3.9 3.9 3 5 3M5 5V19H19V5H5Z"
-          />
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-app</title><path d="M12,10L8,14H11V20H13V14H16M19,4H5C3.89,4 3,4.9 3,6V18A2,2 0 0,0 5,20H9V18H5V8H19V18H15V20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4Z" /></svg>
       </button>
       <span v-if="$root.dbRef">
         
+                
+        <button
+        title="Open in a new window"
+        @click="$root.openNewWindow()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-app</title><path d="M12,10L8,14H11V20H13V14H16M19,4H5C3.89,4 3,4.9 3,6V18A2,2 0 0,0 5,20H9V18H5V8H19V18H15V20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4Z" /></svg>
         
+      </button>
         
         
         <button @click="$root.snapShot()">

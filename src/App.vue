@@ -40,7 +40,7 @@ export default {
         },
         cards :{
           searchterms : null,
-          editcard : null
+          selected : null
         },
         gridplanner: {
           selected: null,
