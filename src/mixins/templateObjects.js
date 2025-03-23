@@ -124,7 +124,7 @@ const templateObjects = {
       obj.images = [];
       obj.style = "";
       obj.options = {};
-      obj.color = "--card1";
+      obj.color = "cardcolor0";
 
       console.log(obj);
       await this.$root.AddRecord("Cards", obj);
