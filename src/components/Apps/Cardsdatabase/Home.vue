@@ -15,7 +15,9 @@ export default {
 <div>
   Cardsdatabase
 </div>
-  
+  <pre>
+    {{ $root.syncdb.Cards }}
+  </pre>
 </template>
 
 <style scoped>
