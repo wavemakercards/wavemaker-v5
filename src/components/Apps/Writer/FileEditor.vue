@@ -7,8 +7,8 @@ export default {
     TipTap
   },
   methods: {
-    handleChange() {
-       this.$root.UpdateRecord("Files", this.myfile.uuid, this.myfile);
+  async handleChange() {
+       await this.$root.UpdateRecord("Files", this.myfile.uuid, this.myfile);
     },
     updateContent(newContent) {
       this.myfile.content = newContent;
@@ -43,7 +43,7 @@ export default {
     />
  
   </div>
-  <TipTap v-if="myfile" :content="myfile.content" @update:content="updateContent" :key="myfile.uuid"/>
+  <TipTap v-if="myfile" :content="myfile.content" @update:content="updateContent" :key="myfile.lastupdated"/>
 </template>
 
 <style scoped></style>

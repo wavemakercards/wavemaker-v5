@@ -34,7 +34,7 @@ export default {
         })
 
         // Ensure emitContent is called when the editor content changes
-        this.editor.on('update', this.emitContent)
+        this.editor.on('blur', this.emitContent)
     },
     beforeUnmount() {
         if (this.editor) {
