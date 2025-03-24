@@ -90,6 +90,18 @@ const dexieDB = {
       this.syncdb.Timeline = await this.useObservable(this.liveQuery(async () => await this.db.Timeline.toArray()))
       this.syncdb.Writer = await this.useObservable(this.liveQuery(async () => await this.db.Writer.toArray()))
 
+/** if its a subwindow set up the stuff */
+console.log(this.$root.currentTool, this.$root.urlSelected)
+
+      if (this.$root.currentTool) {
+        console.log("New Window link")
+        const str = this.$root.currentTool;
+        const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
+        if (this.$root.urlSelected) {
+          this.$root.tools[this.$root.currentTool].selected = await this.db[capitalized].get(this.$root.urlSelected);
+        }
+      }
+
     }
     },
     async dbImport(jsonData) {
@@ -174,10 +186,9 @@ const dexieDB = {
   },
   async mounted(){
     if(this.databaseName){
-      this.initDatabase()
+    await this.initDatabase()
     }else{
     this.getDatabases()
-   
     }
 
     console.log("closing db", this.$root.mainwindow)

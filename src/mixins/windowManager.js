@@ -16,15 +16,16 @@ const windowManager = {
   },
   methods: {
     openNewWindow() {
-        let tool=''
-        let selected = ''
-        if(this.$root.currentTool){
-            tool= this.$root.currentTool;
-            if(this.$root.tools[this.$root.currentTool].selected){
-                selected = this.$root.tools[this.$root.currentTool].selected
-            }            
-        }      
-      
+      let tool = "";
+      let selected = "";
+      if (this.$root.currentTool) {
+        tool = this.$root.currentTool;
+        if (this.$root.tools[this.$root.currentTool].selected) {
+          selected = this.$root.tools[this.$root.currentTool].selected.uuid;
+          console.log(selected)
+        }
+      }
+
       let url = window.location.href;
       url = url + "?parentid=" + this.windowID;
       url = url + "&dbname=" + this.$root.databaseName;
@@ -38,8 +39,8 @@ const windowManager = {
       this.childWindows.push(newWindow); // Add the new window to the array
       newWindow.onload = function () {
         const newUrl = new URL(newWindow.location);
-        newUrl.search = ""; // Clear all query parameters
-        newWindow.history.replaceState(null, "", newUrl);
+   //     newUrl.search = ""; // Clear all query parameters
+    //    newWindow.history.replaceState(null, "", newUrl);
       };
     },
     closeChildWindows() {
@@ -61,19 +62,14 @@ const windowManager = {
     this.parentID = urlParams.get("parentid");
     this.$root.databaseName = urlParams.get("dbname");
     this.$root.currentTool = urlParams.get("tool");
+    this.$root.urlSelected = urlParams.get("selected");
 
-    if (this.$root.currentTool) {
-      const str = this.$root.currentTool;
-      const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
 
-      let selected = urlParams.get("selected");
-      if (selected) {
-        this.$root.tools[this.$root.currentTool].selected = await this.db[capitalized].get(selected);
-      }
-    }
+    console.log("SubWindow", this.parentID)
     if (this.parentID) {
       this.mainwindow = false;
     }
+
     this.windowID = this.uuid();
 
     // Add an event listener to close child windows when the main window is closed

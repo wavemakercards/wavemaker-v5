@@ -1,12 +1,12 @@
 <script>
 
-import ProjectHome from '@/components/Apps/Home/Home.vue'
-import WriterHome from '@/components/Apps/Writer/Home.vue'
-import MindmapHome from '@/components/Apps/Mindmap/Home.vue'
-import TimelineHome from '@/components/Apps/Timeline/Home.vue'
-import SnowflakeHome from '@/components/Apps/Snowflake/Home.vue'
-import GridplannerHome from '@/components/Apps/Gridplanner/Home.vue'
-import CardsdatabaseHome from '@/components/Apps/Cardsdatabase/Home.vue'
+import ProjectHome from '@/components/Apps/Project/ProjectHome.vue'
+import WriterHome from '@/components/Apps/Writer/WriterHome.vue'
+import MindmapHome from '@/components/Apps/Mindmap/MindmapHome.vue'
+import TimelineHome from '@/components/Apps/Timeline/TimelineHome.vue'
+import SnowflakeHome from '@/components/Apps/Snowflake/SnowflakeHome.vue'
+import GridplannerHome from '@/components/Apps/Gridplanner/GridplannerHome.vue'
+import CardsdatabaseHome from '@/components/Apps/Cardsdatabase/CardsdatabaseHome.vue'
 
 export default {
   name: 'App Home',

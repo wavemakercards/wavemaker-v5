@@ -12,37 +12,31 @@ export default {
     handleChange() {
       this.$root.UpdateRecord(
         "Writer",
-        this.$root.tools.writer.selected,
-        this.mybook
+        this.$root.tools.writer.selected.uuid,
+        this.this.$root.tools.writer.selected
       );
     },
     imageChanged(newImage) {
-      this.mybook.cover = newImage;
+      this.this.$root.tools.writer.selected.cover = newImage;
       this.handleChange();
     }
   },
   name: "BookEditor",
   data() {
     return {
-      mybook: null,
+  
     };
   },
   async mounted() {
-    this.mybook = await this.$root.useObservable(
-      this.$root.liveQuery(
-        async () =>
-          await this.$root.db.Writer.get(this.$root.tools.writer.selected)
-      )
-    );
   },
 };
 </script>
 
 <template>
 
-    <div v-if="mybook" class="infocontainer">
+    <div v-if="this.$root.tools.writer.selected" class="infocontainer">
 <div class="bookcover">
-  <ImageUpload :myimage="mybook.cover" @image-changed="imageChanged"/>
+  <ImageUpload :myimage="this.$root.tools.writer.selected.cover" @image-changed="imageChanged"/>
 </div>
 
 
@@ -50,9 +44,8 @@ export default {
 
 
     <input
-    
 type="text"
-v-model="mybook.title"
+v-model="this.$root.tools.writer.selected.title"
 @blur="handleChange"
 />
 
@@ -62,13 +55,13 @@ v-model="mybook.title"
 
     <input
       type="text"
-      v-model="mybook.author"
+      v-model="this.$root.tools.writer.selected.author"
       @blur="handleChange"
     />
 
   <label>Description</label>
  
-    <textarea v-autosize v-model="mybook.description" />
+    <textarea v-autosize v-model="this.$root.tools.writer.selected.description" />
 
 
 </div>

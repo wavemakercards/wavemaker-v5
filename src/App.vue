@@ -27,6 +27,7 @@ export default {
     return {
       modal : null,
       currentTool: null,
+      urlSelected : null,
       FileManager: {
         fileHandle: null,
         jsonData: null,

@@ -24,7 +24,7 @@
     },
     methods: {
       handleChange(event) {
-        this.$root.UpdateRecord("Writer", this.$root.tools.writer.selected, this.$root.tools.writer.mybook);
+        this.$root.UpdateRecord("Writer", this.$root.tools.writer.selected.uuid, this.$root.tools.writer.selected);
       }
     },
     name: "DocStructureNode"
@@ -40,7 +40,6 @@
       item-key="name"
       @end="handleChange"
     >
-   
         <li class="node" v-for="(element, k) in modelValue" :key="k">
           <div class="btn">
             <button @click="element.open = !element.open" class="toggle">

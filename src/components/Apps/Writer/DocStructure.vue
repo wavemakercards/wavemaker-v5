@@ -1,5 +1,5 @@
 <template>
-  <div class="documentStructure" v-if="this.$root.tools.writer.mybook">
+  <div class="documentStructure" v-if="this.$root.tools.writer.selected">
     <div class="lhstools">
       <button @click="addNode" class="btn" >
         <svg
@@ -37,8 +37,8 @@
       <div style="padding: 10px">
         <div class="lhsscrollcontainer">
           <DocStructureNode
-            v-if="this.$root.tools.writer.mybook.files.length"
-            v-model="this.$root.tools.writer.mybook.files"
+            v-if="this.$root.tools.writer.selected.files.length"
+            v-model="this.$root.tools.writer.selected.files"
           />
         </div>
       </div>
@@ -63,11 +63,11 @@ export default {
     this.bookwatch = await this.$root.useObservable(
       this.$root.liveQuery(
         async () =>
-          await this.$root.db.Writer.get(this.$root.tools.writer.selected)
+          await this.$root.db.Writer.get(this.$root.tools.writer.selected.uuid)
       )
     );
     this.$watch("bookwatch", (newVal, oldVal) => {
-      this.$root.tools.writer.mybook = JSON.parse(JSON.stringify(newVal));
+      this.$root.tools.writer.selected = JSON.parse(JSON.stringify(newVal));
       // You can add more logic here
     });
   },
@@ -86,11 +86,11 @@ export default {
 
       let addto = null;
       if (!this.$root.tools.writer.selectednode) {
-        addto = this.$root.tools.writer.mybook;
+        addto = this.$root.tools.writer.selected;
       } else {
         addto = this.findNodeByUUID(
           this.$root.tools.writer.selectednode,
-          this.$root.tools.writer.mybook
+          this.$root.tools.writer.selected
         );
       }
       addto.files.push(node);
@@ -99,7 +99,7 @@ export default {
       this.$root.UpdateRecord(
         "Writer",
         this.$root.tools.writer.selected,
-        this.$root.tools.writer.mybook
+        this.$root.tools.writer.selected
       );
     },
     findNodeByUUID(uuid, node) {

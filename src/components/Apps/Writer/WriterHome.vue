@@ -42,7 +42,7 @@ export default {
           class="gridcard"
           v-for="(book, bi) in displaylist"
           :key="bi"
-          @click="$root.tools.writer.selected = book.uuid"
+          @click="$root.tools.writer.selected = book"
         >
           <div class="book-3d">
             <div class="book-3d__inner">
@@ -69,7 +69,6 @@ export default {
     </div>
   </div>
   <div v-if="$root.tools.writer.selected">
-
 
     <div class="main" :class="{ lhsmain: lhshidden, rhsmain: rhshidden }">
       <FileEditor
