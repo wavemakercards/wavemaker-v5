@@ -10,34 +10,34 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-  
-  /*    devOptions: {
+  /*
+     devOptions: {
         enabled: true,
       },
     */
       manifest: {
         name: 'Wavemaker Cards version 5',
         short_name: 'WavemakerCards5',
-        start_url: '/wavemaker-cards-v/',
-        scope: '/wavemaker-cards-v/',
+        start_url: './',
+        scope: './',
         display: 'standalone',
         background_color: '#212121',
         theme_color: '#212121',
         icons: [
           {
-            src: '/wavemaker-cards-v/icons/192.png',
+            src: './icons/192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/wavemaker-cards-v/icons/512.png',
+            src: './icons/512.png',
             sizes: '512x512',
             type: 'image/png',
           },
         ],
         file_handlers: [
           {
-            action: '/wavemaker-cards-v/index.html',
+            action: './index.html',
             accept: {
               'application/json': ['.wmc'],
             },
