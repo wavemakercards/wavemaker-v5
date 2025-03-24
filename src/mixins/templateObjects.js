@@ -148,7 +148,7 @@ const templateObjects = {
       let newId = this.$root.uuid(); // use the same uuid to link them
       let obj = {};
       obj.uuid = newId;
-      obj.title = '';
+      obj.title = 'New Timeline';
       obj.description = ''; 
       obj.content = {
         items : []
@@ -160,7 +160,7 @@ const templateObjects = {
       let newId = this.$root.uuid(); // use the same uuid to link them
       let obj = {};
       obj.uuid = newId;
-      obj.title = '';
+      obj.title = 'New Gridplanner';
       obj.description = ''; 
       obj.content = { headers: [], rows: [] }
       await this.$root.AddRecord("Gridplanner", obj);

@@ -8,8 +8,6 @@
 input[type="text"],
 textarea {
     font-family: 'Quicksand', sans-serif;
-    font-weight: 200;
-    color: #333;
     padding-top: 10px;
     padding-bottom: 10px;
     display: block;
@@ -25,12 +23,5 @@ textarea {
     height: 40px;
 }
 
-.formholder{
-    background-color: #fff;
-    border:1px solid #efefef;
-    margin: 10px;
-    color: #212121;
-    padding: 2px 10px;
-    border-radius: 10px;
-}
+
 

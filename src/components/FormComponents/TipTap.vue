@@ -43,7 +43,7 @@ export default {
     },
 }
 </script>
-<style>
+<style scoped>
 .editor {
     max-width: 700px;
     background-color: #e5dede;

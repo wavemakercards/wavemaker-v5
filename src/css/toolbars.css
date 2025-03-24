@@ -55,4 +55,5 @@
     position: sticky;
     top:0px;
     background-color: var(--bg3);
+    z-index: 999999;
   }
