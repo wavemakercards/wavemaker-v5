@@ -2,7 +2,7 @@
   <div class="subbar" v-if="mygridplanner">
     <input @blur="update()" type="text" v-model="this.mygridplanner.title" />
     <button @click="addRow" class="btn">
-      <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+      <svg class="icon" style="width: 24px; height: 24px" viewBox="0 0 24 24">
         <path
           d="M22,10A2,2 0 0,1 20,12H4A2,2 0 0,1 2,10V3H4V5H8V3H10V5H14V3H16V5H20V3H22V10M4,10H8V7H4V10M10,10H14V7H10V10M20,10V7H16V10H20M11,14H13V17H16V19H13V22H11V19H8V17H11V14Z"
         />
@@ -10,7 +10,7 @@
     </button>
 
     <button @click="addCol" class="btn">
-      <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+      <svg class="icon" style="width: 24px; height: 24px" viewBox="0 0 24 24">
         <path
           d="M11,2A2,2 0 0,1 13,4V20A2,2 0 0,1 11,22H2V2H11M4,10V14H11V10H4M4,16V20H11V16H4M4,4V8H11V4H4M15,11H18V8H20V11H23V13H20V16H18V13H15V11Z"
         />
@@ -27,63 +27,86 @@
   </div>
 
   <div class="scroller" v-if="mygridplanner">
-
-
     <div class="grid-container" :style="`width:${tablewidth}px`">
-    
-    
-    
-    <div class="grid-row">
+      <div class="grid-row">
         <div class="grid-header col1" :style="`${colwidth}px`"></div>
-        <div
-          v-for="(header, index) in mygridplanner.content.headers"
-          :key="'header-' + index"
-          class="grid-header"
-          :style="`${colwidth}px`"
+        <VueDraggable
+          v-model="mygridplanner.content.headers"
+          :animation="150"
+          handle=".handle"
+          @change="update()"
         >
-        <div class="handle">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>menu</title><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
-        </div>
-          <input
-            class="handleinput"
-            type="text"
-            v-model="header.title"
-            :placeholder="'Header ' + (index + 1)"
-          />
-        </div>
-      </div>
-      <div>
-        <div
-          v-for="(row, rowIndex) in mygridplanner.content.rows"
-          :key="'row-' + rowIndex"
-          class="grid-row"
-        >
-          <div class="grid-header col1" :style="`${colwidth}px`">          
-          <div class="handle">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>menu</title><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
-        </div>
-          <input
-            class="handleinput"
-            type="text"
-            v-model="row.title"
-            :placeholder="'Header ' + (rowIndex + 1)"
-          />
-          </div>
           <div
-            v-for="(header, colIndex) in mygridplanner.content.headers"
-            :key="'cell-' + rowIndex + '-' + colIndex"
-            class="grid-cell"
+            v-for="(header, index) in mygridplanner.content.headers"
+            :key="'header-' + index"
+            class="grid-header"
             :style="`${colwidth}px`"
           >
-            <!-- Placeholder for cell content -->
+            <div class="handle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <title>menu</title>
+                <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+              </svg>
+            </div>
+            <textarea
+              v-autosize
+              @blur="update()"
+              class="handleinput"
+              type="text"
+              v-model="header.title"
+              placeholder="Header"
+            />
           </div>
-        </div>
+        </VueDraggable>
+      </div>
+      <div>
+        <VueDraggable
+          v-model="mygridplanner.content.rows"
+          :animation="150"
+          handle=".handle"
+          @change="update()"
+        >
+          <div
+            v-for="(row, rowIndex) in mygridplanner.content.rows"
+            :key="'row-' + rowIndex"
+            class="grid-row"
+          >
+            <div class="grid-header col1" :style="`${colwidth}px`">
+              <div class="handle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <title>menu</title>
+                  <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                </svg>
+              </div>
+              <textarea
+                v-autosize
+                @blur="update()"
+                class="handleinput"
+                type="text"
+                v-model="row.title"
+                placeholder="Title"
+              />
+            </div>
+            <div
+              v-for="(header, colIndex) in mygridplanner.content.headers"
+              :key="'cell-' + rowIndex + '-' + colIndex"
+              class="grid-cell"
+              :style="`${colwidth}px`"
+            >
+              <GridPlannerCell
+                v-model="row.cells[header.uuid]"
+                @MakeChange="update()"
+              />
+            </div>
+          </div>
+        </VueDraggable>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import autosize from "@/directives/autosize.js";
 import { VueDraggable } from "vue-draggable-plus";
 import GridPlannerCell from "./GridPlannerCell.vue";
 export default {
@@ -92,9 +115,12 @@ export default {
     VueDraggable,
     GridPlannerCell,
   },
+  directives: {
+    autosize,
+  },
   computed: {
     tablewidth() {
-      return this.colwidth * this.mygridplanner.content.headers.length;
+      return this.colwidth * (this.mygridplanner.content.headers.length + 1);
     },
   },
   data() {
@@ -190,15 +216,15 @@ export default {
 </script>
 
 <style scoped>
-
-.handle{
-  fill:#fff;
+.handle {
+  fill: #fff;
   width: 24px;
   height: 24px;
   position: absolute;
-  top: calc(50% - 12px)
+  top: 18px;
+  cursor: grab;
 }
-.handleinput{
+.handleinput {
   padding-left: 30px;
   text-align: left;
 }
@@ -228,6 +254,7 @@ export default {
   padding: 10px;
   margin: 5px;
   width: 300px;
+  vertical-align: top;
 }
 .col1 {
   width: 300px;
@@ -241,6 +268,7 @@ export default {
 .grid-cell {
   position: relative;
   display: table-cell;
+  vertical-align: top;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   text-align: center;
