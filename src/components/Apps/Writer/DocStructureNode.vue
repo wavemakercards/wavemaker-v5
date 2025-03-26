@@ -36,6 +36,7 @@
       class="dragArea"
       tag="ul"
       v-model="list"
+            :animation="150"
       group="files"
       item-key="name"
       @end="handleChange"
