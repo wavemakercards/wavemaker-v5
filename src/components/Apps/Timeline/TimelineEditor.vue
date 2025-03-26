@@ -1,21 +1,33 @@
 <script>
-import MiniEditor from "@/components/FormComponents/MiniEditor.vue";
+import { VueDraggable } from "vue-draggable-plus";
+import autosize from "@/directives/autosize.js"
 export default {
   name: "TimelineEditor",
   components: {
-    MiniEditor,
+    VueDraggable
+  },
+  directives:{
+    autosize
   },
   data() {
     return {
-        mytimeline : null
+      mytimeline: null,
+      dragging : false
     };
   },
-  async mounted(){
-    this.mytimeline = await this.$root.useObservable(this.$root.liveQuery(async () => await this.$root.db.Timeline.get(this.$root.tools.timeline.selected.uuid)))
+  async mounted() {
+    this.mytimeline = await this.$root.useObservable(
+      this.$root.liveQuery(
+        async () =>
+          await this.$root.db.Timeline.get(
+            this.$root.tools.timeline.selected.uuid
+          )
+      )
+    );
   },
   methods: {
     async update() {
-        console.log("updating")
+      console.log("updating");
       await this.$root.UpdateRecord(
         "Timeline",
         this.mytimeline.uuid,
@@ -24,15 +36,34 @@ export default {
     },
     addTime(index) {
       let obj = {};
-      obj.title = "Title Here";
-      obj.text =
-        "";
-      obj.date = "Date Label";
-      if (index === undefined || index === null) {
-        this.mytimeline.content.items.push(obj);
-      } else {
-        this.mytimeline.content.items.splice(index, 0, obj);
-      }
+      obj.title = "";
+      obj.text = "";
+      obj.date = "";
+      this.mytimeline.content.items.push(obj);
+      this.update();
+    },
+    deleteEvent(index) {
+
+      this.$swal({
+        title: "Delete?",
+        text: "this is permmanend",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirm",
+        cancelButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          this.mytimeline.content.items.splice(index, 1);
+          this.update();
+
+          this.$swal("Success", "All done", "success");
+        }
+      });
+
+
     },
   },
 };
@@ -40,11 +71,7 @@ export default {
 
 <template>
   <div class="subbar" v-if="mytimeline">
-    <input
-      @blur="update()"
-      type="text"
-      v-model="this.mytimeline.title"
-    />
+    <input @blur="update()" type="text" v-model="this.mytimeline.title" />
     <button class="btn" @click="$root.tools.timeline.selected = null">
       <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <title>close</title>
@@ -57,20 +84,52 @@ export default {
 
   <div class="timeline" v-if="mytimeline">
     <ul>
-      <li v-for="(event, index) in mytimeline.content.items">
-        <div class="content">
-          <h3>
-            <input type="text" v-model="event.title" placeholder="Title Here" @blur="update()" />
-          </h3>
-          <p><MiniEditor v-model="event.text" @blur="update()" :key="mytimeline.lastupdated" /></p>
-        </div>
-        <div class="time">
-          <h4>
-            <input type="text" v-model="event.date" placeholder="label" @blur="update()"/>
-          </h4>
-        </div>
-      </li>
-
+      <VueDraggable
+        v-model="mytimeline.content.items"
+        :animation="150"
+        handle=".handle"
+        @change="update()"
+        @start="dragging=true"
+         @end="dragging=false"
+      >
+        <li v-for="(event, index) in mytimeline.content.items">
+          <div class="content">
+            <button class="deleteIconButton" @click="deleteEvent(index)" tabindex="0">
+        <svg style="width: 18px; height: 18px" viewBox="0 0 24 24">
+          <path
+            d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z"
+          />
+        </svg>
+      </button>
+            <h3>
+              <input
+                type="text"
+                v-model="event.title"
+                placeholder="Title Here"
+                @blur="update()"
+              />
+            </h3>
+            <p>
+              <textarea
+              v-autosize
+                v-model="event.text"
+                @blur="update()"
+                style="min-height: 150px;"
+              />
+            </p>
+          </div>
+          <div class="time handle">
+            <h4>
+              <input
+                type="text"
+                v-model="event.date"
+                placeholder="label"
+                @blur="update()"
+              />
+            </h4>
+          </div>
+        </li>
+      </VueDraggable>
       <div style="clear: both"></div>
       <div style="text-align: center">
         <button @click="addTime()" class="tlbutton">
@@ -87,6 +146,30 @@ export default {
 </template>
 
 <style scoped>
+
+.content:focus-within .deleteIconButton{
+  display: block;
+}
+
+.deleteIconButton {
+ display: none;
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  padding: 5px;
+  background-color: rgb(189, 0, 0);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.deleteIconButton svg {
+  fill: currentColor;
+  width: 100%;
+}
+
 .tlbutton {
   position: relative;
   background-color: var(--accent2);
@@ -94,7 +177,6 @@ export default {
   height: 50px;
   border: 0px;
   color: #fff;
-
   border-radius: 50%;
   line-height: 75px;
   fill: #fff;
@@ -104,6 +186,7 @@ export default {
   padding: 0px;
   width: 100%;
   margin: 0px;
+  text-align: center;
 }
 .content {
   background-color: #fff;

@@ -15,6 +15,10 @@ export default {
             type: String,
             required: true,
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     emits: ['update:modelValue', 'blur'],
     data() {
@@ -34,6 +38,7 @@ export default {
         this.editor = new Editor({
             content: this.modelValue,
             extensions: [StarterKit],
+            editable: !this.disabled,
         })
 
         // Ensure emitContent is called when the editor content changes
@@ -41,6 +46,13 @@ export default {
 
         // Emit blur event when the editor loses focus
         this.editor.on('blur', this.emitBlur)
+    },
+    watch: {
+        disabled(newValue) {
+            if (this.editor) {
+                this.editor.setOptions({ editable: !newValue })
+            }
+        },
     },
     beforeUnmount() {
         if (this.editor) {
