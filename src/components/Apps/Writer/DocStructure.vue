@@ -75,16 +75,16 @@ export default {
     async addNode() {
       // create new file node in the thingy
       let template = JSON.parse(JSON.stringify(this.$root.fileTemplate));
-      template.writerid = this.$root.tools.writer.selected;
+      template.writerid = this.$root.tools.writer.selected.uuid;
       template.uuid = this.$root.uuid();
+
       await this.$root.AddRecord("Files", template);
 
       let node = {};
       node.open = false;
       node.uuid = template.uuid;
       node.files = [];
-
-      let addto = null;
+let addto = null;
       if (!this.$root.tools.writer.selectednode) {
         addto = this.$root.tools.writer.selected;
       } else {
@@ -93,12 +93,13 @@ export default {
           this.$root.tools.writer.selected
         );
       }
+  
       addto.files.push(node);
       addto.open = true;
 
       this.$root.UpdateRecord(
         "Writer",
-        this.$root.tools.writer.selected,
+        this.$root.tools.writer.selected.uuid,
         this.$root.tools.writer.selected
       );
     },
