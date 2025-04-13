@@ -96,17 +96,14 @@ export default {
 <style scoped>
 .editor {
     max-width: 700px;
-    background-color: #e5dede;
     padding: 2%;
-    color: #424242;
+    color: #fff;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 60px;
     border-radius: 2px;
-    font-size: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-radius: 3px;
-    border: 2px solid #ffffff
+    font-size: 18px;
+    border-radius: 3px;  
 }
 .editor .tiptap {
     outline: none;
