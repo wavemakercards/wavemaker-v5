@@ -94,6 +94,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .editor {
     max-width: 700px;
     padding: 2%;
@@ -104,6 +105,8 @@ export default {
     border-radius: 2px;
     font-size: 18px;
     border-radius: 3px;  
+    font-family: 'Merriweather', serif;
+    font-weight: 100;
 }
 .editor .tiptap {
     outline: none;
@@ -111,9 +114,6 @@ export default {
     padding-top: 20px;
     margin: 10px;
     min-height: 700px;
-    font-family: "Special Elite", system-ui;
-    font-weight: 400;
-    font-style: normal;
 }
 .editor .tiptap p:not(:first-of-type) {
     text-indent: 2em;

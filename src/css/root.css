@@ -105,7 +105,7 @@
 html {
   background-color: var(--bg1);
   color: var(--fg);
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
   font-size: var(--fontsize);
   letter-spacing: 1px;
   font-weight: 200;
