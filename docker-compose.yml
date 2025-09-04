@@ -1,0 +1,32 @@
+# docker-compose.yml
+# Simple setup to run just the Wavemaker Cards frontend
+
+version: '3.8'
+
+services:
+  wavemaker-cards:
+    build: .
+    container_name: wavemaker-cards
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      # Optional: mount logs for debugging
+      - ./logs:/var/log/nginx
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+# Optional: Add a simple file server for easy access to logs
+  # nginx-logs:
+  #   image: nginx:alpine
+  #   container_name: wavemaker-logs
+  #   ports:
+  #     - "8081:80"
+  #   volumes:
+  #     - ./logs:/usr/share/nginx/html:ro
+  #   profiles:
+  #     - debug
