@@ -9,7 +9,7 @@ services:
     container_name: wavemaker-cards
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       # Optional: mount logs for debugging
       - ./logs:/var/log/nginx
