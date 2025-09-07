@@ -96,8 +96,9 @@ export default {
 <style scoped>
 
 .editor {
-    max-width: 700px;
-    padding: 2%;
+max-width: 800px;
+    min-height: 50%;
+    padding: 30px 50px;
     color: #fff;
     margin: 0 auto;
     margin-top: 20px;
@@ -107,6 +108,7 @@ export default {
     border-radius: 3px;  
     font-family: 'Merriweather', serif;
     font-weight: 100;
+    background-color: #10101011;
 }
 .editor .tiptap {
     outline: none;
