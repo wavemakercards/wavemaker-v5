@@ -32,8 +32,7 @@ export default {
               d="M10,16.5V7.5L16,12M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
             ></path>
           </svg>
-          <span>
-          Create a new project</span>
+          <span> Create a new project</span>
         </button>
         <button @click="$root.openFile()">
           <svg viewBox="0 0 24 24">
@@ -48,18 +47,16 @@ export default {
   </div>
 </template>
 <style scoped>
-
-
 #WelcomeScreen {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
   text-align: center;
-p {
-  padding: 0px;
-  margin: 0px;
-}
+  p {
+    padding: 0px;
+    margin: 0px;
+  }
   .hero {
     padding: 50px;
     border-radius: 10px;
@@ -72,7 +69,7 @@ p {
     }
   }
 
-  button{
+  button {
     width: 100%;
     background-color: var(--accent1);
     color: var(--accent1-fg);
@@ -87,23 +84,18 @@ p {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
-    > svg{
+    > svg {
       width: 30px;
     }
     &:hover,
     &:focus {
-       transform: scale(1.1);
+      transform: scale(1.1);
       border: 0px;
       outline: none;
       background-color: var(--info);
       color: var(--info-fg);
-     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
   }
 }
-
-
-
-
-
 </style>
