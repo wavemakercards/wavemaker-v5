@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div id="SideToolBar">
+  <div id="SideToolBar" :style="`top: ${$root.toolbarheight}px`">
     <button class="navbtn" @click="$root.currentTool = 'writer'">
       <svg data-v-92328502="" version="1.1" viewBox="0 0 24 24">
         <path

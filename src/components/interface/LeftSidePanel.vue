@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div id="LeftSidePanel">
+  <div id="LeftSidePanel" :style="`top: ${$root.toolbarheight}px`">
     <div class="header">
       <div>
       <button>

@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <div id="MainArea">
+  <div id="MainArea" :style="`top: ${$root.toolbarheight}px`">
     <div class="header"></div>
     <div class="content"></div>
   </div>

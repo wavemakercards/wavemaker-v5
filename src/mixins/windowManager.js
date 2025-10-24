@@ -2,7 +2,7 @@
  * This file is a Vue mixin that can be used to manage child windows.
  * It provides methods to open new windows and close all child windows when the main window is closed.
  * It also removes the parentid query parameter from the child window's URL.
- * If you do NOT want something visible in the child window you should v-if="!mainwindow"
+ * If you do NOT want something visible in the child window you should v-if="!toolbarheight"
  */
 
 const windowManager = {
@@ -10,7 +10,7 @@ const windowManager = {
     return {
       windowID: null,
       parentID: null,
-      mainwindow: true,
+      toolbarheight: 40,
       childWindows: [], // Array to keep track of child windows
     };
   },
@@ -67,7 +67,7 @@ const windowManager = {
 
     console.log("SubWindow", this.parentID)
     if (this.parentID) {
-      this.mainwindow = false;
+      this.toolbarheight = 0;
     }
 
     this.windowID = this.uuid();
