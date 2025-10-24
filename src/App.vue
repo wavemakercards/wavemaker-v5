@@ -200,7 +200,6 @@ export default {
     &:focus {
       border: 0px;
       outline: none;
-      
     }
   }
 
@@ -263,7 +262,7 @@ export default {
   .header {
     background-color: var(--accent1);
     height: 50px;
-        margin: 5px;
+    margin: 5px;
     border-radius: 5px;
   }
 }
@@ -277,7 +276,7 @@ export default {
   .header {
     background-color: var(--accent2);
     height: 50px;
-        margin: 5px;
+    margin: 5px;
     border-radius: 5px;
   }
 }
