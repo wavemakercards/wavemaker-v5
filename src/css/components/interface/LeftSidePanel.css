@@ -5,10 +5,19 @@
   bottom: 0px;
   left: 50px;
   width: 320px;
+  overflow-y: auto;
   .header {
-    background-color: var(--accent1);
+        position: sticky;
+        top:0px;
+    background-color: var(--dark);
     height: 50px;
-    margin: 5px;
-    border-radius: 5px;
+    z-index: 99999;
+  }
+  .content{
+    position: absolute;
+    top:0px;
+    padding-top: 60px;
+    padding-bottom: 100px;
+  
   }
 }

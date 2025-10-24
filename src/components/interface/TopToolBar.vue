@@ -14,8 +14,8 @@ export default {
 </script>
 
 <template>
-      <div id="TopToolBar">
-    <button class="logo"><logo></logo></button>
+    <div id="TopToolBar">    
+    <button @click="store.isProjectLoaded = false" class="logo"><logo></logo></button>
     <button>File</button>
     <button>Settings</button>
     <button>Save</button>

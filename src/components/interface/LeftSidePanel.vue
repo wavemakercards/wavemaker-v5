@@ -12,6 +12,58 @@ export default {
 <template>
   <div id="LeftSidePanel">
     <div class="header"></div>
-    <div class="content"></div>
+    <div class="content">
+
+
+
+      <ul>
+        <li>Filename</li>
+         <li>Folder
+  <ul>
+        <li>Filename</li>
+         <li>Filename</li>
+          <li>Filename</li>
+           <li>Filename</li>
+            <li>Filename</li>
+             <li>Folder
+  <ul>
+        <li>Filename</li>
+         <li>Filename</li>
+          <li>Filename</li>
+           <li>Filename</li>
+            <li>Filename</li>
+             <li>Filename</li>
+              <li>Filename</li>
+               <li>Filename</li>
+                <li>Filename</li> <li>Filename</li>
+                 <li>Filename</li>
+      </ul></li>
+              <li>Filename</li>
+               <li>Filename</li>
+                <li>Filename</li> <li>Filename</li>
+                 <li>Filename</li>
+      </ul></li>
+          <li>Filename</li>
+           <li>Filename</li>
+            <li>Filename</li>
+             <li>Filename</li>
+              <li>Folder
+  <ul>
+        <li>Filename</li>
+         <li>Filename</li>
+          <li>Filename</li>
+           <li>Filename</li>
+            <li>Filename</li>
+             <li>Filename</li>
+              <li>Filename</li>
+               <li>Filename</li>
+                <li>Filename</li> <li>Filename</li>
+                 <li>Filename</li>
+      </ul></li>
+               <li>Filename</li>
+                <li>Filename</li> <li>Filename</li>
+                 <li>Filename</li>
+      </ul>
+    </div>
   </div>
 </template>
