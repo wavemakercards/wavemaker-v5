@@ -1,12 +1,17 @@
 :root {
-  --wm-main-background: #f2ece9;
-  --wm-main-foreground: #212121;
+  --bg1 : #f2ece9;
+  --bg2 : #faf6f5;
+  --bg3 : #ffffff;
+
+  --fg1 : #212121;
+  --fg2 : #212121;
+  --fg3 : #212121;
+
+  --wm-main-background: var(--bg1);
+  --wm-main-foreground:  var(--fg1);
 
   --wm-logo-top: var(--accent0);
   --wm-logo-bottom: var(--accent0-dark);
-
-  --dark: #212121;
-  --light: #ffff;
 
   --accent0: #bebebe;
   --accent1: #683ab7;
@@ -60,7 +65,7 @@
   --success-dark-fg: #fff;
   --danger-dark-fg: #fff;
 
-  --scrollbar-color : #dedede
+  --scrollbar-color : #dedede;
 }
 
 *,

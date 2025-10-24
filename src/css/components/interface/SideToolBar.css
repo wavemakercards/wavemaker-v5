@@ -13,28 +13,16 @@
   gap: 8px;
   transition: background-color 0.3s, color 0.3s, transform 0.7s;
   > button {
-    border: 0px;
-    background-color: transparent;
-    display: block;
-    cursor: pointer;
-    &:hover,
-    &:focus {
-      border: 0px;
-      outline: none;
-    }
-  }
-
-  /* Style for direct child buttons */
-  .navbtn {
+    border:0px;
     width: 32px;
     height: 32px;
     margin: 0px 9px;
     color: var(--dark);
-
     border-radius: 5px;
     text-align: center;
     padding: 4px;
     transition: all 0.3s;
+    cursor: pointer;
     svg {
       padding: 2px 0px;
       width: 80%;

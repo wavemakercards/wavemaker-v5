@@ -6,9 +6,8 @@
   right: 320px;
 
   .header {
-    background-color: var(--info);
+    background-color: var(--accent0);
     height: 50px;
-    margin: 5px;
-    border-radius: 5px;
+
   }
 }
