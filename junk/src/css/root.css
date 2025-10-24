@@ -1,0 +1,188 @@
+/**
+ * Root CSS
+ * 
+ * This file contains the root css for the application
+ * Keep the variables and the BASIC structural css here
+ * 
+ */
+:root {
+  --bg1: #373737;
+  --bg2: #3b3b3b;
+  --bg3: #2d2d2d;
+  --fg: #fff;
+  --fontsize: 14px;
+
+
+
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --neutral: #474045;
+  --information: #003E8C;
+  --success: #006539;
+  --warning: #9B3900;
+  --danger: #9B0509;
+  --neutral-light:
+    color-mix(in srgb, var(--neutral) 20%, var(--mix-color, white));
+  --neutral-dark: var(--neutral);
+  --information-light:
+    color-mix(in srgb, var(--information) 20%, var(--mix-color, white));
+  --information-dark: var(--information);
+  --success-light:
+    color-mix(in srgb, var(--success) 20%, var(--mix-color, white));
+  --success-dark:
+    color-mix(in srgb, var(--success) 75%, #000000);
+  --warning-light:
+    color-mix(in srgb, var(--warning) 20%, var(--mix-color, white));
+  --warning-dark: var(--warning);
+  --danger-light:
+    color-mix(in srgb, var(--danger) 20%, var(--mix-color, white));
+  --danger-dark: var(--danger);
+  --accent1: #AF216B;
+  --accent2: #21A0B0;
+  --accent3: #B09F21;
+  --accent4: #679700;
+  --accent5: #67138C;
+  --accent6: #BE5400;
+  --accent1-light:
+    color-mix(in srgb, var(--accent1) 20%, var(--mix-color, white));
+  --accent1-dark:
+    color-mix(in srgb, var(--accent1) 70%, #000000);
+  --accent2-light:
+    color-mix(in srgb, var(--accent2) 20%, var(--mix-color, white));
+  --accent2-dark:
+    color-mix(in srgb, var(--accent2) 70%, #000000);
+  --accent3-light:
+    color-mix(in srgb, var(--accent3) 20%, var(--mix-color, white));
+  --accent3-dark:
+    color-mix(in srgb, var(--accent3) 65%, #000000);
+  --accent4-light:
+    color-mix(in srgb, var(--accent4) 20%, var(--mix-color, white));
+  --accent4-dark:
+    color-mix(in srgb, var(--accent4) 75%, #000000);
+  --accent5-light:
+    color-mix(in srgb, var(--accent5) 20%, var(--mix-color, white));
+  --accent5-dark:
+    color-mix(in srgb, var(--accent5) 70%, #000000);
+  --accent6-light:
+    color-mix(in srgb, var(--accent6) 20%, var(--mix-color, white));
+  --accent6-dark:
+    color-mix(in srgb, var(--accent6) 75%, #000000);
+}
+.accent1 {
+  background-color: var(--accent1);
+}
+.accent2 {
+  background-color: var(--accent2);
+}
+.accent3 {
+  background-color: var(--accent3);
+}
+.accent4 {
+  background-color: var(--accent4);
+}
+.accent5 {
+  background-color: var(--accent5);
+}
+.accent6 {
+  background-color: var(--accent6);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#app {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+
+html {
+  background-color: var(--bg1);
+  color: var(--fg);
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-size: var(--fontsize);
+  letter-spacing: 1px;
+  font-weight: 200;
+}
+
+.container {
+  overflow: auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: var(--bg2);
+}
+.mainwindow{
+  top: 40px;
+  overflow-x: hidden;
+}
+
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.logo {
+}
+
+.logotop {
+  fill: #212121;
+}
+
+.logobtm {
+  fill: #efefef;
+}
+
+::-webkit-scrollbar {
+  width: 3px
+}
+
+:-webkit-scrollbar {
+  width: 3px
+}
+ 
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff11;
+ 
+}
+
+.btn{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn {
+  border:0px;
+  background: none;
+  border-radius: 5px;
+  color: currentColor;
+  cursor: pointer;
+  text-align: right;
+}
+.btn:hover {
+  background-color: #00000044;
+}
+
+.btn:hover{
+  background-color: #00000055;
+}
+
+.icon{
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  padding: 3px;
+}
