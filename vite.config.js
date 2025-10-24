@@ -1,45 +1,48 @@
 import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
   base: "",
+  build: {
+    outDir: "docs"
+  },
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
   plugins: [
     vue(),
     VitePWA({
-      registerType: 'autoUpdate',
-  /*
+      registerType: "autoUpdate",
+      /*
      devOptions: {
         enabled: true,
       },
     */
       manifest: {
-        name: 'Wavemaker Cards version 5',
-        short_name: 'WavemakerCards5',
-        start_url: './',
-        scope: './',
-        display: 'standalone',
-        background_color: '#212121',
-        theme_color: '#212121',
+        name: "Wavemaker Cards version 5",
+        short_name: "WavemakerCards5",
+        start_url: "./",
+        scope: "./",
+        display: "standalone",
+        background_color: "#212121",
+        theme_color: "#212121",
         icons: [
           {
-            src: './icons/192.png',
-            sizes: '192x192',
-            type: 'image/png',
+            src: "./icons/192.png",
+            sizes: "192x192",
+            type: "image/png",
           },
           {
-            src: './icons/512.png',
-            sizes: '512x512',
-            type: 'image/png',
+            src: "./icons/512.png",
+            sizes: "512x512",
+            type: "image/png",
           },
         ],
         file_handlers: [
           {
-            action: './index.html',
+            action: "./index.html",
             accept: {
-              'application/json': ['.wmc'],
+              "application/json": [".wmc"],
             },
           },
         ],
@@ -47,24 +50,26 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: ({ request }) => request.destination === 'document',
-            handler: 'NetworkFirst',
+            urlPattern: ({ request }) => request.destination === "document",
+            handler: "NetworkFirst",
             options: {
-              cacheName: 'html-cache',
+              cacheName: "html-cache",
             },
           },
           {
-            urlPattern: ({ request }) => request.destination === 'script' || request.destination === 'style',
-            handler: 'StaleWhileRevalidate',
+            urlPattern: ({ request }) =>
+              request.destination === "script" ||
+              request.destination === "style",
+            handler: "StaleWhileRevalidate",
             options: {
-              cacheName: 'assets-cache',
+              cacheName: "assets-cache",
             },
           },
           {
-            urlPattern: ({ request }) => request.destination === 'image',
-            handler: 'CacheFirst',
+            urlPattern: ({ request }) => request.destination === "image",
+            handler: "CacheFirst",
             options: {
-              cacheName: 'image-cache',
+              cacheName: "image-cache",
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
