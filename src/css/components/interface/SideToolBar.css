@@ -1,0 +1,50 @@
+#SideToolBar {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  bottom: 0px;
+  width: 50px;
+  padding-top: 5px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  justify-content: flex-start;
+  gap: 8px;
+  transition: background-color 0.3s, color 0.3s, transform 0.7s;
+  > button {
+    border: 0px;
+    background-color: transparent;
+    display: block;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      border: 0px;
+      outline: none;
+    }
+  }
+
+  /* Style for direct child buttons */
+  .navbtn {
+    width: 32px;
+    height: 32px;
+    margin: 0px 9px;
+    color: var(--dark);
+
+    border-radius: 5px;
+    text-align: center;
+    padding: 4px;
+    transition: all 0.3s;
+    svg {
+      padding: 2px 0px;
+      width: 80%;
+    }
+    &:hover,
+    &:focus {
+      background-color: var(--info);
+      color: var(--info-fg);
+      transform: scale(1.2);
+      z-index: 9999;
+    }
+  }
+}

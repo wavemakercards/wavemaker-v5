@@ -1,0 +1,14 @@
+
+#LeftSidePanel {
+  position: absolute;
+  top: 40px;
+  bottom: 0px;
+  left: 50px;
+  width: 320px;
+  .header {
+    background-color: var(--accent1);
+    height: 50px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+}

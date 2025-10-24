@@ -1,0 +1,14 @@
+#MainArea {
+  position: absolute;
+  top: 40px;
+  bottom: 0px;
+  left: 370px;
+  right: 320px;
+
+  .header {
+    background-color: var(--info);
+    height: 50px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+}

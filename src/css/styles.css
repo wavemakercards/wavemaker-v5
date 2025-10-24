@@ -1,27 +1,14 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Special+Elite&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@import url('normalize.css');
+@import url('root.css');
+@import url('components/interface/SideToolBar.css');
+@import url('components/interface/TopToolBar.css');
+@import url('components/interface/MainArea.css');
+@import url('components/interface/RightSidePanel.css');
+@import url('components/interface/LeftSidePanel.css');
 
-html, body{
-    background-color: var(--wm-main-background);
-    color: var(--wm-main-foreground);
-    font-family: 'poppins', sans-serif;
-}
-svg{
-  fill: currentColor;
-}
 
-#app {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  overflow: hidden;
-}
 

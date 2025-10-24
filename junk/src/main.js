@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import "./css/normalize.css";
 import './css/style.css';
 import App from './App.vue';
 import VueSweetalert2 from 'vue-sweetalert2';

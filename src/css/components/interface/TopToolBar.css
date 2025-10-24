@@ -1,0 +1,32 @@
+
+#TopToolBar {
+  position: absolute;
+  display: flex;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 40px;
+  background-color: var(--light);
+  color: var(--dark);
+  text-align: left;
+  margin: 0px;
+
+  > button {
+    cursor: pointer;
+    border: 0px;
+    background-color: transparent;
+    margin: 0px;
+    font-size: 12px;
+    padding: 4px 10px;
+    text-align: left;
+    border-radius: 5px;
+    margin: 5px;
+    &:hover,
+    &:focus {
+      border: 0px;
+      outline: none;
+      background-color: var(--info);
+      color: var(--info-fg);
+    }
+  }
+}
