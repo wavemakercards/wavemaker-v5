@@ -36,6 +36,17 @@
   stroke-width: 1px;
   }
   
+  .subbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    position: sticky;
+    top:0px;
+    background-color: var(--bg3);
+    z-index: 999999;
+  }
+
+
   .footerbar{
     position: absolute;
     bottom: 0px;
@@ -48,12 +59,3 @@
     text-align: center;
   }
   
-  .subbar{
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
-    position: sticky;
-    top:0px;
-    background-color: var(--bg3);
-    z-index: 999999;
-  }

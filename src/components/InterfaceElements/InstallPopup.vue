@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showInstallBanner" class="install-banner">
+  <div v-if="showInstallBanner" id="install-banner">
     <p>Install our app for a better experience!</p>
     <button @click="installApp">Install</button>
   </div>
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style scoped>
-.install-banner {
+#install-banner {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,18 +50,18 @@ export default {
   text-align: center;
   padding: 10px;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
 
-.install-banner p {
+  p {
   margin: 0;
   padding: 0;
   font-size: 16px;
 }
-
-.install-banner button {
+button {
   margin-left: 10px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
 }
+}
+
 </style>

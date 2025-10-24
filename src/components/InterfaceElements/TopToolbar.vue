@@ -143,6 +143,37 @@ export default {
 </template>
 
 <style scoped>
+.toptoolbar{
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    background-color: var(--bg1);
+  }
+  
+  .toptoolbar button{
+    background-color: var(--bg1);
+    color: var(--fg);
+    border: none;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    border-radius:0px 0px 10px 10px;
+  }
+  
+  .toptoolbar button:hover,
+  .toptoolbar button:active,
+  .toptoolbar button:focus{
+    outline: none;
+    background-color:  var(--accent2);
+  }
+  
+  .toptoolbar button svg{
+  fill: currentColor;
+  width: 20px;
+  stroke-width: 1px;
+  }
 .titlebtn {
 
   top: 0px;

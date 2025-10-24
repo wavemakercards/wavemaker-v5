@@ -91,7 +91,7 @@ export default {
 
 <template>
   <div id="app">
-    <TopToolbar v-if="$root.mainwindow" />
+    <TopToolbar v-if="$root.mainwindow && $root.dbRef" />
     <div class="container" :class="{ mainwindow: $root.mainwindow }">
       <Welcome v-if="!$root.dbRef" />
       <ApplicationSections v-else />
