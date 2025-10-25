@@ -25,6 +25,7 @@ export default {
   },
   data() {
     return {
+      darkmode:false,
       modal : null,
       currentTool: null,
       urlSelected : null,
@@ -90,7 +91,7 @@ export default {
 </script>
 
 <template>
-  <div id="app">
+<div id="app" :class="{ dark: darkmode }">
     <TopToolbar v-if="$root.mainwindow && $root.dbRef" />
     <div class="container" :class="{ mainwindow: $root.mainwindow }">
       <Welcome v-if="!$root.dbRef" />

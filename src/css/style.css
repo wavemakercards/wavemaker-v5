@@ -2,9 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 @import url('root.css');
-/*
-@import url('darktheme.css');
-*/
+
 input[type="text"],
 textarea {
     font-family: 'Quicksand', sans-serif;
@@ -23,5 +21,28 @@ textarea {
     height: 40px;
 }
 
-
+  .toptoolbarbutton{
+    border: 0px;
+    width: 32px;
+    height: 32px;
+    margin: 0px 3px;
+    background-color: var(--bg3);
+    color: var(--bg3-fg);
+    border-radius: 5px;
+    text-align: center;
+    padding: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+    svg {
+      padding: 2px 0px;
+      width: 80%;
+    }
+    &:hover,
+    &:focus {
+      background-color: var(--info);
+      color: var(--info-fg);
+      transform: scale(1.2);
+      z-index: 9999;
+    }
+  }
 

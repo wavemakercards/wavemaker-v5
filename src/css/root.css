@@ -78,6 +78,7 @@ html, body{
     background-color: var(--wm-main-background);
     color: var(--wm-main-foreground);
     font-family: 'poppins', sans-serif;
+    transition: all 0.3s;
 }
 svg{
   fill: currentColor;
