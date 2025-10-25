@@ -70,15 +70,18 @@ export default {
   </div>
   <div v-if="$root.tools.writer.selected">
     <div
+    id="FileEditor"
       :class="{
         lhsmain: lhshidden,
         rhsmain: rhshidden,
         mainwindow: $root.mainwindow,
       }"
     >
+
       <FileEditor
         v-if="$root.tools.writer.selectednode"
         :key="$root.tools.writer.selectednode"
+
       />
       <BookEditor v-if="!$root.tools.writer.selectednode" />
     </div>
@@ -138,7 +141,7 @@ export default {
 .lhs:focus-within {
 }
 .lhshidden {
-  left: -290px;
+  left: -290px !important;
 }
 
 .lhsbtn {
@@ -178,7 +181,7 @@ export default {
 }
 
 .rhshidden {
-  right: -290px;
+  right: -290px !important;
 }
 
 .main {
@@ -191,11 +194,11 @@ export default {
   padding: 10px;
 }
 .lhsmain {
-  left: 0px;
+  left: 0px !important;
 }
 
 .rhsmain {
-  right: 0px;
+  right: 0px !important;
 }
 
 #writerHome {
@@ -298,5 +301,14 @@ export default {
     transform: translateZ(var(--book-thickness));
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
   }
+}
+
+#FileEditor{
+  position: absolute;
+  top:0px;
+  left:340px;
+  right:340px;
+  bottom:0px;
+  overflow-y: auto;
 }
 </style>

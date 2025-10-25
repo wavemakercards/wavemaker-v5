@@ -66,6 +66,25 @@
   --danger-dark-fg: #fff;
 
   --scrollbar-color : #dedede;
+
+      --pageEditor-align: left;
+  --pageEditor-fontsize: 1.5rem;
+  --pageEditor-lspacing: 3rem;
+  --pageEditor-indentation: 20px;
+  --pageEditor-pspacing: 20px;
+  --pageEditor-page: 800px;
+  --pageEditor-font: "Merriweather", 'Times New Roman', Times, serif;
+  --pageEditor-color: #424242;
+  --pageEditor-bgcolor: #fafafa;
+  --pageEditor-h1align: center;
+  --pageEditor-h2align: center;
+  --pageEditor-h3align: center;
+  --pageEditor-h4align: center;
+
+  --distractionfree-bg: #fafafa;
+  --distractionfree-fg: #646464;
+  --distractionfree-font: 'Special Elite', 'Courier New', Courier, monospace;
+
 }
 
 *,

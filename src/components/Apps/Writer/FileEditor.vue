@@ -34,16 +34,14 @@ export default {
 </script>
 
 <template>
-
   <div style="text-align: center;">
     <FileName
       :myuuid="$root.tools.writer.selectednode"
       :key="$root.tools.writer.selectednode"
       :formmode="true"
     />
- 
   </div>
   <TipTap v-if="myfile" :content="myfile.content" @update:content="updateContent" :key="myfile.lastupdated"/>
 </template>
 
-<style scoped></style>
+
