@@ -44,62 +44,13 @@ export default {
     },
   },
   mounted() {
-    if (!this.$root.syncdb.Settings.tracker) {
+      if (!this.$root.syncdb.Settings.tracker) {
       this.$root.syncdb.Settings.tracker = {
         wordcount: 0,
         target: 2500,
-        log: {
-          "2025-02-01": 123,
-          "2025-02-02": 432,
-          "2025-02-03": 234,
-          "2025-02-04": 345,
-          "2025-02-05": 456,
-          "2025-02-06": 567,
-          "2025-02-07": 678,
-          "2025-02-08": 789,
-          "2025-02-09": 890,
-          "2025-02-10": 901,
-          "2025-02-11": 123,
-          "2025-02-12": 234,
-          "2025-02-13": 345,
-          "2025-02-14": 456,
-          "2025-02-15": 567,
-          "2025-02-16": 678,
-          "2025-02-17": 789,
-          "2025-02-18": 890,
-          "2025-02-19": 901,
-          "2025-02-20": 123,
-          "2025-02-21": 234,
-          "2025-02-22": 345,
-          "2025-02-23": 456,
-          "2025-02-24": 567,
-          "2025-02-25": 678,
-          "2025-02-26": 789,
-          "2025-02-27": 890,
-          "2025-02-28": 901,
-          "2025-03-01": 123,
-          "2025-03-02": 234,
-          "2025-03-03": 345,
-          "2025-03-04": 456,
-          "2025-03-05": 567,
-          "2025-03-06": 678,
-          "2025-03-07": 789,
-          "2025-03-08": 890,
-          "2025-03-09": 901,
-          "2025-03-10": 123,
-          "2025-03-11": 234,
-          "2025-03-12": 345,
-          "2025-03-13": 456,
-          "2025-03-14": 567,
-          "2025-03-15": 678,
-          "2025-03-16": 789,
-          "2025-03-17": 890,
-          "2025-03-18": 901,
-          "2025-03-19": 123,
-          "2025-03-20": 234,
-          "2025-03-21": 345,
-        },
+        log: { },
       };
+
     }
   },
   methods: {
@@ -154,7 +105,7 @@ export default {
     <h3>{{ $root.syncdb.Settings.tracker.wordcount }} Words</h3>
     <label
       >Daily Wordcount Target
-      <input type="number" v-model="$root.syncdb.Settings.tracker.target" />
+      <input class="inputstyle" type="number" v-model="$root.syncdb.Settings.tracker.target" />
     </label>
 
     <p style="text-align: center">Your Goals</p>
@@ -163,21 +114,7 @@ export default {
       <button @click="advanceMonth">Next Month</button>
     </div>
     <div class="calendars">
-      <div>
-        <div class="month">{{ monthName(-1) }}</div>
-        <div class="calendar">
-          <div
-            class="day"
-            v-for="d in prevMonthDays"
-            :title="getLogValue(d, 0).count + ' Words'"
-          >
-            <div
-              class="block"
-              :style="`opacity:${getLogValue(d, 0).percent}`"
-            ></div>
-          </div>
-        </div>
-      </div>
+
       <div>
         <div class="month">{{ monthName() }}</div>
         <div class="calendar">
@@ -231,7 +168,7 @@ export default {
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 
 .calendars {
   display: grid;

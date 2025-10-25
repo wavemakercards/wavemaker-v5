@@ -10,6 +10,6 @@ export default {
 
 <template>
   <span v-if="this.$root.syncdb.Settings">
-     <input type="text" v-model="this.$root.syncdb.Settings.ProjectName" placeholder="Project Name" @blur="update()" />
+     <input class="inputstyle" type="text" v-model="this.$root.syncdb.Settings.ProjectName" placeholder="Project Name" @blur="update()" />
   </span>
 </template>

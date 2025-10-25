@@ -97,7 +97,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: top;
-    justify-content: space-between;
+  justify-content: space-between;
   gap: 8px;
   transition: background-color 0.3s, color 0.3s, transform 0.7s;
 }

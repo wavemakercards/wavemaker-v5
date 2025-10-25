@@ -27,13 +27,14 @@ export default {
   <div class="project-home" v-if="this.$root.syncdb.Settings">
   <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
       <Logo style="width: 150px; height: 150px" />
-     <ToolMenu />
+     <ToolMenu class="toolmenu" />
  
     </div>
     <details open>
       <summary>Project Settings</summary>
       <p style="text-align: center">What is this project called?</p>
-      <h2 class="inputstyle"><ProjectName /></h2>
+      
+      <ProjectName />
 
       <GridLogger />
     </details>
@@ -104,35 +105,17 @@ export default {
 </template>
 
 <style scoped>
-.inputstyle {
-  background-color: var(--bg3);
-  padding: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-size: 1.3rem;
-  text-align: center;
-  border-radius: 10px;
-}
+
 .project-home {
   max-width: 600px;
   margin: 0 auto;
   padding: 50px;
 }
-.mainmenu {
-  margin: 0 auto;
-  max-width: 660px;
-}
-.mainnav {
-  margin: 0 auto;
-  max-width: 400px;
-}
-.mainnav button {
-  display: flex;
-  align-items: center;
-}
 
-.mainnav button svg {
-  width: 24px;
-  height: 24px;
-  padding: 5px;
+
+@media (min-width: 500px) {
+  .toolmenu {
+    display: none !important;
+  }
 }
 </style>

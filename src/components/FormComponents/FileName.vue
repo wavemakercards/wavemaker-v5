@@ -31,6 +31,6 @@ export default {
 <template>
   <span v-if="myfile" >
   <div @dblclick="editme=true"  v-if="!editme"> {{ myfile.title }}</div> 
-  <input v-if="editme" type="text" v-model="myfile.title" placeholder="......" @blur="update()" />
+  <input class="inputstyle" v-if="editme" type="text" v-model="myfile.title" placeholder="......" @blur="update()" />
   </span>
 </template>
