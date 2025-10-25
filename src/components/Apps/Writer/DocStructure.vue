@@ -1,39 +1,34 @@
 <template>
   <div class="documentStructure" v-if="this.$root.tools.writer.selected">
     <div class="lhstools">
-      <button @click="addNode" class="btn" >
+      <button @click="addNode" class="btn">
         <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
+             xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
           <title>Add File</title>
           <path
             d="M14 2H6C4.89 2 4 2.89 4 4V20C4 21.11 4.89 22 6 22H13.81C13.28 21.09 13 20.05 13 19C13 15.69 15.69 13 19 13C19.34 13 19.67 13.03 20 13.08V8L14 2M13 9V3.5L18.5 9H13M23 20H20V23H18V20H15V18H18V15H20V18H23V20Z"
           />
-        </svg>
-        <span>Add</span>
+        </svg>  
       </button>
     </div>
     <div>
       <div class="docsettings">
-      <button
-        class="btn"
-        @click="$root.tools.writer.selectednode = null"
-      >
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <title>book-open-page-variant-outline</title>
-          <path
-            d="M19 1L14 6V17L19 12.5V1M21 5V18.5C19.9 18.15 18.7 18 17.5 18C15.8 18 13.35 18.65 12 19.5V6C10.55 4.9 8.45 4.5 6.5 4.5C4.55 4.5 2.45 4.9 1 6V20.65C1 20.9 1.25 21.15 1.5 21.15C1.6 21.15 1.65 21.1 1.75 21.1C3.1 20.45 5.05 20 6.5 20C8.45 20 10.55 20.4 12 21.5C13.35 20.65 15.8 20 17.5 20C19.15 20 20.85 20.3 22.25 21.05C22.35 21.1 22.4 21.1 22.5 21.1C22.75 21.1 23 20.85 23 20.6V6C22.4 5.55 21.75 5.25 21 5M10 18.41C8.75 18.09 7.5 18 6.5 18C5.44 18 4.18 18.19 3 18.5V7.13C3.91 6.73 5.14 6.5 6.5 6.5C7.86 6.5 9.09 6.73 10 7.13V18.41Z"
-          />
-        </svg>
-        Document Settings
-      </button>
-    </div>
+        <button class="btn" @click="$root.tools.writer.selectednode = null">
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <title>book-open-page-variant-outline</title>
+            <path
+              d="M19 1L14 6V17L19 12.5V1M21 5V18.5C19.9 18.15 18.7 18 17.5 18C15.8 18 13.35 18.65 12 19.5V6C10.55 4.9 8.45 4.5 6.5 4.5C4.55 4.5 2.45 4.9 1 6V20.65C1 20.9 1.25 21.15 1.5 21.15C1.6 21.15 1.65 21.1 1.75 21.1C3.1 20.45 5.05 20 6.5 20C8.45 20 10.55 20.4 12 21.5C13.35 20.65 15.8 20 17.5 20C19.15 20 20.85 20.3 22.25 21.05C22.35 21.1 22.4 21.1 22.5 21.1C22.75 21.1 23 20.85 23 20.6V6C22.4 5.55 21.75 5.25 21 5M10 18.41C8.75 18.09 7.5 18 6.5 18C5.44 18 4.18 18.19 3 18.5V7.13C3.91 6.73 5.14 6.5 6.5 6.5C7.86 6.5 9.09 6.73 10 7.13V18.41Z"
+            />
+          </svg>
+          Document Settings
+        </button>
+      </div>
       <div style="padding: 10px">
         <div class="lhsscrollcontainer">
           <DocStructureNode
@@ -84,7 +79,7 @@ export default {
       node.open = false;
       node.uuid = template.uuid;
       node.files = [];
-let addto = null;
+      let addto = null;
       if (!this.$root.tools.writer.selectednode) {
         addto = this.$root.tools.writer.selected;
       } else {
@@ -93,7 +88,7 @@ let addto = null;
           this.$root.tools.writer.selected
         );
       }
-  
+
       addto.files.push(node);
       addto.open = true;
 
@@ -119,7 +114,13 @@ let addto = null;
 };
 </script>
 
-<style lang="css" scoped>
+<style  scoped>
+.documentStructure{
+     background-color: var(--bg1);
+     position: absolute;
+     top:0px;
+     bottom:0px
+}
 .lhstools {
   padding: 3px;
   position: sticky;
@@ -127,6 +128,31 @@ let addto = null;
   height: 34px;
   background-color: inherit;
   text-align: right;
+
+  * button {
+    border: 0px;
+    width: 32px;
+    height: 32px;
+    margin: 0px 4px;
+    background-color: var(--bg3);
+    color: var(--bg3-fg);
+    border-radius: 5px;
+    text-align: center;
+    padding: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+    svg {
+      padding: 2px 0px;
+      width: 80%;
+    }
+    &:hover,
+    &:focus {
+      background-color: var(--info);
+      color: var(--info-fg);
+      transform: scale(1.2);
+      z-index: 9999;
+    }
+  }
 }
 
 .lhsscrollcontainer {
@@ -134,12 +160,12 @@ let addto = null;
   position: absolute;
   top: 70px;
   left: 0px;
-  right: 30px;
+  right: 36px;
   bottom: 0px;
   padding: 10px 10px 50px 10px;
-
+   background-color: var(--bg1);
 }
-.lhshidden .lhsscrollcontainer{
+.lhshidden .lhsscrollcontainer {
   overflow: hidden;
 }
 .docsettings {
@@ -153,8 +179,27 @@ let addto = null;
   white-space: normal;
   text-align: left;
   background-color: inherit;
-  margin:5px
+  margin: 5px;
 }
 
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+ width: auto;
+  border: 0px;
+  background: none;
+  border-radius: 5px;
+  color: currentColor;
+  cursor: pointer;
+  text-align: right;
+  svg{
+    width: 24px;
+  }
+
+  &:hover{
+   font-weight: bold;
+  }
+}
 
 </style>

@@ -34,7 +34,6 @@ export default {
         jsonData: null,
       },
       tools: {
-        current: null,
         writer: {
           selected: null,
           selectednode: null,

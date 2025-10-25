@@ -1,11 +1,15 @@
 <script>
 export default {
-  methods: {},
+  methods: {
+    setTool(tool) {
+      this.$root.currentTool = tool;
+    }
+  },
 };
 </script>
 <template>
     <span>
-     <button  class="toptoolbarbutton" @click="$root.currentTool = 'writer'">
+  <button  class="toptoolbarbutton" @click="setTool('writer')">
         <svg data-v-92328502="" version="1.1" viewBox="0 0 24 24">
           <path
             data-v-92328502=""
@@ -14,14 +18,14 @@ export default {
         </svg>
       </button>
 
-      <button  class="toptoolbarbutton" @click="$root.currentTool = 'gridplanner'">
+  <button  class="toptoolbarbutton" @click="setTool('gridplanner')">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>view-grid</title>
           <path d="M3,11H11V3H3M3,21H11V13H3M13,21H21V13H13M13,3V11H21V3" />
         </svg>
       </button>
 
-      <button  class="toptoolbarbutton" @click="$root.currentTool = 'mindmap'">
+  <button  class="toptoolbarbutton" @click="setTool('mindmap')">
         <svg data-v-92328502="" version="1.1" viewBox="0 0 24 24">
           <path
             data-v-92328502=""
@@ -30,7 +34,7 @@ export default {
         </svg>
       </button>
 
-      <button  class="toptoolbarbutton" @click="$root.currentTool = 'timeline'">
+  <button  class="toptoolbarbutton" @click="setTool('timeline')">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>timeline-outline</title>
           <path
@@ -39,7 +43,7 @@ export default {
         </svg>
       </button>
 
-      <button  class="toptoolbarbutton" @click="$root.currentTool = 'snowflake'">
+  <button  class="toptoolbarbutton" @click="setTool('snowflake')">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>snowflake</title>
           <path
@@ -48,7 +52,7 @@ export default {
         </svg>
       </button>
 
-      <button  class="toptoolbarbutton" @click="$root.currentTool = 'cardsdatabase'">
+  <button  class="toptoolbarbutton" @click="setTool('cardsdatabase')">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>cards-outline</title>
           <path
@@ -69,5 +73,3 @@ export default {
       </span>
     </template>
 
-<style scoped>
-</style>
