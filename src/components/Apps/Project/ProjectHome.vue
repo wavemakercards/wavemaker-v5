@@ -35,6 +35,8 @@ export default {
       <GridLogger />
     </details>
 
+    <!--
+ 
     <div class="mainnav">
       <button @click="$root.currentTool = 'writer'">
         <svg data-v-92328502="" version="1.1" viewBox="0 0 24 24">
@@ -94,6 +96,7 @@ export default {
         Cards Database
       </button>
     </div>
+       -->
   </div>
 </template>
 

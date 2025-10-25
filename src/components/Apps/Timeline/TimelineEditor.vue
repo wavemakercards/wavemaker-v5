@@ -49,8 +49,7 @@ export default {
         text: "this is permmanend",
         icon: "question",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+
         confirmButtonText: "Confirm",
         cancelButtonText: "Cancel",
       }).then((result) => {

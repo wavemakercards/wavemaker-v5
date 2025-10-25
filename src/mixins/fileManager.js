@@ -85,7 +85,6 @@ const fileManager = {
               title: "Your File Was saved",
               text: "The file was saved successfully",
               icon: "success",
-              confirmButtonColor: "#3085d6",
               confirmButtonText: "OK",
             })
 
@@ -94,7 +93,6 @@ const fileManager = {
               title: "Your file was not saved",
               text: "Please try again, or use other export tools to make a backup.",
               icon: "error",
-              confirmButtonColor: "#3085d6",
               confirmButtonText: "OK",
             })
              }

@@ -4,20 +4,19 @@ import Logo from "@/components/InterfaceElements/Logo.vue";
 export default {
   components: {
     Logo,
-
   },
   methods: {},
 };
 </script>
 
 <template>
-  <div class="toptoolbar">
-    <div>
-    <button @click="$root.currentTool = null" class="titlebtn">
-      <Logo style="width: 30px; height: 30px" />
-    </button>
- 
-      <button @click="$root.currentTool = 'writer'" >
+  <div id="TopToolBar">
+    <span>
+      <button @click="$root.currentTool = null">
+        <Logo />
+      </button>
+
+      <button @click="$root.currentTool = 'writer'">
         <svg data-v-92328502="" version="1.1" viewBox="0 0 24 24">
           <path
             data-v-92328502=""
@@ -31,7 +30,6 @@ export default {
           <title>view-grid</title>
           <path d="M3,11H11V3H3M3,21H11V13H3M13,21H21V13H13M13,3V11H21V3" />
         </svg>
-  
       </button>
 
       <button @click="$root.currentTool = 'mindmap'">
@@ -50,7 +48,6 @@ export default {
             d="M4 2V8H2V2H4M2 22V16H4V22H2M5 12C5 13.11 4.11 14 3 14C1.9 14 1 13.11 1 12C1 10.9 1.9 10 3 10C4.11 10 5 10.9 5 12M24 6V18C24 19.11 23.11 20 22 20H10C8.9 20 8 19.11 8 18V14L6 12L8 10V6C8 4.89 8.9 4 10 4H22C23.11 4 24 4.89 24 6M10 6V18H22V6H10Z"
           />
         </svg>
-
       </button>
 
       <button @click="$root.currentTool = 'snowflake'">
@@ -60,7 +57,6 @@ export default {
             d="M20.79,13.95L18.46,14.57L16.46,13.44V10.56L18.46,9.43L20.79,10.05L21.31,8.12L19.54,7.65L20,5.88L18.07,5.36L17.45,7.69L15.45,8.82L13,7.38V5.12L14.71,3.41L13.29,2L12,3.29L10.71,2L9.29,3.41L11,5.12V7.38L8.5,8.82L6.5,7.69L5.92,5.36L4,5.88L4.47,7.65L2.7,8.12L3.22,10.05L5.55,9.43L7.55,10.56V13.45L5.55,14.58L3.22,13.96L2.7,15.89L4.47,16.36L4,18.12L5.93,18.64L6.55,16.31L8.55,15.18L11,16.62V18.88L9.29,20.59L10.71,22L12,20.71L13.29,22L14.7,20.59L13,18.88V16.62L15.5,15.17L17.5,16.3L18.12,18.63L20,18.12L19.53,16.35L21.3,15.88L20.79,13.95M9.5,10.56L12,9.11L14.5,10.56V13.44L12,14.89L9.5,13.44V10.56Z"
           />
         </svg>
-
       </button>
 
       <button @click="$root.currentTool = 'cardsdatabase'">
@@ -71,9 +67,7 @@ export default {
           />
         </svg>
       </button>
-
-  </div>
-
+    </span>
 
     <span class="floatRight">
       <button @click="$root.openFileFromGoogleDrive" v-if="!$root.dbRef">
@@ -143,50 +137,43 @@ export default {
 </template>
 
 <style scoped>
-.toptoolbar{
-    position: sticky;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 40px;
-    background-color: var(--bg1);
-  }
-  
-  .toptoolbar button{
-    background-color: var(--bg1);
-    color: var(--fg);
-    border: none;
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
-    border-radius:0px 0px 10px 10px;
-  }
-  
-  .toptoolbar button:hover,
-  .toptoolbar button:active,
-  .toptoolbar button:focus{
-    outline: none;
-    background-color:  var(--accent2);
-  }
-  
-  .toptoolbar button svg{
-  fill: currentColor;
-  width: 20px;
-  stroke-width: 1px;
-  }
-.titlebtn {
-
-  top: 0px;
+#TopToolBar {
+  position: absolute;
   left: 0px;
-}
-
-.floatRight {
-
   top: 0px;
   right: 0px;
-}
-.projectname {
-  width: 100%;
-  text-align: center;
+  height: 40px;
+  padding: 5px 5px 0px 5px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+    justify-content: space-between;
+  gap: 8px;
+  transition: background-color 0.3s, color 0.3s, transform 0.7s;
+
+  span > button {
+    border: 0px;
+    width: 32px;
+    height: 32px;
+    margin: 0px 3px;
+    color: var(--dark);
+    border-radius: 5px;
+    text-align: center;
+    padding: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+    svg {
+      padding: 2px 0px;
+      width: 80%;
+    }
+    &:hover,
+    &:focus {
+      background-color: var(--info);
+      color: var(--info-fg);
+      transform: scale(1.2);
+      z-index: 9999;
+    }
+  }
 }
 </style>

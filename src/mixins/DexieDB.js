@@ -163,8 +163,6 @@ console.log(this.$root.currentTool, this.$root.urlSelected)
         text: "This will close the project any unsaved changes will be lost!",
         icon: "question",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
         confirmButtonText: "Yes, close it!",
       }).then(async (result) => {
         if (result.isConfirmed) {
