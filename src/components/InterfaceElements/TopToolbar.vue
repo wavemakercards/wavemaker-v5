@@ -144,7 +144,7 @@ export default {
   right: 0px;
   height: 40px;
   padding: 5px 5px 0px 5px;
-  background-color: #fff;
+  background-color: var(--bg2);
   display: flex;
   flex-direction: row;
   align-items: top;
@@ -157,7 +157,8 @@ export default {
     width: 32px;
     height: 32px;
     margin: 0px 3px;
-    color: var(--dark);
+    background-color: var(--bg3);
+    color: var(--bg3-fg);
     border-radius: 5px;
     text-align: center;
     padding: 4px;

@@ -110,7 +110,7 @@ export default {
   border-radius: 10px;
 }
 .project-home {
-  max-width: 1000px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 50px;
 }
