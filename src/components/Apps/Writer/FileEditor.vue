@@ -7,14 +7,7 @@ export default {
     TipTap
   },
   methods: {
-  async handleChange() {
-       await this.$root.UpdateRecord("Files", this.myfile.uuid, this.myfile);
-    },
-    updateContent(newContent) {
-      this.myfile.content = newContent;
-      console.log(newContent)
-      this.handleChange() 
-    },
+
   },
   name: "FileEditor",
   data() {
@@ -41,7 +34,7 @@ export default {
       :formmode="true"
     />
   </div>
-  <TipTap v-if="myfile" :content="myfile.content" @update:content="updateContent" :key="myfile.lastupdated"/>
+  <TipTap v-if="myfile" :file="myfile"  :key="myfile.lastupdated"/>
 </template>
 
 

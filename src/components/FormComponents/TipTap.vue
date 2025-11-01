@@ -1,5 +1,5 @@
 <template>
-  <div v-if="editor" class="container">
+  <div v-if="editor" class="container" @focusout="saveChange()">
     <div class="control-group">
       <div class="button-group">
         <button
@@ -30,8 +30,12 @@
         >
           Code
         </button>
-        <button @click="editor.chain().focus().unsetAllMarks().run()">Clear marks</button>
-        <button @click="editor.chain().focus().clearNodes().run()">Clear nodes</button>
+        <button @click="editor.chain().focus().unsetAllMarks().run()">
+          Clear marks
+        </button>
+        <button @click="editor.chain().focus().clearNodes().run()">
+          Clear nodes
+        </button>
         <button
           @click="editor.chain().focus().setParagraph().run()"
           :class="{ 'is-active': editor.isActive('paragraph') }"
@@ -98,17 +102,29 @@
         >
           Blockquote
         </button>
-        <button @click="editor.chain().focus().setHorizontalRule().run()">Horizontal rule</button>
-        <button @click="editor.chain().focus().setHardBreak().run()">Hard break</button>
-        <button @click="editor.chain().focus().undo().run()" :disabled="!editor.can().chain().focus().undo().run()">
+        <button @click="editor.chain().focus().setHorizontalRule().run()">
+          Horizontal rule
+        </button>
+        <button @click="editor.chain().focus().setHardBreak().run()">
+          Hard break
+        </button>
+        <button
+          @click="editor.chain().focus().undo().run()"
+          :disabled="!editor.can().chain().focus().undo().run()"
+        >
           Undo
         </button>
-        <button @click="editor.chain().focus().redo().run()" :disabled="!editor.can().chain().focus().redo().run()">
+        <button
+          @click="editor.chain().focus().redo().run()"
+          :disabled="!editor.can().chain().focus().redo().run()"
+        >
           Redo
         </button>
         <button
           @click="editor.chain().focus().setColor('#958DF1').run()"
-          :class="{ 'is-active': editor.isActive('textStyle', { color: '#958DF1' }) }"
+          :class="{
+            'is-active': editor.isActive('textStyle', { color: '#958DF1' }),
+          }"
         >
           Purple
         </button>
@@ -119,53 +135,53 @@
 </template>
 
 <script>
-import { ListItem } from '@tiptap/extension-list'
-import { Color, TextStyle } from '@tiptap/extension-text-style'
-import StarterKit from '@tiptap/starter-kit'
-import { Editor, EditorContent } from '@tiptap/vue-3'
+import { ListItem } from "@tiptap/extension-list";
+import { Color, TextStyle } from "@tiptap/extension-text-style";
+import StarterKit from "@tiptap/starter-kit";
+import { Editor, EditorContent } from "@tiptap/vue-3";
 
 export default {
   components: {
     EditorContent,
   },
-    props: {
-        content: {
-            type: String,
-            required: true,
-        },
+  props: {
+    file: {
+      type: Object,
+      default: null,
     },
-    emits: ['update:content'],
+  },
   data() {
     return {
       editor: null,
-    }
+      myhtml : "loading"
+    };
   },
-    methods: {
-        emitContent() {
-            this.$emit('update:content', this.editor.getHTML())
-        },
+  methods: {
+    async saveChange() {
+
+       this.file.content =  this.editor.getHTML() 
+      await this.$root.UpdateRecord("Files", this.file.uuid, this.file);
     },
+  },
   mounted() {
-    
+
+    this.myhtml = this.file.content
+
     this.editor = new Editor({
       extensions: [
         Color.configure({ types: [TextStyle.name, ListItem.name] }),
         TextStyle.configure({ types: [ListItem.name] }),
         StarterKit,
       ],
-      content: this.content
-    })
-
-    // Emit content on every change
-    this.editor.on('update', () => {
-      this.emitContent()
-    })
+      content: this.myhtml ,
+    });
   },
-
   beforeUnmount() {
-    this.editor.destroy()
+    if(this.editor){
+    this.editor.destroy();
+    }
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -236,7 +252,7 @@ export default {
     background: var(--black);
     border-radius: 0.5rem;
     color: var(--white);
-    font-family: 'JetBrainsMono', monospace;
+    font-family: "JetBrainsMono", monospace;
     margin: 1.5rem 0;
     padding: 0.75rem 1rem;
 
