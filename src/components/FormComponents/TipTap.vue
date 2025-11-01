@@ -30,12 +30,8 @@
         >
           Code
         </button>
-        <button @click="editor.chain().focus().unsetAllMarks().run()">
-          Clear marks
-        </button>
-        <button @click="editor.chain().focus().clearNodes().run()">
-          Clear nodes
-        </button>
+        <button @click="editor.chain().focus().unsetAllMarks().run()">Clear marks</button>
+        <button @click="editor.chain().focus().clearNodes().run()">Clear nodes</button>
         <button
           @click="editor.chain().focus().setParagraph().run()"
           :class="{ 'is-active': editor.isActive('paragraph') }"
@@ -102,49 +98,39 @@
         >
           Blockquote
         </button>
-        <button @click="editor.chain().focus().setHorizontalRule().run()">
-          Horizontal rule
-        </button>
-        <button @click="editor.chain().focus().setHardBreak().run()">
-          Hard break
-        </button>
-        <button
-          @click="editor.chain().focus().undo().run()"
-          :disabled="!editor.can().chain().focus().undo().run()"
-        >
+        <button @click="editor.chain().focus().setHorizontalRule().run()">Horizontal rule</button>
+        <button @click="editor.chain().focus().setHardBreak().run()">Hard break</button>
+        <button @click="editor.chain().focus().undo().run()" :disabled="!editor.can().chain().focus().undo().run()">
           Undo
         </button>
-        <button
-          @click="editor.chain().focus().redo().run()"
-          :disabled="!editor.can().chain().focus().redo().run()"
-        >
+        <button @click="editor.chain().focus().redo().run()" :disabled="!editor.can().chain().focus().redo().run()">
           Redo
         </button>
         <button
           @click="editor.chain().focus().setColor('#958DF1').run()"
-          :class="{
-            'is-active': editor.isActive('textStyle', { color: '#958DF1' }),
-          }"
+          :class="{ 'is-active': editor.isActive('textStyle', { color: '#958DF1' }) }"
         >
           Purple
         </button>
       </div>
     </div>
-    <editor-content :editor="editor" />
+
+    <editor-content class="page" :editor="editor" />
+
   </div>
 </template>
 
 <script>
-import { ListItem } from "@tiptap/extension-list";
-import { Color, TextStyle } from "@tiptap/extension-text-style";
-import StarterKit from "@tiptap/starter-kit";
-import { Editor, EditorContent } from "@tiptap/vue-3";
+import { ListItem } from '@tiptap/extension-list'
+import { Color, TextStyle } from '@tiptap/extension-text-style'
+import StarterKit from '@tiptap/starter-kit'
+import { Editor, EditorContent } from '@tiptap/vue-3'
 
 export default {
   components: {
     EditorContent,
   },
-  props: {
+    props: {
     file: {
       type: Object,
       default: null,
@@ -153,16 +139,16 @@ export default {
   data() {
     return {
       editor: null,
-      myhtml : "loading"
-    };
+            myhtml : "loading"
+    }
   },
-  methods: {
-    async saveChange() {
+    methods: {
+          async saveChange() {
 
        this.file.content =  this.editor.getHTML() 
       await this.$root.UpdateRecord("Files", this.file.uuid, this.file);
     },
-  },
+    },
   mounted() {
 
     this.myhtml = this.file.content
@@ -181,10 +167,19 @@ export default {
     this.editor.destroy();
     }
   },
-};
+}
 </script>
 
 <style lang="scss">
+.page{
+  .tiptap{
+  padding: 5%;
+  background-color: #fff;
+  margin-top: 15px;
+  min-height: 400px;
+  margin-bottom: 200px;
+  }
+}
 /* Basic editor styles */
 .tiptap {
   :first-child {
@@ -252,7 +247,7 @@ export default {
     background: var(--black);
     border-radius: 0.5rem;
     color: var(--white);
-    font-family: "JetBrainsMono", monospace;
+    font-family: 'JetBrainsMono', monospace;
     margin: 1.5rem 0;
     padding: 0.75rem 1rem;
 
