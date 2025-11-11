@@ -108,7 +108,7 @@
 <script>
 import autosize from "@/directives/autosize.js";
 import { VueDraggable } from "vue-draggable-plus";
-import GridPlannerCell from "./GridPlannerCell.vue";
+import GridPlannerCell from "./GridplannerCell.vue";
 export default {
   name: "GridPlanner",
   components: {
