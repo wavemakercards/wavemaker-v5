@@ -22,7 +22,7 @@ export default {
         <Logo style="width: 50px" />
         <h1>Wavemaker Cards</h1>
       </div>
-      <p><strong>Version 5</strong></p>
+      <p><strong>Version {{ $root.appInfo.version }}</strong></p>
       <p style="padding: 10px; font-size: 1rem">Start Writing</p>
 
       <div>

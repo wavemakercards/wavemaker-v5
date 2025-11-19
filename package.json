@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3434 --open",
+    "prebuild": "node bump-version.js patch",
     "build": "vite build",
-    "docs": "vite build --outDir docs",
+    "build:minor": "node bump-version.js minor && vite build",
+    "build:major": "node bump-version.js major && vite build",
     "preview": "vite preview --port 8080 --open"
   },
   "dependencies": {

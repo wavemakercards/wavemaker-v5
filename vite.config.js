@@ -5,6 +5,9 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   base: "",
+    build: {
+    outDir: 'docs'
+  },
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
   plugins: [
     vue(),

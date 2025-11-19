@@ -1,4 +1,5 @@
 <script>
+import appInfo from "../package.json"
 /** Mixins */
 import DexieDB from "@/mixins/DexieDB.js";
 import templateObjects from "@/mixins/templateObjects.js";
@@ -25,6 +26,7 @@ export default {
   },
   data() {
     return {
+      appInfo: appInfo,
       darkmode:false,
       modal : null,
       currentTool: null,
