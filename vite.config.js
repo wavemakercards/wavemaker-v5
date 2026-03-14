@@ -77,5 +77,10 @@ export default defineConfig({
         ],
       },
     }),
-  ],
+    ],
+  server: {
+    host: '0.0.0.0',  // Add this line
+    port: 5173,       // Add this line (Vite's default port)
+  },
+  resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
 });
